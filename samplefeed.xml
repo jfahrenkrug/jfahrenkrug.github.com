@@ -1,0 +1,50 @@
+<feed xmlns:georss='http://www.georss.org/georss'gd:etag='W/&quot;CUYASXY5cCp7ImA9WxBUFk4.&quot;' xmlns:gd='http://schemas.google.com/g/2005' xmlns:openSearch='http://a9.com/-/spec/opensearch/1.1/' xmlns='http://www.w3.org/2005/Atom'><id>tag:blogger.com,1999:blog-4366452231084261097</id><updated>2010-03-03T17:19:08.828+01:00</updated><title>Springenwerk Blog by Johannes Fahrenkrug</title>
+<subtitle type='html'>what's on the horizon for software developing coding monkeys. like me.</subtitle>
+<link href='http://blog.springenwerk.com/feeds/posts/default' rel='http://schemas.google.com/g/2005#feed' type='application/atom+xml'/>
+<link href='http://www.blogger.com/feeds/4366452231084261097/posts/default?published-min=2006-03-16T00:00:00.000&amp;max-results=1' rel='self' type='application/atom+xml'/>
+<link href='http://blog.springenwerk.com/' rel='alternate' type='text/html'/><link href='http://pubsubhubbub.appspot.com/' rel='hub'/>
+<link href='http://www.blogger.com/feeds/4366452231084261097/posts/default?published-min=2006-03-16T00:00:00.000&amp;start-index=2&amp;max-results=1' rel='next' type='application/atom+xml'/>
+<author><name>Johannes Fahrenkrug</name><uri>http://www.blogger.com/profile/06650223978538123548</uri><email>noreply@blogger.com</email></author>
+<generator uri='http://www.blogger.com' version='7.00'>Blogger</generator>
+<openSearch:totalResults>127</openSearch:totalResults>
+<openSearch:startIndex>1</openSearch:startIndex>
+<openSearch:itemsPerPage>1</openSearch:itemsPerPage>
+<entry gd:etag='W/&quot;CUIDRX0yeip7ImA9WxBUEUs.&quot;'>
+  <id>tag:blogger.com,1999:blog-4366452231084261097.post-7531387138345402674</id>
+  <published>2010-02-26T06:52:00.000+01:00</published>
+  <updated>2010-02-26T06:52:54.392+01:00</updated>
+  <app:edited xmlns:app='http://www.w3.org/2007/app'>2010-02-26T06:52:54.392+01:00</app:edited>
+  <category term='Programming' scheme='http://www.blogger.com/atom/ns#'/>
+  <category term='iPhone' scheme='http://www.blogger.com/atom/ns#'/>
+  <category term='Cocoa' scheme='http://www.blogger.com/atom/ns#'/>
+  <title>Introducing VertexHelper for Box2D &amp; Chipmunk Vertices</title>
+  <content type='html'>I found it extremely tedious to define the
+vertices of sprites for the Box2D or Chipmunk physics engines. Maybe I was just not using the
+right tool. So I wrote my own. It's called VertexHelper and it lets you graphically define
+vertices of sprites for Box2D and Chipmunk bodies/shapes. You can &lt;a
+href="http://github.com/jfahrenkrug/VertexHelper"&gt;find it on github&lt;/a&gt;.&lt;br /&gt;
+This video shows you what it does and how it works:&lt;br /&gt; &lt;object width="640"
+height="505"&gt;&lt;param name="movie"
+value="http://www.youtube.com/v/oigdrgh286E&amp;hl=en_US&amp;fs=1&amp;"&gt;&lt;/param&gt;&lt;param
+name="allowFullScreen" value="true"&gt;&lt;/param&gt;&lt;param name="allowscriptaccess"
+value="always"&gt;&lt;/param&gt;&lt;embed
+src="http://www.youtube.com/v/oigdrgh286E&amp;hl=en_US&amp;fs=1&amp;"
+type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"
+width="640" height="505"&gt;&lt;/embed&gt;&lt;/object&gt;&lt;br /&gt; Enjoy!&lt;div
+class="blogger-post-footer"&gt;&lt;img width='1' height='1'
+src='https://blogger.googleusercontent.com/tracker/4366452231084261097-7531387138345402674?l=blog.springenwerk.com'
+alt='' /&gt;&lt;/div&gt;</content>
+  <link href='http://blog.springenwerk.com/feeds/7531387138345402674/comments/default' title='Post Comments' rel='replies' type='application/atom+xml'/>
+  <link href='https://www.blogger.com/comment.g?blogID=4366452231084261097&amp;postID=7531387138345402674' title='3 Comments' rel='replies' type='text/html'/>
+  <link href='http://www.blogger.com/feeds/4366452231084261097/posts/default/7531387138345402674' rel='edit' type='application/atom+xml'/>
+  <link href='http://www.blogger.com/feeds/4366452231084261097/posts/default/7531387138345402674' rel='self' type='application/atom+xml'/>
+  <link href='http://blog.springenwerk.com/2010/02/introducing-vertexhelper-for-box2d.html' title='Introducing VertexHelper for Box2D &amp; Chipmunk Vertices' rel='alternate' type='text/html'/>
+  <author>
+    <name>Johannes Fahrenkrug</name>
+    <uri>http://www.blogger.com/profile/06650223978538123548</uri>
+    <email>noreply@blogger.com</email>
+    <gd:extendedProperty name='OpenSocialUserId' value='07527337270104577034'/>
+  </author>
+  <thr:total xmlns:thr='http://purl.org/syndication/thread/1.0'>3</thr:total>
+</entry>
+</feed>
