@@ -1,0 +1,13 @@
+--- 
+name: invalidate-single-urls-in
+layout: post
+title: Invalidate Single URLs in Rack::Cache/Radiant::Cache
+time: 2010-01-12 14:40:00.001000 Z
+---
+I've recently encountered a problem with Rack::Cache: I have a Radiant app with some custom extensions and some of those extensions build pages that are expensive to build. So far I could only purge the cache completely by removing the tmp/cache directory. That's not a nice solution if all I want to invalidate is one page. So after some digging I came up with this tiny script:<br />
+<br />
+<script src="http://gist.github.com/275240.js?file=clear_diskcache.rb">
+</script><br />
+<br />
+It allows me to explicitly purge certain URLs from my Rack::Cache based Radiant::Cache. Please note that this only works if you use the Radiant::Cache standard options. Otherwise you'll have to tweak the metastore that should be used.<br />
+Some further reading: <a href="http://github.com/svenfuchs/rack-cache-purge">http://github.com/svenfuchs/rack-cache-purge</a>.<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-3512675545492744682?l=blog.springenwerk.com' alt='' /></div>

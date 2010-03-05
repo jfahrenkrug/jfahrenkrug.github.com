@@ -2,11 +2,27 @@
 <html>
   <head>
     <title>{{ page.title }}</title>
+    <link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 8]>
+        <link href="stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
   </head>
 
   <body>
-    <h1>{{ page.title }}</h1>
-
-    {{ content }}
+    
+    <body class="bp three-col">
+      <div id="container">
+        <div id="header"><img src="images/logo_white.png"/></div>
+        <div id="sidebar">Sidebar
+        	<ul><li>one</li><li>two</li></ul>
+        </div>
+          <div id="content">
+            <h1>{{ page.title }}</h1>
+            {{ content }}
+          </div>
+        <div id="footer">Footer ----------------------------</div>
+      </div>
+    </body>
   </body>
 </html>
