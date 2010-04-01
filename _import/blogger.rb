@@ -1,3 +1,6 @@
+# run it like this: 
+# ruby -r '_import/blogger' -e 'Jekyll::Blogger.process'
+
 module Jekyll
  
   require 'rexml/document'
@@ -49,6 +52,25 @@ module Jekyll
             f
           )
           f.puts "---\n#{content}"
+          
+          # Dump existing comments...
+          comments_links = entry.links.select {|l| l.rel == 'replies' and l.type == 'application/atom+xml'}
+          comments_link = comments_links.empty? ? nil : comments_links[0]
+          if comments_link
+            cfeed = client.get(comments_link.href).to_xml
+            cfeed = Atom::Feed.new(cfeed.to_s)
+
+            if !cfeed.entries.empty?
+              puts "  exporting #{cfeed.entries.size} comments."
+              f.puts "<br/><hr/><h3>Comments</h3>"
+
+              cfeed.entries.each do |centry|
+                f.puts "<h4><a href=\"#{centry.authors[0].uri}\">#{centry.authors[0].name}</a> said...</h4>"
+                f.puts "<br/>#{centry.content.value}<br/>"
+                f.puts "#{centry.published.strftime('%B %d, %Y %I:%M %p')}" # January 30, 2010 4:46 PM
+              end
+            end
+          end
         end
         posts += 1
       end
