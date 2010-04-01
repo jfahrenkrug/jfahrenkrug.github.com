@@ -48,6 +48,7 @@ module Jekyll
               "name" => name,
               "title" => title,
               "time" => timestamp,
+              "categories" => entry.categories.collect {|cat| cat.term}
             },
             f
           )

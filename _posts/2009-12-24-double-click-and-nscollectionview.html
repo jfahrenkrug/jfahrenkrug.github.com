@@ -3,6 +3,10 @@ name: double-click-and-nscollectionview
 layout: post
 title: Double Click and NSCollectionView
 time: 2009-12-24 11:25:00 Z
+categories: 
+- Programming
+- Tutorials
+- Cocoa
 ---
 I needed to capture double clicks on NSCollectionViewItems in an app I'm working on. This is unfortunately not something that's supported out-of-the-box. I found <a href="http://www.cocoadev.com/index.pl?NSCollectionView">this post on CocoaDev</a> helpful. However, since quite a few people will run into this issue, I want to explain step by step how to get this working with as little code as possible. We basically just need one custom NSView subclass and a NSCollectionViewItem subclass and a few connections in IB.<br />
 As a basis, we'll use Apple's demo app <a href="http://developer.apple.com/mac/library/samplecode/IconCollection/index.html">IconCollection</a>. Download it and open it in XCode.<br />

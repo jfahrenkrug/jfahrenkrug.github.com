@@ -119,4 +119,6 @@ body.three-col #sidebar li a { text-decoration: none; color: #b2b2b2; }
 body.three-col #sidebar li a:hover { color: black; }
 body.three-col #content { display: inline; float: left; margin-right: 0; width: 790px; margin-top: 10px; margin-bottom: 10px; }
 * html body.three-col #content { overflow-x: hidden; }
+body.three-col #content a.swtaglink { text-decoration: none; color: inherit; }
+body.three-col #content a:hover.swtaglink { color: black; }
 body.three-col #content h1 { color: #8cc63f; }

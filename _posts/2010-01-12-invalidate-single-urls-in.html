@@ -3,6 +3,10 @@ name: invalidate-single-urls-in
 layout: post
 title: Invalidate Single URLs in Rack::Cache/Radiant::Cache
 time: 2010-01-12 14:40:00.001000 Z
+categories: 
+- Programming
+- Ruby
+- rails
 ---
 I've recently encountered a problem with Rack::Cache: I have a Radiant app with some custom extensions and some of those extensions build pages that are expensive to build. So far I could only purge the cache completely by removing the tmp/cache directory. That's not a nice solution if all I want to invalidate is one page. So after some digging I came up with this tiny script:<br />
 <br />
