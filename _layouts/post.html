@@ -34,8 +34,10 @@
       </div>
         <div id="content">
           <h1>{{ page.title }}</h1>
-          <em class="swlightgray">Posted on {{ page.date | date_to_long_string }}. Tags: {% for category in page.categories %}<a class="swtaglink" href="/tags.html#{{ category }}">{{ category }}</a> {% endfor %}</em><br/>
+          <em class="swlightgray">Posted on {{ page.date | date_to_long_string }} by Johannes Fahrenkrug. Tags: {% for category in page.categories %}<a class="swtaglink" href="/tags.html#{{ category }}">{{ category }}</a> {% endfor %}</em>
+          <div style="margin-top: 10px">
           {{ content }}
+          </div>
           
           <div id="disqus_thread"></div>
           <script type="text/javascript">

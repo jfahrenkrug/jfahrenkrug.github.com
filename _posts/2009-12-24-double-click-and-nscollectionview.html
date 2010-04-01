@@ -57,9 +57,9 @@ As a basis, we'll use Apple's demo app <a href="http://developer.apple.com/mac/l
 </ol><div>So to recap: Build an NSView subclass to capture the double click on an item (already existed in the IconCollection app in the form of the IconViewBox class), that NSView subclass needs a delegate outlet that we connect to the custom NSCollectionViewItem subclass (File's Owner in most cases) and finally the NSCollectionView's delegate outlet has to be connected to your view controller (already existed in the IconCollection app as well).&nbsp;</div><div><br />
 </div><div>If you've come up with a simpler or more elegant way to solve this, please let me know!&nbsp;</div><div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-4378558164706029674?l=blog.springenwerk.com' alt='' /></div>
 <br/><hr/><h3>Comments</h3>
-<h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
-<br/>Beautiful! Thank you so much!<br /><br />- Johannes<br/>
-March 15, 2010 07:28 AM
-<h4><a href="">Anonymous</a> said...</h4>
-<br/>Much easier if you just override the mouseDown method of your custom item view and use the sendAction method of NSApplication with nil as target.<br /><br />NSApplication will find your doubleClick method in your controller automatically since the controller is in the responder chain<br /><br />-(void)mouseDown:(NSEvent *)theEvent<br />{<br /> [super mouseDown:theEvent];<br /> if([theEvent clickCount] &gt; 1)<br />  [NSApp sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:[self object]];<br />}<br/>
-March 14, 2010 05:14 PM
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Beautiful! Thank you so much!<br /><br />- Johannes</p>
+<em class="swlightgray" style="margin-left: 30px">March 15, 2010 07:28 AM</em></div>
+<div class="swcomment"><h4><a href="">Anonymous</a> said...</h4>
+<p style="margin-left: 30px">Much easier if you just override the mouseDown method of your custom item view and use the sendAction method of NSApplication with nil as target.<br /><br />NSApplication will find your doubleClick method in your controller automatically since the controller is in the responder chain<br /><br />-(void)mouseDown:(NSEvent *)theEvent<br />{<br /> [super mouseDown:theEvent];<br /> if([theEvent clickCount] &gt; 1)<br />  [NSApp sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:[self object]];<br />}</p>
+<em class="swlightgray" style="margin-left: 30px">March 14, 2010 05:14 PM</em></div>

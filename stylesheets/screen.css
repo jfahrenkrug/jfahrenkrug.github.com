@@ -122,3 +122,6 @@ body.three-col #content { display: inline; float: left; margin-right: 0; width: 
 body.three-col #content a.swtaglink { text-decoration: none; color: inherit; }
 body.three-col #content a:hover.swtaglink { color: black; }
 body.three-col #content h1 { color: #8cc63f; }
+body.three-col #content h2 a { color: #8cc63f; text-decoration: none; }
+body.three-col #content h2 a:hover { color: black; }
+body.three-col #content .swcomment { margin-bottom: 30px; }

@@ -66,9 +66,9 @@ module Jekyll
               f.puts "<br/><hr/><h3>Comments</h3>"
 
               cfeed.entries.each do |centry|
-                f.puts "<h4><a href=\"#{centry.authors[0].uri}\">#{centry.authors[0].name}</a> said...</h4>"
-                f.puts "<br/>#{centry.content.value}<br/>"
-                f.puts "#{centry.published.strftime('%B %d, %Y %I:%M %p')}" # January 30, 2010 4:46 PM
+                f.puts "<div class=\"swcomment\"><h4><a href=\"#{centry.authors[0].uri}\">#{centry.authors[0].name}</a> said...</h4>"
+                f.puts "<p style=\"margin-left: 30px\">#{centry.content.value}</p>"
+                f.puts "<em class=\"swlightgray\" style=\"margin-left: 30px\">#{centry.published.strftime('%B %d, %Y %I:%M %p')}</em></div>" # January 30, 2010 4:46 PM
               end
             end
           end

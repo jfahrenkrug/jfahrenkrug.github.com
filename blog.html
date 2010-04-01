@@ -4,7 +4,25 @@ title: Blog
 ---
 
 {% for post in site.posts limit:5 %}
-  <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+  <div  style="margin-bottom: 50px">
+  <h2 style="margin-bottom: 1px"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+  <em class="swlightgray">Posted on {{ post.date | date_to_long_string }} by Johannes Fahrenkrug. Tags: {% for category in post.categories %}<a class="swtaglink" href="/tags.html#{{ category }}">{{ category }}</a> {% endfor %}</em><br/>
   {{ post.content }}
-  <em>Posted on {{ post.date | date_to_long_string }}.</em>
+  <em><a href="{{ post.url }}#disqus_thread">Comments</a></em>
+  </div>
 {% endfor %}
+
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+	var links = document.getElementsByTagName('a');
+	var query = '?';
+	for(var i = 0; i < links.length; i++) {
+	if(links[i].href.indexOf('#disqus_thread') >= 0) {
+		query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+	}
+	}
+	document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/springenwerk/get_num_replies.js' + query + '"></' + 'script>');
+})();
+//]]>
+</script>
