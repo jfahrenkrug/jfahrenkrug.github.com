@@ -2,27 +2,37 @@
 <html>
   <head>
     <title>{{ page.title }}</title>
-    <link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
     <!--[if lt IE 8]>
         <link href="stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->
   </head>
 
-  <body>
+
     
-    <body class="bp three-col">
-      <div id="container">
-        <div id="header"><img src="images/logo_white.png"/></div>
-        <div id="sidebar">
-        	
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="http://springenwerk.com" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
         </div>
-          <div id="content">
-            <h1>{{ page.title }}</h1>
-            {{ content }}
-          </div>
-        <div id="footer">2010, Johannes Fahrenkrug</div>
+        <hr/>
       </div>
-    </body>
+      <div id="sidebar">
+      	<p>Follow <a href="http://twitter.com/jfahrenkrug">@jfahrenkrug</a> on Twitter.</p>
+      </div>
+        <div id="content">
+          <h1>{{ page.title }}</h1>
+          {{ content }}
+        </div>
+      <div id="footer"><hr/><img src="/images/tagline.png"/></div>
+    </div>
   </body>
+
 </html>

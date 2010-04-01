@@ -19,6 +19,7 @@ body.bp
   +blueprint-interaction
   // Remove the scaffolding when you're ready to start doing visual design.
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
+  :margin-top 15px
 form.bp
   +blueprint-form
 
@@ -28,6 +29,37 @@ body.three-col
     +container
   #header, #footer
     +column(!blueprint_grid_columns)
+    .logo
+      :float left
+    .tagline
+      :float left
+      :padding-top 21px
+      :margin-left 19px
+    .main-navi
+      :float right
+      :margin-top 12px
+      ul
+        :list-style none
+        :border 0 
+        :margin 0
+        :text-align center
+        :display inline
+      li
+        :list-style none
+        :color #8cc63f
+        :margin 0
+        :padding 0 6px
+        :line-height normal
+        :float left
+        :line-height 1.5
+        :font-family Helvetica Neue, Arial, Helvetica, sans-serif
+        :font-size 22pt
+        a
+          :text-decoration none
+          :color #8cc63f
+        a:hover
+          :color black
+        
   #sidebar
     // One third of the grid columns, rounding down. With 24 cols, this is 8.
     !sidebar_columns = floor(!blueprint_grid_columns / 3)
