@@ -104,6 +104,10 @@ body.three-col .swgreen { color: #8cc63f; }
 body.three-col .swblue { color: #00b6dd; }
 body.three-col a.swbluelink { text-decoration: none; color: #00b6dd; }
 body.three-col a.swbluelink:hover { color: black; }
+body.three-col a.imprintlink { text-decoration: none; color: #b2b2b2; float: right; }
+body.three-col a.imprintlink:hover { color: #717074; }
+body.three-col a.swgraylink { text-decoration: none; color: #b2b2b2; }
+body.three-col a.swgraylink:hover { color: #717074; }
 body.three-col #container { width: 950px; margin: 0 auto; overflow: hidden; display: inline-block; }
 body.three-col #container { display: block; }
 body.three-col #header, body.three-col #footer { display: inline; float: left; margin-right: 10px; width: 950px; }
