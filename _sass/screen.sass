@@ -25,14 +25,28 @@ form.bp
 
 // Page layout can be done using mixins applied to your semantic classes and IDs:
 body.three-col
+  .bigtext
+    :font-family Helvetica Neue, Arial, Helvetica, sans-serif
+    :font-size 14pt
+    :color #717074
+
   .swlightgray
     :color #b2b2b2
+    
+  .swdarkgray
+    :color #717074
     
   .swgreen
     :color #8cc63f
     
   .swblue
     :color #00b6dd
+    
+  a.swbluelink
+    :text-decoration none
+    :color #00b6dd
+  a.swbluelink:hover
+    :color black
 
   #container
     +container
@@ -40,6 +54,7 @@ body.three-col
     +column(!blueprint_grid_columns)
     .logo
       :float left
+    a.logo:hover
     .tagline
       :float left
       :padding-top 21px
@@ -66,8 +81,12 @@ body.three-col
         a
           :text-decoration none
           :color #00b6dd
+          :padding 12px
         a:hover
           :color black
+          :-webkit-box-shadow 2px 2px 3px rgba(135, 139, 144, 0.4)
+          :-moz-box-shadow 2px 2px 3px rgba(135, 139, 144, 0.4)
+          :box-shadow 2px 2px 3px rgba(135, 139, 144, 0.4)
         
   #sidebar
     // One third of the grid columns, rounding down. With 24 cols, this is 8.
