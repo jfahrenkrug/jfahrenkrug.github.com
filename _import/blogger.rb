@@ -13,7 +13,7 @@ module Jekyll
  
   module Blogger
     BLOG_ID = '4366452231084261097'
-    MAX_POSTS = 10
+    MAX_POSTS = 500
     
     #Reads posts from a Blogger blog
     #It creates a post file for each entry in the blog.
