@@ -1,0 +1,139 @@
+--- 
+name: poor-man-php-key-cache-for-orkut-oauth
+layout: post
+title: Poor Man's PHP Key Cache for Orkut OAuth Public Keys
+time: 2008-04-03 09:30:00.004000 Z
+categories: 
+- orkut
+- Programming
+- OpenSocial
+- php
+- oauth
+---
+<p><b>Update (07/08/2008):</b>I've updated the usage example at the bottom of the page to reflect the new and easier usage of OAuth and I added a note about magic quotes.</p>
+Ok, to let you down already in the first sentence: this actually isn't a key cache. It's more of a way to read the Orkut OAuth certificate from disk instead of using it as a string inline in your PHP code.
+Other platforms/languages like Java offer key stores for certificates. That doesn't seem to be the case with PHP; heavy googling didn't produce anything indicating the opposite. So I wrote my own.
+
+If you are - like me - forced to use PHP for your OpenSocial backend you have probably read <a href="http://code.google.com/p/opensocial-resources/wiki/OrkutValidatingSignedRequests">this wiki page about validating signed requests with Orkut</a>. The note before the PHP example reads: "This example is not meant to be production quality code - merely a demonstration of the steps you would take to validate a signed request server-side. You should <strong>not</strong> be inlining Orkut's public key certificate in your production code."
+Ok, we shouldn't inline it. Makes sense. The top of the page suggests that you should "implement a server side key cache indexed on the value of <tt>xoauth_signature_publickey</tt>.  If the value changes, you will need to pull a new certificate down and store it in your key cache."
+Great. So lets do that. 
+
+I wrote a small PHP class called "CertFileAccessor":
+
+<pre class="prettyprint">
+class CertFileAccessor {
+  private $_certDirPath;
+  private $_networkName;
+  
+  public function __construct($dir, $network) {
+    $this-&gt;_certDirPath = $dir;
+    $this-&gt;_networkName = $network;
+  }
+  
+  public function getPublicKey($keyName) {
+    $fp = fopen($this-&gt;_certDirPath . '/' . $this-&gt;_networkName . '/' . $this-&gt;sanitizeKeyName($keyName), "r");
+    
+    if ($fp) {
+      $pubKey = fread($fp, 8192);
+      fclose($fp);
+      return $pubKey;
+    }
+    
+    return null;
+  }
+  
+  /* modified from http://www.devdaily.com/scw/php/www.postnuke.com/PostNuke-0.750/html/includes/pnAPI.php.shtml */ 
+  private function sanitizeKeyName($keyName)
+  {
+      static $search = array('!\.\./!si', // .. (directory traversal)
+                             '!^.*://!si', // .*:// (start of URL)
+                             '!^/!si',     // Forward slash (directory traversal)
+                             '!^\\\\!si'); // Backslash (directory traversal)
+      static $replace = array('',
+                              '',
+                              '_',
+                              '_');
+
+      return preg_replace($search, $replace, $keyName);
+  }
+}
+?&gt;
+</pre>
+
+Just copy that in a file called "cert_file_accessor.php" and require it in your PHP script. Then you have to create a directory on your server for the certificates. It should preferably not be accessible for internet users, but if you only store public keys there it's not that bad.
+Then you have to create a subdirectory for each opensocial network you want to support and that offers public keys for OAuth requests.
+
+So you create
+<pre class="prettyprint">
+/path/to/my/certs
+</pre>
+and
+<pre class="prettyprint">
+/path/to/my/certs/orkut
+</pre>
+In the Orkut subdirectory you put the cert file, currently called '<a href="http://sandbox.orkut.com/46/o/pub.1199819524.-1556113204990931254.cer">pub.1199819524.-1556113204990931254.cer</a>'.
+
+Now instead of inlining the certificate you can do this:
+
+<pre class="prettyprint">
+    $payload = array();
+    $cert_accessor = new CertFileAccessor('/path/to/my/certs', 'orkut');
+    $cert = $cert_accessor-&gt;getPublicKey($_REQUEST['xoauth_signature_publickey']);
+    
+    if ($cert != null) {
+        //Custom OAuthSignatureMethod class that will return our public  cert
+        class KeystoreRSASignatureMethod extends OAuthSignatureMethod_RSA_SHA1 {
+            public function __construct($cert) {
+              $this->_cert = $cert;
+            }
+            
+            protected function fetch_public_cert(&$request) {
+                return $this->_cert;
+            }
+        }
+        
+        //Build a request object from the current request
+        $request = OAuthRequest::from_request(null, null, array_merge($_GET, $_POST));
+
+        //Initialize the new signature method
+        $signature_method = new KeystoreRSASignatureMethod($cert);
+
+        //Check the request signature
+        $auth_ok = $signature_method->check_signature($request, null, null, $_GET["oauth_signature"]); 
+    } else {
+       $payload['cert'] = 'missing';
+    }
+
+    if ($auth_ok == 1) {
+        $payload["auth"] = "OK";
+        /* do your thing */
+    } else {
+        $payload["auth"] = "Failed";
+    }
+
+    print(json_encode($payload));
+</pre>
+So when the certificate changes in the <tt>xoauth_signature_publickey</tt> parameter the certificate won't be found and you'll get a "cert=missing" in your JSON response. New certificates simply have to be dropped into the appropriate directory. That's it!
+
+By being able to switch and add keys easily, you can handle signed makeRequest calls from different containers, all in the same server side code.  For example, this allows your application to  communicate with the same server and use the same data whether it's running on Orkut or hi5.
+
+One more thing: I ran into an ugly issue on a legacy system which had magic_quotes_gpc enabled. That totally messes up OAuth authentication because it adds slashes to incoming GET and POST data. Use the <a href="http://talks.php.net/show/php-best-practices/26">code on the bottom of this page to safely remove magic quotes</a> from your OAuth signed request.<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-1563253360766264837?l=blog.springenwerk.com' alt='' /></div>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Hi,<BR/><BR/>the sanitizeKeyName function is an extra security measure. Anyone could call your php script and supply an xoauth_signature_publickey parameter which would not be a key name, but something like /etc/passwd or ../../../somesecretfile. the sanitizeKeyName function makes sure that that won&#39;t happen.<BR/>With the error you&#39;re getting you should debug this line <BR/><BR/>$fp = fopen($this-&gt;_certDirPath . &#39;/&#39; . $this-&gt;_networkName . &#39;/&#39; . $this-&gt;sanitizeKeyName($keyName), &quot;r&quot;);<BR/><BR/>and see what the absolute path is that&#39;s being created and check it that really exists. Also maybe check what the value of xoauth_signature_publickey is and then feed it to the sanitize function to see if it comes out the same. <BR/>Does this happen or Orkut?</p>
+<em class="swlightgray" style="margin-left: 30px">September 18, 2008 05:30 AM</em></div>
+<div class="swcomment"><h4><a href="">Anonymous</a> said...</h4>
+<p style="margin-left: 30px">Hi, <BR/><BR/>What is the purpose about using sanitizeKeyName function? I got "failed to open stream: No such file or directory" error when using that.<BR/><BR/>Thanks</p>
+<em class="swlightgray" style="margin-left: 30px">September 17, 2008 06:16 PM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Hey ropu,<BR/><BR/>Good point, but you shouldn't fetch it automatically. From Google's wiki:<BR/><BR/>Obtaining Orkut's public certificate<BR/><BR/>The signed requests from Orkut contain a parameter named xoauth_signature_publickey. Currently this value is pub.1199819524.-1556113204990931254.cer, which is the name of a file containing Orkut's public key certificate that is located at http://sandbox.orkut.com/46/o/pub.1199819524.-1556113204990931254.cer<BR/><BR/>This certificate should not be fetched each time you want to validate parameters - instead, implement a server side key cache indexed on the value of xoauth_signature_publickey. If the value changes, you will need to pull a new certificate down and store it in your key cache.<BR/><BR/>There is currently no guarantee of how long the current key will be in effect. Make sure to check the xoauth_signature_publickey parameter against your key cache index to determine if the key has changed.<BR/><BR/>Updated The location of the certificate on Orkut's server is purposefully not machine computable. You should not write code to automatically fetch new certificates from Orkut's server, as there is no way to automaticaly determine whether you should trust the new certificate. We will give advance notice when the certificate is scheduled to change, in order to give you enough time to manually download the certificate and install it in your key cache.</p>
+<em class="swlightgray" style="margin-left: 30px">September 04, 2008 05:49 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/15127463383342068445">ropu</a> said...</h4>
+<p style="margin-left: 30px">Hi, why not just caching it in the system Cache? (memcache, filecache) and retrieve it when you dont have it via HTTP (cURL)<BR/><BR/>since the certificate variates regularly and there is no need to doit manually.</p>
+<em class="swlightgray" style="margin-left: 30px">September 03, 2008 03:27 PM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Ronald,<BR/><BR/>AFAIK, it's the same cert (on Orkut) for both sandbox and production. if not, you might want to ask that question in the Orkut Developers Google Group.<BR/><BR/>- Johannes</p>
+<em class="swlightgray" style="margin-left: 30px">May 19, 2008 05:15 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/01883232531853587159">ronald</a> said...</h4>
+<p style="margin-left: 30px">Can this be used in sandbox only? Any idea where to get the certificate for production?</p>
+<em class="swlightgray" style="margin-left: 30px">May 17, 2008 08:09 PM</em></div>
