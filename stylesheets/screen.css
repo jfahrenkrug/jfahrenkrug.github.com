@@ -133,3 +133,12 @@ body.three-col #content h1 { color: #8cc63f; }
 body.three-col #content h2 a { color: #8cc63f; text-decoration: none; }
 body.three-col #content h2 a:hover { color: black; }
 body.three-col #content .swcomment { margin-bottom: 30px; }
+
+div.blog-post-body {
+  font-size: 13pt;
+  color: #444444;
+}
+
+div.blog-post-body a { color: #00b6dd; text-decoration: none; }
+div.blog-post-body a:visited { color: #00b6dd; text-decoration: none; }
+div.blog-post-body a:hover { color: black; }

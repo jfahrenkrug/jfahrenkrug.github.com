@@ -9,7 +9,7 @@ title: Springenwerk Blog
   <div  style="margin-bottom: 50px">
   <h2 style="margin-bottom: 1px"><a href="{{ post.url }}">{{ post.title }}</a></h2>
   <em class="swlightgray">Posted on {{ post.date | date_to_long_string }} by Johannes Fahrenkrug. Tags: {% for category in post.categories %}<a class="swtaglink" href="/tags.html#{{ category }}">{{ category }}</a> {% endfor %}</em><br/>
-  {{ post.content }}
+  <div class="blog-post-body">{{ post.content }}</div>
   <em><a href="{{ post.url }}#disqus_thread">Comments</a></em>
   </div>
 {% endfor %}
