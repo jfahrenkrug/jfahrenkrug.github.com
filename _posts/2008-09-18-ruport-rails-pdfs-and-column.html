@@ -92,7 +92,7 @@ end</pre>OK, now we have a renderer (or controller) that renders our report with
     send_data(MyReportRenderer.render(:pdf, :data =&gt; @report),
           :filename =&gt; "report#{params[:id]}.pdf",
           :type =&gt; "application/pdf",
-          :dispostion =&gt; 'inline')
+          :disposition =&gt; 'inline')
   rescue ActiveRecord::RecordNotFound
     flash[:error] = "Report not found."
     redirect_to :action =&gt; :index
