@@ -52,6 +52,10 @@
           <div class="blog-post-body">{{ content }}</div>
           </div>
           
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
           <div id="disqus_thread"></div>
           <script type="text/javascript">
             var disqus_identifier = "{{ page.name }}";
@@ -79,11 +83,6 @@
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
 
-      </script>
-      
-      <script type="text/javascript" src="http://api.bitp.it/bitp.it.js"></script>
-      <script type="text/javascript">
-       bitpit({clientId: "232"});
       </script>
   </body>
 
