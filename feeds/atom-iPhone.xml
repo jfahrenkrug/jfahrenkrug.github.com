@@ -5,7 +5,7 @@ layout: nil
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Springenwerk Blog by Johannes Fahrenkrug</title>
- <link href="http://blog.springenwerk.com/atom-iPhone.xml" rel="self"/>
+ <link href="http://blog.springenwerk.com/atom-iphone.xml" rel="self"/>
  <link href="http://blog.springenwerk.com/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
  <id>http://blog.springenwerk.com/</id>
@@ -14,7 +14,7 @@ layout: nil
    <email>johannes@springenwerk.com</email>
  </author>
 {% for post in site.posts %}
-{% if post.categories contains 'iPhone' %} 
+{% if post.categories contains 'iphone' %} 
   <entry>
     <title>{{ post.title }}</title>
     <link href="http://blog.springenwerk.com{{ post.url }}"/>
