@@ -12,12 +12,12 @@ I needed to capture double clicks on NSCollectionViewItems in an app I'm working
 As a basis, we'll use Apple's demo app <a href="http://developer.apple.com/mac/library/samplecode/IconCollection/index.html">IconCollection</a>. Download it and open it in XCode.<br />
 <br />
 <ol><li>Open MyViewController.h and add a delegate outlet to the IconViewBox. This will be necessary so we can pass the double click event on to NSCollectionViewItem and from there to the controller. It should look like this:<br />
-<script src="http://gist.github.com/263135.js?file=gistfile1.m">
-</script><br />
+{% gist 263135 gistfile1.m %}
+<br />
 </li>
 <li>Open MyViewController.m and alter the hitTest method to allow clicks and add a method to capture the double click to IconViewBox's implementation: <br />
-<script src="http://gist.github.com/263141.js?file=gistfile1.m">
-</script><br />
+{% gist 263141 gistfile1.m %}
+<br />
 </li>
 <li>Build and run. When you double click on items, you should see a log message in the console. </li>
 <li>Open IconViewPrototype.xib in IB and connect the View's delegate outlet with "File's Owner":<br />
@@ -34,23 +34,23 @@ As a basis, we'll use Apple's demo app <a href="http://developer.apple.com/mac/l
 <li>Save IconViewPrototype.xib. </li>
 <li>Add a new file called IconCollectionItem (both the .h and the .m).</li>
 <li>IconCollectionItem.h:<br />
-<script src="http://gist.github.com/263145.js?file=IconCollectionItem.h">
-</script><br />
+{% gist 263145 IconCollectionItem.h %}
+<br />
 </li>
 <li>IconCollectionItem.m:<br />
-<script src="http://gist.github.com/263146.js?file=IconCollectionItem.m">
-</script><br />
+{% gist 263146 IconCollectionItem %}
+<br />
 </li>
 <li>Open IconViewPrototype.xib again and change the File Owner's class to "IconCollectionItem". Save. </li>
 <li>Open Collection.xib and also change the Collection View Item's class to "IconCollectionItem". Save.</li>
 <li>Build and run. When you double click now, you should see two log messages in the console.</li>
 <li>Finally, we want to be notified of the double click in our controller. So open up MyViewController.h and add a doubleClick method to the @interface:<br />
-<script src="http://gist.github.com/263149.js?file=gistfile1.m">
-</script><br />
+{% gist 263149.js?file=gistfile1.m">
+<br />
 </li>
 <li>Open MyViewController.m and add the method implementation: <br />
-<script src="http://gist.github.com/263150.js?file=gistfile1.m">
-</script><br />
+{% gist 263150 gistfile1.m %}
+<br />
 </li>
 <li>Build and run: When you double click, the event gets passed on all the way to the controller and you'll see a log message on the console telling you which icon you have double clicked on. That's pretty nifty. </li>
 <li>Fin.</li>

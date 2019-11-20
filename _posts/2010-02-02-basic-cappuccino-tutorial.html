@@ -29,8 +29,8 @@ Now open index.html and you should see this:<br />
 <div class="separator" style="clear: both; text-align: left;">In the Library Classes tab, add on outlet for the text field to the AppController and a "sayHi:" action to it:</div><div class="separator" style="clear: both; text-align: left;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/S2g_8BNzymI/AAAAAAAAA5w/GG79x89Xz6A/s1600-h/Screen+shot+2010-02-02+at+16.07.00.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"></a><a href="http://3.bp.blogspot.com/_-dK4R3d1lbc/S2hACSbbt2I/AAAAAAAAA54/w7kpfJae0w8/s1600-h/Screen+shot+2010-02-02+at+16.07.17.png" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" src="http://3.bp.blogspot.com/_-dK4R3d1lbc/S2hACSbbt2I/AAAAAAAAA54/w7kpfJae0w8/s320/Screen+shot+2010-02-02+at+16.07.17.png" /></a><img border="0" src="http://2.bp.blogspot.com/_-dK4R3d1lbc/S2g_8BNzymI/AAAAAAAAA5w/GG79x89Xz6A/s320/Screen+shot+2010-02-02+at+16.07.00.png" /><span class="Apple-style-span" style="-webkit-text-decorations-in-effect: none; color: black;"></span></div>Connect the nameTextField outlet to the text field and the button's action to the sayHi: action. Save the file.<br />
 <br />
 Open the AppController.j file in the basicCapp directory and add the outlet and the action to make it look like this:<br />
-<script src="http://gist.github.com/292731.js">
-</script><br />
+{% gist 292731 %}
+<br />
 <br />
 Now run nib2cib again:<br />
 nib2cib Resources/MainMenu.xib Resources/MainMenu.cib<br />
@@ -51,8 +51,8 @@ git clone&nbsp;http://github.com/jfahrenkrug/MapKit.git<br />
 <br />
 Now make AppController.j look like this:<br />
 <br />
-<script src="http://gist.github.com/292748.js?file=AppController.j">
-</script><br />
+{% gist 292748 AppController.j }
+<br />
 <br />
 Now you should have a 3rd window when you open index.html again. It should look like this and should let you add markers for locations that you search for:<br />
 <div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_-dK4R3d1lbc/S2hHvQw4l4I/AAAAAAAAA6Y/VsHieVQ5LNk/s1600-h/Screen+shot+2010-02-02+at+16.39.34.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/_-dK4R3d1lbc/S2hHvQw4l4I/AAAAAAAAA6Y/VsHieVQ5LNk/s320/Screen+shot+2010-02-02+at+16.39.34.png" /></a><a href="http://4.bp.blogspot.com/_-dK4R3d1lbc/S2hHvQw4l4I/AAAAAAAAA6Y/VsHieVQ5LNk/s1600-h/Screen+shot+2010-02-02+at+16.39.34.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><br />

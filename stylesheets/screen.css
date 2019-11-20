@@ -79,7 +79,6 @@ body.bp .notice a { color: #514721; }
 body.bp .success { padding: .8em; margin-bottom: 1em; border: 2px solid #dddddd; background: #e6efc2; color: #264409; border-color: #c6d880; }
 body.bp .success a { color: #264409; }
 body.bp .hide { display: none; }
-body.bp .highlight { background: yellow; }
 body.bp .added { background: #006600; color: white; }
 body.bp .removed { background: #990000; color: white; }
 
