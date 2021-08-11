@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails Time Travel Revisited: Manipulating Time.now for Specs</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Rails Time Travel Revisited: Manipulating Time.now for Specs</h1>
+          <em class="swlightgray">Posted on 14 October 2008 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Programming">Programming</a> <a class="swtaglink" href="/tags.html#Ruby">Ruby</a> <a class="swtaglink" href="/tags.html#rails">rails</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://upload.wikimedia.org/wikipedia/commons/a/af/Worm3.jpg"><img style="margin: 0pt 10px 10px 0pt; cursor: pointer; width: 584px; height: 380px;" src="http://upload.wikimedia.org/wikipedia/commons/a/af/Worm3.jpg" alt="" border="0" /></a>
+
+A few month ago I wrote about how to <a href="http://blog.springenwerk.com/2008/05/rails-time-travel-manipulating-timenow.html">manipulate Time.now for your Rails Test::Unit tests</a>. I've switched to using RSpec since then and had the same problem again: I have code that uses Time.now and I want to test it. It was fairly easy to move the code from Test::Unit to RSpec:
+
+<ol><li>Copy the following code into spec/time_spec_helper.rb
+<pre class="prettyprint">
+unless Time.respond_to? :real_now   # prevent the error: stack level too deep (SystemStackError)
+# &lt;b&gt;Test Helper: used only in testing!&lt;/b&gt;
+#
+# Extend the  Time  class so that we can offset the time that  now
+# returns. This should allow us to effectively time warp for functional
+# tests that require limits per hour, what not.
+#
+# Example usage:
+#   require File.expand_path(File.dirname(__FILE__)   '/../spec_helper')
+#   require File.expand_path(File.dirname(__FILE__)   '/../time_spec_helper')
+#
+#   describe YourModel do
+# 
+#     before(:each) do
+#       pretend_now_is(Time.local(1999, 8, 1))  # position *all* tests back in time!
+#     end
+# 
+#     after(:each) do
+#       Time.reset    # jump back to the present
+#     end
+#
+#     it "should be 1999" do
+#       Time.now.year.should == 1999
+#     end
+#
+#     # If one particular spec needs some time jumping of its own...
+#     it "should jump to decades" do
+#       pretend_now_is(Time.local(1960)) do
+#         Time.now.year.should == 1960
+#       end
+#
+#       pretend_now_is(Time.local(1970)) do
+#         Time.now.year.should == 1970
+#       end
+#     end
+#     # ...
+#   end
+#
+#
+# &lt;em&gt;&lt;tt&gt;(see reference http://snippets.dzone.com/posts/show/1738)&lt;/tt&gt;&lt;/em&gt;
+class Time
+  class &lt;&lt;self
+    attr_reader :offset
+    alias_method :real_now, :now
+    def now
+      @offset = 0 if @offset.nil?
+      real_now - @offset
+    end
+    alias_method :new, :now
+
+    # Warp to an absolute  time  in the past or future, making sure it takes
+    # the present as the reference starting point when making the jump.
+    def set(time)
+      reset
+      @offset = now - time
+    end
+
+    # Jump back to present.
+    def reset
+      @offset = 0
+    end
+  end
+end
+end
+  
+# Time warp to the specified  time . If given a block, it applies only for the
+# duration of the passed block.
+def pretend_now_is(time)
+Time.set(time)
+if block_given?
+  begin
+    yield
+  ensure
+    Time.reset
+  end
+end
+end</pre></li><li>Require it in your spec:
+<pre class="prettyprint">
+require File.expand_path(File.dirname(__FILE__) + '/../time_spec_helper')</pre></li><li>Travel through time in your specs:
+<pre class="prettyprint">before(:each) do
+  pretend_now_is(Time.local(1999, 8, 1))  # position *all* tests back in time!
+end
+
+after(:each) do
+  Time.reset    # jump back to the present
+end
+
+it "should be 1999" do
+  Time.now.year.should == 1999
+end
+
+# If one particular spec needs some time jumping of its own...
+it "should jump to decades" do
+  pretend_now_is(Time.local(1960)) do
+    Time.now.year.should == 1960
+  end
+
+  pretend_now_is(Time.local(1970)) do
+    Time.now.year.should == 1970
+  end
+end</pre></li><li>Enjoy.</li></ol>Please note that this code is based on <a href="http://snippets.dzone.com/posts/show/1738#comment-1101">this highly useful piece of code</a>.
+<p>If this was useful for you, please take a minute and recommend me:
+<a href="http://workingwithrails.com/recommendation/new/person/11816-johannes-fahrenkrug"><img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small-button.jpg" /></a>
+Thank you!</p><div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-3687469814237430966?l=blog.springenwerk.com' alt='' /></div>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">That's a great idea, Rick!<BR/>I'd still keep the "pretend_now_is" method, though, since it's so nice and readable, but changing the implementation to take advantage of stubbing will basically bring it down to a one-liner. Nice!</p>
+<em class="swlightgray" style="margin-left: 30px">October 17, 2008 08:31 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/03660411461311718839">rick</a> said...</h4>
+<p style="margin-left: 30px">Why not just use your stubbing library of choice?  <BR/><BR/>Time.stub!(:now).and_return(Time.utc(....))</p>
+<em class="swlightgray" style="margin-left: 30px">October 16, 2008 06:35 PM</em></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "rails-time-travel-revisited";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

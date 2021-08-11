@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unit Testing with acts_as_ferret</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Unit Testing with acts_as_ferret</h1>
+          <em class="swlightgray">Posted on 19 June 2008 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Programming">Programming</a> <a class="swtaglink" href="/tags.html#Ruby">Ruby</a> <a class="swtaglink" href="/tags.html#rails">rails</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://ferret.davebalmain.com/logo.png"><img style="float:left; margin:0 10px 10px 0;cursor:pointer; cursor:hand;width: 200px;" src="http://ferret.davebalmain.com/logo.png" border="0" alt="" /></a>
+I'm using <a href="http://projects.jkraemer.net/acts_as_ferret/">acts_as_ferret</a> for full text search in a Rails app I'm building. It works great and of course I want to unit test the full text search in my models. So I added an extremely simple test (I have two fixtures that have the matching string "bla" in on of their indexed fields):
+<pre class="prettyprint">
+def test_find_by_contents
+  assert_equal 2, MyModel.find_by_contents('bla').total_hits
+end
+</pre>
+This is great, except for one small problem: it almost always fails! The total_hits are sometimes 1, sometimes 0 and hardly ever 2. Why? Because the data from the fixtures is rebuilt before every test case so ferret can't keep it's index up to date quickly enough. 
+A very crude but simple solution is to rebuild the index before ferret-related tests:
+<pre class="prettyprint">
+def test_find_by_contents
+  MyModel.rebuild_index
+  assert_equal 2, MyModel.find_by_contents('bla').total_hits
+end
+</pre>
+Now it works as expected. This will affect performance, though. So if you have a huge test suite, you might want to consider using the <a href="http://www.elctech.com/2007/5/31/preloading-fixtures">preload fixtures plugin</a> from ELC Technologies. I haven't tried this, but it most likely will also eliminate the need to rebuild the index before ferret related tests since the fixtures are not constantly dumped and rebuilt.
+
+If this was useful for you, please take a minute and recommend me:<br><a href="http://workingwithrails.com/recommendation/new/person/11816-johannes-fahrenkrug"><img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small-button.jpg"></a><br>Thank you!<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-3079856459161875017?l=blog.springenwerk.com' alt='' /></div>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/07627225095848131967">Gene Tani</a> said...</h4>
+<p style="margin-left: 30px">see also<BR/><BR/>http://bugs.omdb.org/browser/trunk/test/unit/movie_ferret_index_test.rb<BR/><BR/>http://bugs.omdb.org/browser/trunk/test/unit/person_ferret_test.rb</p>
+<em class="swlightgray" style="margin-left: 30px">September 07, 2008 07:17 PM</em></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "unit-testing-with-actsasferret";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

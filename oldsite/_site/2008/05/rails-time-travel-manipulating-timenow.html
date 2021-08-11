@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails Time Travel: Manipulating Time.now for Tests</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Rails Time Travel: Manipulating Time.now for Tests</h1>
+          <em class="swlightgray">Posted on 27 May 2008 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Programming">Programming</a> <a class="swtaglink" href="/tags.html#Tutorials">Tutorials</a> <a class="swtaglink" href="/tags.html#Ruby">Ruby</a> <a class="swtaglink" href="/tags.html#rails">rails</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><blockquote>Can we go anywhere we want at any time?<br />You can do anything you want.<br /></blockquote><br /><br /><div style="border: 2px solid green">Check out the <a href="http://blog.springenwerk.com/2008/10/rails-time-travel-revisited.html">new version about time travel with RSpec!</a><br /></div><br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_-dK4R3d1lbc/SDu6mEjFkgI/AAAAAAAAAec/xUgS4JFUd-k/s1600-h/timetunnel.jpg"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://3.bp.blogspot.com/_-dK4R3d1lbc/SDu6mEjFkgI/AAAAAAAAAec/xUgS4JFUd-k/s320/timetunnel.jpg" alt="" id="BLOGGER_PHOTO_ID_5204958957575442946" border="0" /></a>Do you have code in your Ruby on Rails models that depends on the current date and time? I do. And I want to test it to make sure it works right. In my case a certain date is only valid if it is in the current month or in the previous month but only if it's not the 11th day of the month yet. If today were the 10th of May - for example - a date in April would be valid. If today were the 11th of May, a date in April wouldn't be valid anymore, though.<br />Just testing this piece of code if the day the tests are being run happens to be below the 11th day of the month is not a solution, of course. So I googled a bit and found <a href="http://snippets.dzone.com/posts/show/1738#comment-1101">this wonderful piece of code</a>.<br /><br />These are the steps to get your Rails Time Machine (tm) up and running:<br /><ol><li>Copy the above code to a file and save it as test/time_helper.rb</li><li>Require it in your test:<br /><pre class="prettyprint">require File.dirname(__FILE__) + '/../time_helper'</pre></li><li>Either set the time for all the tests in the file:<br /><pre class="prettyprint"><br />def setup<br />pretend_now_is(Time.local(2007, 8, 1))  # position *all* tests back in time!<br />end<br /><br />def teardown<br />Time.reset    # jump back to the present<br />end<br /></pre><br />or just do some time travel for a code block:<br /><pre class="prettyprint"><br />def test_decades<br />pretend_now_is(Time.local(1960)) do<br />  assert_equal(1960, Time.now.year)<br />end<br />pretend_now_is(Time.local(1970)) do<br />  assert_equal(1970, Time.now.year)<br />end<br /># ...<br />end<br /></pre>(These code samples come <a href="http://snippets.dzone.com/posts/show/1738#comment-1101">from here</a>. Thank you!)</li><li>Find a street where your <a href="http://en.wikipedia.org/wiki/De_Lorean_time_machine">De Lorean</a> can reach 88 mph and run your time traveling tests!</li></ol>Please give my regards to <a href="http://youtube.com/watch?v=xrGWooNDPiE">Bill and Ted</a> if you meet them.<br /><br />If this was useful for you, please take a minute and recommend me:<br/><a href="http://workingwithrails.com/recommendation/new/person/11816-johannes-fahrenkrug"><img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small-button.jpg" /></a><br/>Thank you!<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-8323196241979627726?l=blog.springenwerk.com' alt='' /></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "rails-time-travel-manipulating-timenow";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

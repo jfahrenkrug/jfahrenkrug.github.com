@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Double Click and NSCollectionView</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Double Click and NSCollectionView</h1>
+          <em class="swlightgray">Posted on 24 December 2009 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Programming">Programming</a> <a class="swtaglink" href="/tags.html#Tutorials">Tutorials</a> <a class="swtaglink" href="/tags.html#Cocoa">Cocoa</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body">I needed to capture double clicks on NSCollectionViewItems in an app I'm working on. This is unfortunately not something that's supported out-of-the-box. I found <a href="http://www.cocoadev.com/index.pl?NSCollectionView">this post on CocoaDev</a> helpful. However, since quite a few people will run into this issue, I want to explain step by step how to get this working with as little code as possible. We basically just need one custom NSView subclass and a NSCollectionViewItem subclass and a few connections in IB.<br />
+As a basis, we'll use Apple's demo app <a href="http://developer.apple.com/mac/library/samplecode/IconCollection/index.html">IconCollection</a>. Download it and open it in XCode.<br />
+<br />
+<ol><li>Open MyViewController.h and add a delegate outlet to the IconViewBox. This will be necessary so we can pass the double click event on to NSCollectionViewItem and from there to the controller. It should look like this:<br />
+<script src="http://gist.github.com/263135.js?file=gistfile1.m">
+</script><br />
+</li>
+<li>Open MyViewController.m and alter the hitTest method to allow clicks and add a method to capture the double click to IconViewBox's implementation: <br />
+<script src="http://gist.github.com/263141.js?file=gistfile1.m">
+</script><br />
+</li>
+<li>Build and run. When you double click on items, you should see a log message in the console. </li>
+<li>Open IconViewPrototype.xib in IB and connect the View's delegate outlet with "File's Owner":<br />
+<br />
+<br />
+<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/SzNH2g8C91I/AAAAAAAAA5Y/YnwePdF7vP4/s1600-h/Screen+shot+2009-12-24+at+11.50.34.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/_-dK4R3d1lbc/SzNH2g8C91I/AAAAAAAAA5Y/YnwePdF7vP4/s640/Screen+shot+2009-12-24+at+11.50.34.png" /></a><br />
+</div><br />
+<br />
+<br />
+<br />
+</li>
+<li>Save IconViewPrototype.xib. </li>
+<li>Add a new file called IconCollectionItem (both the .h and the .m).</li>
+<li>IconCollectionItem.h:<br />
+<script src="http://gist.github.com/263145.js?file=IconCollectionItem.h">
+</script><br />
+</li>
+<li>IconCollectionItem.m:<br />
+<script src="http://gist.github.com/263146.js?file=IconCollectionItem.m">
+</script><br />
+</li>
+<li>Open IconViewPrototype.xib again and change the File Owner's class to "IconCollectionItem". Save. </li>
+<li>Open Collection.xib and also change the Collection View Item's class to "IconCollectionItem". Save.</li>
+<li>Build and run. When you double click now, you should see two log messages in the console.</li>
+<li>Finally, we want to be notified of the double click in our controller. So open up MyViewController.h and add a doubleClick method to the @interface:<br />
+<script src="http://gist.github.com/263149.js?file=gistfile1.m">
+</script><br />
+</li>
+<li>Open MyViewController.m and add the method implementation: <br />
+<script src="http://gist.github.com/263150.js?file=gistfile1.m">
+</script><br />
+</li>
+<li>Build and run: When you double click, the event gets passed on all the way to the controller and you'll see a log message on the console telling you which icon you have double clicked on. That's pretty nifty. </li>
+<li>Fin.</li>
+</ol><div>So to recap: Build an NSView subclass to capture the double click on an item (already existed in the IconCollection app in the form of the IconViewBox class), that NSView subclass needs a delegate outlet that we connect to the custom NSCollectionViewItem subclass (File's Owner in most cases) and finally the NSCollectionView's delegate outlet has to be connected to your view controller (already existed in the IconCollection app as well).&nbsp;</div><div><br />
+</div><div>If you've come up with a simpler or more elegant way to solve this, please let me know!&nbsp;</div><div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-4378558164706029674?l=blog.springenwerk.com' alt='' /></div>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Beautiful! Thank you so much!<br /><br />- Johannes</p>
+<em class="swlightgray" style="margin-left: 30px">March 15, 2010 07:28 AM</em></div>
+<div class="swcomment"><h4><a href="">Anonymous</a> said...</h4>
+<p style="margin-left: 30px">Much easier if you just override the mouseDown method of your custom item view and use the sendAction method of NSApplication with nil as target.<br /><br />NSApplication will find your doubleClick method in your controller automatically since the controller is in the responder chain<br /><br />-(void)mouseDown:(NSEvent *)theEvent<br />{<br /> [super mouseDown:theEvent];<br /> if([theEvent clickCount] &gt; 1)<br />  [NSApp sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:[self object]];<br />}</p>
+<em class="swlightgray" style="margin-left: 30px">March 14, 2010 05:14 PM</em></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "double-click-and-nscollectionview";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SproutCore: JavaScript On Rails, Drinking Cocoa</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>SproutCore: JavaScript On Rails, Drinking Cocoa</h1>
+          <em class="swlightgray">Posted on 19 June 2008 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#JavaScript">JavaScript</a> <a class="swtaglink" href="/tags.html#Programming">Programming</a> <a class="swtaglink" href="/tags.html#WWDC">WWDC</a> <a class="swtaglink" href="/tags.html#Cocoa">Cocoa</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://www.sproutcore.com/wp-content/themes/sproutcore/images/logo.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 400px;" src="http://www.sproutcore.com/wp-content/themes/sproutcore/images/logo.png" border="0" alt="" /></a>
+<b>&lt;update&gt;</b> Two things: Since version 0.9.10 SproutCore doesn't "break" Rails or conflict with it anymore. And about SproutCore and Ruby On Rails: SproutCore is a framework for developing client-side desktop-like JavaScript applications and it is backend agnostic. That means you can write your beautiful SproutCore application that runs in the user's browser and have it talk to a webserver that is built using your framework of choice, be it Ruby On Rails, Apache Wicket, JSP, PHP, you name it.  Your SproutCore application and the web application are two different parts, just like an email client and a mail server.<b>&lt;/update&gt;</b><br/>
+The first session I attended on the last day of this year's WWDC was about SproutCore.
+<a href="http://sproutcore.com">SproutCore</a> is the JavaScript framework that Apple's <a href="http://www.apple.com/mobileme/">mobileme</a> service is built with. "Big deal" you might think, "yet another JavaScript framework". But thou shalt not judge too hastily! SproutCore is not just another framework that lets you access page elements with a dollar sign, slides divs up and down or lets you display modal windows. SproutCore is a framework at a much deeper and lower level. From the <a href="http://www.sproutcore.com/about/">website</a>:
+<blockquote>SproutCore is a totally new way of building applications on the web. Instead of following the typical web-driven model where most interesting things happen in the server, SproutCore applications split the load. A SproutCore application is a JavaScript application that runs entirely in the web browser. It can often run on its own, without even needing support for a web server except when it makes sense for the application. This frees the server developer to focus on the things the server can do very well such as saving, restoring and aggregating data and performing expensive operations. Meanwhile the “thick” client running in the web browser can handle the task of presenting the user with a friendly interface that is fast and intuitive.
+
+SproutCore includes visual widgets such as list views, button views, and forms - just like other JavaScript frameworks. But it also provides other functions such as an in-memory database (that can integrate with client-side offline storage), bindings, property observing, and controllers. The code you write with SproutCore will resemble a desktop app written in Cocoa more than it will a web application written in Rails.</blockquote>
+This is revolutionary! Normally even Ajax applications - although they don't load completely new pages with each request - do transfer html markup to the client upon every user action (I know, I know, not all of them, some just transfer JSON in some cases). But there are close to none Ajax applications that load an MVC application in the user's browser once and then only make server roundtrips when data has to be exchanged, just like a desktop application. And there certainly has not been a framework that enables us developers to easily build something like that. 
+Check out the <a href="http://www.sproutcore.com/demos/">demos</a> to see how cool and snappy it is. The other revolutionary thing about it are the Rails-like build tools that are an essential part of SproutCore. They let you generate models, views and controllers using Ruby. These will be served by the webserver, but they'll run on the client since they are pure JavaScript, CSS and HTML. And there's one more thing: tests. SproutCore comes with amazing test support for your JavaScript applications so you can easily run your test suits in different browsers and make sure everything works. Such extensive test support for JavaScript code and applications is really sweet!
+So what are you waiting for? <a href="http://www.sproutcore.com/documentation/hello-world-tutorial/">Get started now!
+</a><div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-1140965442561062924?l=blog.springenwerk.com' alt='' /></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "sproutcore-javascript-on-rails-drinking";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

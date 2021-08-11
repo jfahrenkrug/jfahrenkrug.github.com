@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Setting up your Cappuccino development environment</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Setting up your Cappuccino development environment</h1>
+          <em class="swlightgray">Posted on 08 September 2009 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Cappuccino">Cappuccino</a> <a class="swtaglink" href="/tags.html#Tutorials">Tutorials</a> <a class="swtaglink" href="/tags.html#Cocoa">Cocoa</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://cappuccino.org/images/cappuccino-icon.png"><img style="float:left; margin:0 10px 10px 0;cursor:pointer; cursor:hand;width: 200px; height: 200px;" src="http://cappuccino.org/images/cappuccino-icon.png" border="0" alt="" /></a> I have recently fallen in love with <a href="http://cappuccino.org/">Cappuccino</a>. It's a framework for creating rich internet applications (read: applications that run in the browser but that feel like a desktop application). The crazy thing is that it's not just some other framework, but it actually re-creates the beautiful <a href="http://developer.apple.com/cocoa/">Cocoa frameworks</a> in JavaScript. When I first heard this I thought it was crazy. I still do, but now I also think it's unbelievably cool because it actually works. Bringing the Cocoa frameworks to the browser is kind of like building a car out of matches and it actually drives. And looks good. And has airbags and a CD player. Awesome. OK, enough of that. How do you get started? Well, you could download the <a href="http://cappuccino.org/download/">starter package</a> but as a professional developer you probably want to correctly set up your development environment and be on the bleeding edge. That's why this tutorial assumes a few things: you have a Unix-based system, <a href="http://www.git-scm.org/">git</a>, and <a href="http://www.ruby-lang.org/">Ruby</a> with <a href="http://rubygems.org/">RubyGems</a> and <a href="http://rake.rubyforge.org/">Rake</a> installed. The following instructions are based on the <a href="http://wiki.github.com/280north/cappuccino/getting-and-building-the-source">official instructions</a> and don't aim to replace them, but possibly make them a little easier to follow. Here we go:<div></div><div><ol><li>Get the source: <pre><code>git clone git://github.com/280north/cappuccino.git</code></pre></li>
+<li>Make a directory for the built products, for example I did: <pre><code>mkdir /Users/johannes/Code/capp_build</code></pre></li>
+<li>Add $CAPP_BUILD to your .profile (or whatever you use) I did: <pre><code>export CAPP_BUILD=/Users/johannes/Code/capp_build</code></pre></li>
+<li>Source it: <pre><code>source ~/.profile</code></pre></li>
+<li>Build and install cappuccino: <pre><code>cd cappuccino &amp;&amp; sudo rake install</code></pre></li>
+<li>That's it!</li>
+</ol><div></div><div>To update to the latest version, you can later just change into the cappuccino directory and run <pre><code>git pull</code></pre>and then <pre><code>sudo rake clobber-all install</code></pre></div></div><div>And if you use TextMate, you'll want to install the TextMate Objective-J bundle like so (in the cappuccino directory): <pre><code>open ./Build/Cappuccino/Tools/Editors/TextMate/JavaScript\ Objective-J.tmbundle</code></pre>One more optional thing you should do is set up your name in capp (the tool you'll use to generate new applications): <pre><code>capp config user.name "Your Name"</code></pre>You can also <a href="http://groups.google.com/group/objectivej/browse_thread/thread/75b268a8543b5258/884aeef09e2a4979">set up additional values</a>.  So now you're all set to start your first Cappuccino project. </div><div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-3089385311525845769?l=blog.springenwerk.com' alt='' /></div>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Thanks, ncho!<br />[cheesy]I had as much fun writing them as you had reading them[/cheesy] ;-)</p>
+<em class="swlightgray" style="margin-left: 30px">September 12, 2009 10:18 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/13888271911652976677">ncho</a> said...</h4>
+<p style="margin-left: 30px">Johannes -- thanks for these Cappucinno tutorials.  This is great!  Also, good to see someone pushing the Radiant envelope -- excellent CMS.</p>
+<em class="swlightgray" style="margin-left: 30px">September 11, 2009 06:41 PM</em></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "setting-up-your-cappuccino-development";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

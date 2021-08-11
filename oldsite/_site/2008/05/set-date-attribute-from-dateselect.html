@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Set a Date Attribute from date_select Without Mass Assignment in Ruby On Rails</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Set a Date Attribute from date_select Without Mass Assignment in Ruby On Rails</h1>
+          <em class="swlightgray">Posted on 29 May 2008 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Programming">Programming</a> <a class="swtaglink" href="/tags.html#Ruby">Ruby</a> <a class="swtaglink" href="/tags.html#rails">rails</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body">This has been talked about a million times, but I just ran into this problem again and want to share the solution:
+You have a date_select helper in your Rails view and you want to assign the selected date to your model. With mass assignment that's not a problem, but when you try this:
+<pre class="prettyprint">
+@something.my_date = params[:something][:my_date]
+</pre>
+You will be disappointed and there will be wailing and gnashing of teeth. Why? Because date_select creates 3 form components and 3 corresponding values in the form and in the params[:something] hash, namely
+<pre class="prettyprint">
+params[:something][:my_date(1i)]
+params[:something][:my_date(2i)]
+params[:something][:my_date(3i)]
+</pre>
+These represent the year, the month and the day (Duh!).
+When you use @something.attributes= to mass assign this, ActiveRecord takes care of creating a date object from these three values (see <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html#M001447">attributes=</a>, <a href="http://www.noobkit.com/show/ruby/rails/rails-stable/activerecord/activerecord/base/assign_multiparameter_attributes.html">assign_multiparameter_attributes</a>, <a href="http://www.noobkit.com/show/ruby/rails/rails-stable/activerecord/activerecord/base/extract_callstack_for_multiparameter_attributes.html">extract_callstack_for_multiparameter_attributes</a>, and <a href="http://railsmanual.com/class/ActiveRecord::Base?method=execute_callstack_for_multiparameter_attributes">execute_callstack_for_multiparameter_attributes</a>). Sometimes you might not want to mass assign, though (<a href="http://railscasts.com/episodes/26">security</a> comes to mind).
+So what are you to do? Maybe putting this code (inspired by <a href="http://www.red91.com/articles/2008/03/19/date_select-conversion">this code</a>) in your application.rb might help:
+<pre class="prettyprint">
+  private
+ 
+  def convert_date(hash, date_symbol_or_string)
+    attribute = date_symbol_or_string.to_s
+    return Date.new(hash[attribute + '(1i)'].to_i, hash[attribute + '(2i)'].to_i, hash[attribute + '(3i)'].to_i)   
+  end
+</pre>
+Now you can assign dates from date_select like this:
+<pre class="prettyprint">
+@something.my_date = convert_date(params[:something], :my_date)
+</pre>
+Please comment if you have a better or more elegant solution!
+
+If this was useful for you, please take a minute and recommend me:<br/><a href="http://workingwithrails.com/recommendation/new/person/11816-johannes-fahrenkrug"><img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small-button.jpg" /></a><br/>Thank you!<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-6616007446581921110?l=blog.springenwerk.com' alt='' /></div>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Thanks for the comment, bbnnt, I'm glad it was helpful. Another Rails ebook I really like is the Rails 2.1 PDF by Peepcode, you should check it out.<BR/>Btw, I checked out your blog and I really like the video by Dr. Nic on iPhone testing with Ruby, thanks for that.</p>
+<em class="swlightgray" style="margin-left: 30px">August 27, 2008 11:40 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/03647441240945886450">bbnnt</a> said...</h4>
+<p style="margin-left: 30px">A great thank ! I don't know why this was that hard to find out a solution.<BR/><BR/>Anyway, there's this very good ebook wrote by carlos brando, ruby on rails 2.1, what's new; well, on page 67, it talks about the date_select helper, doesn't even work as it is shown !<BR/><BR/>I might not be aware about every rails evolutions, but it'd be great that a nice date solution could be integrated instead of having to rely n some plugins.</p>
+<em class="swlightgray" style="margin-left: 30px">August 27, 2008 11:29 AM</em></div>
+<div class="swcomment"><h4><a href="">Anonymous</a> said...</h4>
+<p style="margin-left: 30px">Thanks a lot for this useful trick!<BR/>S.</p>
+<em class="swlightgray" style="margin-left: 30px">August 17, 2008 06:47 PM</em></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "set-date-attribute-from-dateselect";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

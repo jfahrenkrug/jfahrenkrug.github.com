@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashcode and XMLHttpRequest Trouble</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Dashcode and XMLHttpRequest Trouble</h1>
+          <em class="swlightgray">Posted on 13 August 2007 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Programming">Programming</a> <a class="swtaglink" href="/tags.html#Apple">Apple</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><img src="http://developer.apple.com/tools/images/dashcodeicon.jpg" style="margin: 10px 10px 0pt 0pt; float: left; width: 61px; height: 61px;" title="" />I was playing around with Apple's <a href="http://developer.apple.com/tools/dashcode/">Dashcode</a> widget development tool. It's really neat. But one thing almost drove me nuts: XMLHttpRequest. I tried to pull the episode listings of a given show from <a href="http://www.epguides.com">epguides.com</a>.
+I got back a readyState of 4 but the request.status was always undefined.
+Well, the solution to the problem is easy: You have to allow the widget to access the network. Just check the appropriate checkbox in the "Widget Attributes" section. D'oh!<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-5188825875685466607?l=blog.springenwerk.com' alt='' /></div>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/01754749508965695044">Admin</a> said...</h4>
+<p style="margin-left: 30px">Bwahahah thanks for posting this, solved my problem.</p>
+<em class="swlightgray" style="margin-left: 30px">January 24, 2010 02:45 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">When I actually find the chocolate in the mail, you'll be mine, too! (this is a lie)</p>
+<em class="swlightgray" style="margin-left: 30px">October 28, 2008 02:52 PM</em></div>
+<div class="swcomment"><h4><a href="">Anonymous</a> said...</h4>
+<p style="margin-left: 30px">You're my best friend now. The chocolate is in the mail.</p>
+<em class="swlightgray" style="margin-left: 30px">October 28, 2008 02:49 PM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/13668799547352259386">Chris Miles</a> said...</h4>
+<p style="margin-left: 30px">Thank you!!  So obvious when pointed out, but this was driving me nuts all night.</p>
+<em class="swlightgray" style="margin-left: 30px">September 24, 2008 01:24 PM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/09435787870477086649">Arno</a> said...</h4>
+<p style="margin-left: 30px">Thanks! Pretty ridiculous how buried that is.</p>
+<em class="swlightgray" style="margin-left: 30px">May 10, 2008 02:35 AM</em></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "dashcode-and-xmlhttprequest-trouble";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

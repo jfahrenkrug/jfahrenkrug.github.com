@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsConf Europe 2008 - Day 1: Hacking at the Community Code Drive</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>RailsConf Europe 2008 - Day 1: Hacking at the Community Code Drive</h1>
+          <em class="swlightgray">Posted on 03 September 2008 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Ruby">Ruby</a> <a class="swtaglink" href="/tags.html#rails">rails</a> <a class="swtaglink" href="/tags.html#Conferences">Conferences</a> <a class="swtaglink" href="/tags.html#RailsConf">RailsConf</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://farm4.static.flickr.com/3144/2822419023_309679e41f.jpg?v=0"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 592px; height: 393px;" src="http://farm4.static.flickr.com/3144/2822419023_309679e41f.jpg?v=0" alt="" border="0" /></a>
+I'm in the keynote session right now and day 2 of this year's RailsConf Europe is almost over. Yesterday was actually the tutorial sessions day, which I didn't book. But a much more exciting thing was going on in a small room down the hall: The Community Code Drive. I was one of the first guys in the room in the morning and was quickly joined by other developers and David Black, who quickly explained that the plan for the code drive was that there is no plan. You could just suggest a project that you'd like help with and then hope that someone would like to hack away at it with you.
+So I suggested a developer-friendly OpenSocial extension to SproutCore. I was joined by a developer from the UK and it was a lot of fun. We got pretty far at coding OpenSocial helpers for SproutCore, but <a href="http://groups.google.com/group/sproutcore/browse_thread/thread/139d1679d4455998">got stuck at one point</a>. Let's hope someone will answer that soon, maybe <a href="http://groups.google.com/group/sproutcore/browse_thread/thread/83a1cf3c67ec3322">Charles when he's back from his honeymoon</a>.
+In the evening there was a Q&amp;A session with DHH, Michael Koziarski,  and Jeremy Kemper. I asked a question about the future of Test::Unit in view of rSpec. DHH said that in the next Rails release, you'll be able to use a test "something something" syntax which will make an rSpec-similar syntax possible and that he's not too fond of the overuse of "should" in rSpec. He likes Test::Unit, he likes it's simplicity and thinks that it's good as a default to get people started with TDD. If you like rSpec better, good for you, use it, but it will not replace Test::Unit.
+Then I asked about their opinion on SproutCore and if they think that such desktop-like apps are the future of web apps where this desktop-ishness makes sense. DHH said that he doesn't think so and thinks that we will stick with the current state of Ajax apps for a while because they're proven and work well. Michael Koziarski said that he doesn't think it's good to abstract HTTP away from the developer but to embrace it instead. I'm not sure why he said that, I don't think he has taken a deep look at SproutCore yet, because SproutCore doesn't force nor encourage you to avoid HTTP. It talks to the backend with HTTP, but only if it needs to, not when a view changes or the way you display the data you have already loaded changes. I talked about this with Yehuda Katz today and he also agreed that SproutCore definitely is a cool project and makes a lot of sense. but since we still live in IE6 land, it wouldn't be a good choice for a web app which you want to reach as many users as possible. Agreed.
+The evening consisted of a very enjoyable <a href="http://en.oreilly.com/railseurope2008/public/schedule/detail/5270">RejectConf</a>. I was in bed at midnite. Too late.<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-5894495937327747470?l=blog.springenwerk.com' alt='' /></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "railsconf-europe-2008-day-1-hacking-at";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

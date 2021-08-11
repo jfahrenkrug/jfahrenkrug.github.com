@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Apple Security Credit</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Apple Security Credit</h1>
+          <em class="swlightgray">Posted on 23 July 2007 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#WWDC">WWDC</a> <a class="swtaglink" href="/tags.html#Security">Security</a> <a class="swtaglink" href="/tags.html#Apple">Apple</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://upload.wikimedia.org/wikipedia/en/f/fa/Apple_first_logo.png"><img style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 172px; height: 250px;" src="http://upload.wikimedia.org/wikipedia/en/f/fa/Apple_first_logo.png" alt="" border="0" /></a> While I attended WWDC this year Apple relaunched it's website in a sleeker design. They also added a couple of nice Ajax features (like the Spotlight-like search in the upper right corner of every page or the <a href="http://www.apple.com/buy/locator/">store locator</a>). Of course I had to probe around a bit and I found an <a href="http://en.wikipedia.org/wiki/SQL_injection">SQL Injection</a> security hole in the store locator.
+Being surrounded by over 1500 Apple engineers at WWDC it was of course easy to report the issue in person, which I did right away.
+The issue is fixed now and <a href="http://support.apple.com/en-us/HT201536">Apple has given me public credit</a> for finding and reporting it:<blockquote>2007-07-16 Apple Store Locator
+
+An SQL injection issue was corrected in the Apple Store Locator. No customer data is stored on or is handled by the affected database. We would like to acknowledge Johannes Fahrenkrug of Springenwerk Consulting for reporting these issues.</blockquote>
+That's the second credit Apple has given me for security holes on their website, the <a href="http://support.apple.com/en-us/HT201536">first one</a> dates back to October 2005 (at the bottom of the page).
+I know that Apple has been criticized for it's handling of security issues in the past. I only have experiences with Apple.com's security team and those experiences are very positive.
+<a href="http://www.google.com/about/appsecurity/hall-of-fame/archive/">Google</a>, <a href="http://www.oracle.com/technetwork/topics/security/cpuoct2006-095368.html">Oracle </a> and <a href="http://service.real.com/help/faq/security/web/20050415_myaccount/de/">Real Networks</a> have also given me public credit for finding and reporting security issues.
+Just drop me a line (johannes at the domain name springenwerk dot com) if you are interested in an in-depth security check of your web application.
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "apple-security-credit";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

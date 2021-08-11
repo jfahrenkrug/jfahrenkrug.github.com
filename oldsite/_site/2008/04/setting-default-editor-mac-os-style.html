@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Setting the Default Editor - Mac OS Style</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Setting the Default Editor - Mac OS Style</h1>
+          <em class="swlightgray">Posted on 30 April 2008 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Mac">Mac</a> <a class="swtaglink" href="/tags.html#Tutorials">Tutorials</a> <a class="swtaglink" href="/tags.html#Apple">Apple</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body">This is really short and can most likely be found in a million different places online. Well, now the count is up to a million and one.<br />You want to set the EDITOR environment variable for Terminal.app on Mac OS X? You're puzzled that there's (possibly) no .profile or .bash_profile in your home directory? You are distressed, scared, and disoriented because you don't know where to put your environment variables? Alas! Thou shalt wonder no more!<br /><br />Just run this in your Terminal.app:<br /><pre class="prettyprint"><br />open /Developer/Applications/Utilities/Property\ List\ Editor.app ~/.MacOSX/environment.plist<br /></pre><br />(This assumes that you have the XCode development tools installed. If you don't just use vi and edit the XML file by hand. I also assume that you have a .MacOSX subdirectory in your home folder which contains an environment.plist file)<br /><br />You will be greeted with something like this:<br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_-dK4R3d1lbc/SBg4AXBQ6PI/AAAAAAAAAd0/EQkArn-zjms/s1600-h/Picture+1.png"><img style="margin: 0pt 10px 10px 0pt; cursor: pointer; width: 314px; height: 209px;" src="http://4.bp.blogspot.com/_-dK4R3d1lbc/SBg4AXBQ6PI/AAAAAAAAAd0/EQkArn-zjms/s320/Picture+1.png" alt="" id="BLOGGER_PHOTO_ID_5194963749002340594" border="0" /></a><br />Then just click on "Root" and then click on "New Child" and enter the data for your EDITOR variable so it looks something like this:<br /><br /><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_-dK4R3d1lbc/SBg4wXBQ6QI/AAAAAAAAAd8/GAOqoCX-nmo/s1600-h/Picture+2.png"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer;" src="http://4.bp.blogspot.com/_-dK4R3d1lbc/SBg4wXBQ6QI/AAAAAAAAAd8/GAOqoCX-nmo/s400/Picture+2.png" alt="" id="BLOGGER_PHOTO_ID_5194964573636061442" border="0" /></a>Save and quit Property List Editor.<br /><br />My environment.plist file now looks like this:<br /><pre class="prettyprint"><br />&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br />&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/<br />PropertyList-1.0.dtd"&gt;<br />&lt;plist version="1.0"&gt;<br />&lt;dict&gt;<br /> &lt;key&gt;CVS_RSH&lt;/key&gt;<br /> &lt;string&gt;ssh&lt;/string&gt;<br /> &lt;key&gt;EDITOR&lt;/key&gt;<br /> &lt;string&gt;vi&lt;/string&gt;<br /> &lt;key&gt;SSH_AUTH_SOCK&lt;/key&gt;<br /> &lt;string&gt;/tmp/501/SSHKeychain.socket&lt;/string&gt;<br />&lt;/dict&gt;<br />&lt;/plist&gt;<br /></pre><br />Now you have to log out and log back in for the changes to take effect. After that you should see "EDITOR=vi" when you run<br /><pre class="prettyprint"><br />set | grep EDITOR<br /></pre><div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-6263377946657944378?l=blog.springenwerk.com' alt='' /></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "setting-default-editor-mac-os-style";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

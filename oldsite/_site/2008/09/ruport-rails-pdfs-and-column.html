@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruport, Rails, PDFs and Column Alignment/Justification</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Ruport, Rails, PDFs and Column Alignment/Justification</h1>
+          <em class="swlightgray">Posted on 18 September 2008 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Tutorials">Tutorials</a> <a class="swtaglink" href="/tags.html#Ruby">Ruby</a> <a class="swtaglink" href="/tags.html#rails">rails</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://rubyreports.org/ruport.png"><img style="margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 320px;" src="http://rubyreports.org/ruport.png" alt="" border="0" /></a>
+I'm currently working on a Rails project that needs to generate Report PDFs. <a href="http://rubyreports.org/">Ruport</a>, of course, is an obvious choice for this task. It took me a little bit to get used to how Ruport does things (read: wants you to do things). I don't want to dive too deep into getting started with Ruport. If you're new to it, check out these two great guides: <a href="http://stonecode.svnrepository.com/ruport/trac.cgi/wiki/DimwitsGuide">The Dimwit's Guide</a> and <a href="http://www.oreillynet.com/pub/a/ruby/2008/04/08/ruport-business-reporting-for-ruby.html">O'Reilly Network Ruport Guide</a>. Please note, however, that the tutorials and guides often mention "Renderers": they are called "Controllers" in the current version of Ruport. Just keep that in mind.
+So back to my PDF columns problem: I wanted to be able to have all the text in the first column left-aligned and the text in all the other columns right-aligned. This turned out to be a little harder than I thought.
+Let's do this step by step (I assume you have installed the Ruport Gem and it's dependencies). This will also show you how to use Ruport in your Rails app without acts_as_reportable:
+<ol><li>Create a "reports" directory inside your app directory.</li><li>Add it to your Rails load path by adding this inside the Rails::Initializer.run block in your environment.rb:<pre class="prettyprint">
+config.load_paths += %W( #{RAILS_ROOT}/app/reports )</pre></li><li>For the next step, we assume to have class that looks something like this:
+<pre class="prettyprint">
+class MyReport &lt; ActiveRecord::Base
+  validates_presence_of :report_title, :report_subtitle
+
+  # ColumnHeader has an attribute "name"
+  has_many :column_headers
+
+  # We assume they come in the right order, and a row has_many columns.
+  # A Column has an attribute "value"
+  has_many :rows
+end
+</pre>
+So we see our report can have n rows with n columns and two attributes: "report_title" and "report_subtitle".</li><li>Create a file called "my_report_renderer.rb" in your app/reports directory.</li><li>Put this in the file:<pre class="prettyprint">require 'ruport'
+
+class MyReportRenderer &lt; Ruport::Controller
+  stage :report_header, :report_body
+  finalize :report
+
+  class PDF &lt; Ruport::Formatter::PDF
+    renders :pdf, :for =&gt; MyReportRenderer
+
+    def build_report_header
+      # data is an instance of your MyReport class
+      add_text "My Great Report", :font_size =&gt; 20,
+              :justification =&gt; :center
+      add_text data.report_title, :font_size =&gt; 18
+      add_text data.report_subtitle, :font_size =&gt; 16
+    end
+
+    def build_report_body
+      # we have to build the table
+      headers = []
+
+        
+      # gather the column header strings in an array
+      data.column_headers.each do |ch|
+        headers &lt;&lt; ch.name
+      end
+
+
+      table = Table(headers) do |t|
+        data.rows.each do |row|
+          columns = []
+
+          # gather the actual column values for each row in an array       
+          row.columns.each do |col|
+            columns &lt;&lt; col.value
+          end
+
+          # add the columns for the current row to the table
+          t &lt;&lt; columns
+        end
+      end
+
+      # create column option that right justify all columns but the first one
+      col_opts = {}
+      header_index = 0
+      for header_index in (0..(headers.length - 1))
+        # we'll skip the first one, since :left is the default
+        if header_index != 0
+          # the options for each column are indexed by it's name (headers array)
+          col_opts[headers[header_index]] = {:justification =&gt; :right}
+        end
+      end
+
+      pad (20) { draw_table(table, :column_options =&gt; col_opts) }
+    end
+
+    def finalize_report
+      render_pdf
+    end
+  end
+end</pre>OK, now we have a renderer (or controller) that renders our report with all columns right-justified except for the first one.</li><li>Now just add an action to your MyReport Rails controller:<pre class="prettyprint">def download_pdf
+  begin
+    @report = MyReport.find(params[:id]) 
+    send_data(MyReportRenderer.render(:pdf, :data =&gt; @report),
+          :filename =&gt; "report#{params[:id]}.pdf",
+          :type =&gt; "application/pdf",
+          :disposition =&gt; 'inline')
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "Report not found."
+    redirect_to :action =&gt; :index
+  end
+end</pre></li><li>That's it.
+</li></ol>I didn't actually try this code: it's modified (simplified) code from the app I'm working on, but it should work. If not, please leave a comment.
+
+<p>If this was useful for you, please take a minute and recommend me:
+<a href="http://workingwithrails.com/recommendation/new/person/11816-johannes-fahrenkrug"><img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small-button.jpg" /></a>
+Thank you!</p><div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-6141149763688870087?l=blog.springenwerk.com' alt='' /></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "ruport-rails-pdfs-and-column";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

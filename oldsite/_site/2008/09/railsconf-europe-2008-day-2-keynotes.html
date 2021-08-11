@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsConf Europe 2008 - Day 2: Keynotes, Maglev, Rubinius, merb, and jQuery</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>RailsConf Europe 2008 - Day 2: Keynotes, Maglev, Rubinius, merb, and jQuery</h1>
+          <em class="swlightgray">Posted on 04 September 2008 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#Ruby">Ruby</a> <a class="swtaglink" href="/tags.html#rails">rails</a> <a class="swtaglink" href="/tags.html#Conferences">Conferences</a> <a class="swtaglink" href="/tags.html#RailsConf">RailsConf</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://farm4.static.flickr.com/3092/2823890375_248905f899.jpg?v=0"><img style="margin: 0px auto 10px; display: block; text-align: center; cursor: pointer; width: 603px; height: 400px;" src="http://farm4.static.flickr.com/3092/2823890375_248905f899.jpg?v=0" alt="" border="0" /></a>
+It's 8:15 am on day 3 of RailsConf Europe 2008. Let me give you a quick overview of what happened yesterday:
+<ul><li>Keynote by DHH
+<p>David gave a really good keynote about the misuse of the term "legacy code". Most developers think of legacy code as this stinky pile of old code that holds you down. In a nutshell David said that that's actually a good thing, because it means that you as a developer have grown and learned: You look back at your 1, 2, 6, or 24 month old code and notice all the things that you'd do better today. That's a very good thing. If you'd look at your code from 2 years ago today and still thought that it was the "best code ever" you wouldn't have learned anything or advanced at all in that time. Not a good thing.
+</p></li><li>EC2, MapReduce, and Distributed Processing
+<p>A very good, high level overview of what the principle behind <a href="http://labs.google.com/papers/mapreduce.html">MapReduce</a> with lots of Ruby sample code. The EC2 parts could have been more practical instead of telling us why EC2 makes sense (the "your own generator vs. power from a power plant" story).</p></li><li>jQuery with Rails
+<p><a href="http://yehudakatz.com/">Yehuda Katz</a> gave a great in-depth and refreshingly fast paced talk about jQuery. He gave special attention to some little known CSS selectors and other cool not-so-obvious jQuery features. A highlight of the day. He put <a href="http://yehudakatz.com/2008/09/03/railsconf-europe-slides/">the slides</a> up on his blog, you should check them out for sure.</p></li><li>Juggernaut: Realtime Rails
+<p>Great talk with a cool demo. <a href="http://juggernaut.rubyforge.org/">Juggernaut</a> puts a tiny invisible SWF on your site which opens a duplex TCP connection to your server. It then uses the Flash-JavaScript bridge in the user's browser so you can actively push data from your server to n clients. I installed it later that night and followed <a href="http://www.slightlycoded.com/blog/the-juggernaut-a-push-server-for-ruby-on-rails">this great tutorial</a>. It's a snap to set up and a developer working for the BBC that I met yesterday said that they use it on a big project and that it works like a charm. Very promising.</p></li><li>Rubinius 1.0
+<p><a href="http://rubini.us/">Rubinius</a> is an alternative interpreter and VM for Ruby. The talk could have started with a small overview of what the goal of the project is, but oh well. Wilson Bilkovich gave a glimpse at the internals of Rubinius and the various difficulties they are encountering. One cool detail is that they are using LLVM now. I was able to meet Chris Lattner at this and last year's WWDC since he's working for Apple now and they obviously also see the potential of it. After the session I was able to talk with Wilson, Tom Mornini, and Yehuda Katz about the security implications of implementing a Ruby VM in Ruby. It's these after-session conversations that make such conferences truly great.</p></li><li>Security On Rails
+<p>I arrived late at this one. Most things weren't new to me, but some interesting tips and pitfalls were addressed. Good talk and you can get <a href="http://blog.innerewut.de/2008/9/3/railsconf-europe-2008">the slides here</a>.</p></li><li>Meet the Sun You Don't Know
+<p>15 minute presentation by Nick Sieger from Sun, showing how easily you can deploy with JRuby. Nice.</p></li><li>Keynote by Jeremy Kemper, 37signals
+<p>A truly great keynote about Rails performance and all the things you can and should do to make you Rails app perform better, including recompiling Ruby to raise to limit at when the GC kicks in from 8 MB to - say - 60 MB. That makes a huge difference. More tips included caching and the use of new performance tests in Rails 2.2. I hope the slides or the video will be made available.</p></li><li>BoF: Maglev
+<p>Interesting presentation and demo of the <a href="http://ruby.gemstone.com/">Maglev Ruby VM</a>. If it performs at the speeds that were demoed under real-world conditions doing real-world tasks, Maglev might be very promising.</p></li><li>BoF: merb
+<p>Yehuda gave a good intro and overview of <a href="http://merbivore.com/">merb</a>, demoed some stuff and talked about his dislike of the fact that Rails locks you intro a lot of defaults you can't change. merb is different, letting you choose and giving you a clean public API. On the way home on the subway I read half of this <a href="http://merb.4ninjas.org/">Open Source merb book</a>, and read the rest this morning. I'll definitely consider it for my next project and might also buy the <a href="http://peepcode.com/products/meet-merb-pdf-draft">PeepCode PDF</a>.</p></li></ul>All in all a great conference day!<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-986246769774449536?l=blog.springenwerk.com' alt='' /></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "railsconf-europe-2008-day-2-keynotes";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>

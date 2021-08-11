@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Using Cookies with Firefox Extensions and JavaScript</title>
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed for springenwerk.com" href="/feeds/atom.xml" />
+    <!--[if lt IE 8]>
+        <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <meta http-equiv="Content-Type"       content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language"   content="en" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="Springenwerk: The website and blog of freelancing software developer and security consultant Johannes Fahrenkrug." />
+    <meta name="keywords"    content="Springenwerk, Johannes Fahrenkrug, jfahrenkrug, iPhone, iPhone SDK, iPad, iPad development, iPhone development, Mac development, freelancer, consultant, Ruby, Ruby on Rails, Cappuccino, JavaScript" />                                       
+    <meta name="language" content="en" />
+  </head>
+  
+  
+  <body class="bp three-col">
+    <div id="container">
+      <div id="header">
+        <a href="/" class="logo"><img src="/images/logo_white.png"/></a>
+        <div class="main-navi">
+          <ul>
+            <li><a href="/about.html">About</a></li>
+            <!-- <li><a href="/work.html">Work</a></li> -->
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <hr/>
+      </div>
+      <div id="sidebar">
+        <h5>Stay in touch:</h5>
+      	<ul>
+          <li><a href="http://github.com/jfahrenkrug">Github</a></li>
+          <li><a href="http://twitter.com/jfahrenkrug">Twitter</a></li>
+          <li><a href="http://stackoverflow.com/users/171933/johannes-fahrenkrug">Stack Overflow</a></li>
+          <li><a href="http://careers.stackoverflow.com/johannes">SO Careers</a></li>
+          <li><a href="http://www.linkedin.com/in/jfahrenkrug">LinkedIn</a></li>
+          <li><a href="http://www.xing.com/profile/Johannes_Fahrenkrug">Xing</a></li>
+        </ul>
+        
+        <h5 style="margin-top: 50px">FreeAgent:</h5>
+        <a href="http://fre.ag/31l92b39" title="FreeAgent: money management and accounting for freelancers, contractors and consultants"><img src="http://www.freeagentcentral.com/images/i-heart-fa.jpg" width="102" height="42" alt="FreeAgent sign-up" /></a>
+      </div>
+        <div id="content">
+          <h1>Using Cookies with Firefox Extensions and JavaScript</h1>
+          <em class="swlightgray">Posted on 10 July 2007 by Johannes Fahrenkrug. Tags: <a class="swtaglink" href="/tags.html#JavaScript">JavaScript</a> <a class="swtaglink" href="/tags.html#Programming">Programming</a> <a class="swtaglink" href="/tags.html#Firefox Extensions">Firefox Extensions</a> </em>
+          <div style="margin-top: 10px">
+          <div class="blog-post-body">I'm working on a Firefox Extension at the moment and I had to read and write cookies with that extension. To make a long story short, this is how you do it (in the JavaScript code of your extension):
+<blockquote>
+<pre>
+var ios = Components
+  .classes["@mozilla.org/network/io-service;1"]
+  .getService(Components.interfaces.nsIIOService);
+var cookieUri = ios
+  .newURI("http://www.uri_of_the_cookies.com/", 
+  null, null);
+var cookieSvc = Components
+  .classes["@mozilla.org/cookieService;1"]
+  .getService(Components.interfaces.nsICookieService);
+
+var cookie = cookieSvc.getCookieString(cookieUri, null);
+
+if (cookie == null || cookie.length < 1) {
+  //no cookie set for this uri
+} else {
+  var cookieArray = cookie.split("; ");
+    
+  //loop through the different cookies 
+  //(key/value pairs) for this URI
+  for (var i = 0; i < cookieArray.length; i++) {
+    var kvPair = cookieArray[i].split("="); 
+ 
+    if (kvPair.length > 1 && 
+      kvPair[0] == "NameOfTheCookieImLookingFor" && 
+      kvPair[1].length > 0) {
+        //the value is in kvPair[1]    
+        
+        break;
+    }
+  }
+}
+</pre>
+</blockquote>
+This MDN page helped a lot: <a href="http://developer.mozilla.org/en/docs/Code_snippets:Cookies">Code Snippets: Cookies</a>.
+
+So what about writing cookies? Easy:
+<blockquote>
+<pre>
+var ios = Components
+  .classes["@mozilla.org/network/io-service;1"]
+  .getService(Components.interfaces.nsIIOService);
+var cookieUri = ios
+  .newURI("http://www.uri_of_the_cookies.com/", 
+  null, null);
+var cookieSvc = Components
+  .classes["@mozilla.org/cookieService;1"]
+  .getService(Components.interfaces.nsICookieService);
+
+cookieSvc.setCookieString(cookieUri, null, 
+  "key=value", null);
+</pre>
+</blockquote>
+For this I got a very helpful hint from the <a href="http://www.koders.com/javascript/fidFFFEE19A9EC29C342C5F8F4768ED521CED7BBCC2.aspx">Mozilla Sessionmanager source code</a> (just search for setCookieString). There's lot of other interesting stuff in there, I'm sure.
+
+And last but not least: What about removing cookies? Quite easy as well:
+<blockquote>
+<pre>
+Components.classes["@mozilla.org/cookiemanager;1"]
+  .getService(Components.interfaces.nsICookieManager)
+  .remove(".mydomain.com", //the domain
+          "nameOfCookie",  //the name of the cookie
+          "/path",         //the path of the cookie, ie "/"
+          false);          //should cookies from this host 
+                           //be blocked permanently?
+</pre>
+</blockquote>
+To remove all the cookies in the browser:
+<blockquote>
+<pre>
+Components.classes["@mozilla.org/cookiemanager;1"]
+  .getService(Components.interfaces.nsICookieManager)
+  .removeAll();
+</pre>
+</blockquote>
+For this, the <a href="http://lxr.mozilla.org/mozilla/source/netwerk/cookie/public/nsICookieManager.idl">nsICookieManager source</a> was insightful.
+Well, so much for cookies and Firefox Extensions, I hope this was useful to someone.<div class="blogger-post-footer"><img width='1' height='1' src='https://blogger.googleusercontent.com/tracker/4366452231084261097-6861039170056939694?l=blog.springenwerk.com' alt='' /></div>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/10839181233788000095">Phil Crosby</a> said...</h4>
+<p style="margin-left: 30px">Excellent, thank you Johannes!</p>
+<em class="swlightgray" style="margin-left: 30px">February 09, 2008 01:01 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06711068470845831246">vartika</a> said...</h4>
+<p style="margin-left: 30px">This is quite useful. Thanks for posting such useful document</p>
+<em class="swlightgray" style="margin-left: 30px">January 30, 2008 12:49 PM</em></div>
+</div>
+          </div>
+          
+          <hr/>
+          <h2>Comments</h2>
+          <p><strong>Please keep it clean, everybody. Comments with profanity will be deleted.</strong></p>
+          
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+            var disqus_identifier = "using-cookies-with-firefox-extensions";
+            (function() {
+             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+             dsq.src = 'http://springenwerk.disqus.com/embed.js';
+             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=springenwerk">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+      <div id="footer"><hr/><img style="float: left" src="/images/tagline.png"/></div>
+    </div>
+  </body>
+
+</html>
