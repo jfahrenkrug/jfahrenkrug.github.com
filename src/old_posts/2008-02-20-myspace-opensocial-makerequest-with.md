@@ -1,0 +1,10 @@
+--- 
+name: myspace-opensocial-makerequest-with
+layout: ../layouts/OldPostLayout.astro
+title: MySpace OpenSocial makeRequest with jQuery Form Serialization
+time: 2008-02-20 11:43:00.001000 Z
+categories: 
+- Programming
+- OpenSocial
+---
+<img src="http://code.google.com/apis/opensocial/images/opensocial.jpg" style="margin: 10px 10px 0pt 0pt; float: left; width: 135px; height: 135px;" title="opensocial" alt="" />I'm working on an <a href="http://code.google.com/apis/opensocial/">OpenSocial</a> application at the moment. The OpenSocial <a href="http://code.google.com/apis/opensocial/docs/0.6/reference/opensocial.html#makeRequest">makeRequest</a> method is used to - you guessed it - make requests to different servers (yours, for example). Since this is most likely something you'll need, I created a tiny demo application that demonstrates the usage. I've <a href="http://developer.myspace.com/Community/forums/p/387/1423.aspx">posted it in the MySpace developer forum</a>.

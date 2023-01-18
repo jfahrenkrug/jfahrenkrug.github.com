@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const allPosts = await Astro.glob('../old_posts/*.md');
+
+const pageTitle = "Archive";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <ul>
+        {allPosts.map((post) => {
+            const slug = post.frontmatter.name
+            const postDate = post.frontmatter.time
+            const year = postDate.substr(0, 4)
+            const month = postDate.substr(5, 2)
+
+            return (<li><a href={`/${year}/${month}/${slug}.html`}>{post.frontmatter.title}</a></li>)
+        })}
+    </ul>
+</BaseLayout>
+

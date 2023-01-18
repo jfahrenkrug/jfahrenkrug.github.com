@@ -1,0 +1,37 @@
+--- 
+name: uninitialized-constant-rghostcolor-how
+layout: ../layouts/OldPostLayout.astro
+title: Uninitialized constant RGhost::Color - How to fix it!
+time: 2008-11-07 06:16:00.002000 Z
+categories: 
+- Ruby
+- rails
+---
+I'm replacing <a href="http://ruby-pdf.rubyforge.org/pdf-writer/">PDF::Writer</a> with <a href="http://rghost.rubyforge.org/">RGhost</a> in my Rails application at the moment - after trying out <a href="http://prawn.majesticseacreature.com/">Prawn</a> and realizing that - although it's a great library - it's fast enough either and doesn't meet our real life needs yet (really wide tables were just cut off). 
+RGhost has great documentation, but there is one pitfall when using it with Rails and Ruport: the uninitialized constant RGhost::Color error. When you google for it, you only find a few Portuguese forum posts with no solution. The solution is pretty simple, though: On my Mac, the error occurred in /Library/Ruby/Gems/1.8/gems/rghost-0.8.6/lib/rghost/font_map.rb. In the first lines of the file, 'color' is required. The problem is this: when you have PDF::Writer installed, it depends on a  gem with the name 'color'. And that's what gets required when you use RGhost in Rails (under certain circumstances). So the solution is to replace this line:
+<pre class="prettyprint">require 'color'</pre>
+with this line:
+<pre class="prettyprint">require File.dirname(__FILE__) + '/color'</pre>
+That's it! Oh, and don't forget to set the path to your Ghostscript executable like so:
+<pre class="prettyprint">RGhost::Config::GS[:path]='/opt/local/bin/gs'</pre>
+Enjoy!
+<p>If this was useful for you, please take a minute and recommend me:<br /><a href="http://workingwithrails.com/recommendation/new/person/11816-johannes-fahrenkrug"><img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small-button.jpg" /></a><br />Thank you!</p>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/15726193040616078049">Gregory Brown</a> said...</h4>
+<p style="margin-left: 30px">Johannes,<BR/><BR/>Releases previous to Prawn 0.3 had a strange dependency issue that made it run about 4x slower than it should.  If you were trying one of these earlier releases, you might check out the latest version and see if it performs better for you (Though I doubt we'll beat HTMLDOC in any case).<BR/><BR/>Unfortunately, I won't be at Scotland On Rails.  I'll be going to several US based conferences and maybe RubyKaigi if I'm lucky, so please let me know if you make it to any of those.<BR/><BR/>Also, feel free to let us know how things go if you use Prawn on your upcoming project.  Or better yet, write about it here!</p>
+<em class="swlightgray" style="margin-left: 30px">January 18, 2009 12:56 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Hey Greg,<BR/><BR/>That's great news, thank you! For performance reasons I went with HTMLDOC for the project I mentioened. But I'm considering Prawn for a different project I'm working on right now. Btw, will you be at Scotland On Rails? I'm considering it... would be great to meet.</p>
+<em class="swlightgray" style="margin-left: 30px">January 14, 2009 06:32 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/15726193040616078049">Gregory Brown</a> said...</h4>
+<p style="margin-left: 30px">Though it's probably way too late for your needs, Prawn now handles tables that are too wide gracefully thanks to a patch from Andrew Timberlake.   This will make it into Prawn 0.4<BR/><BR/>-greg</p>
+<em class="swlightgray" style="margin-left: 30px">January 14, 2009 03:54 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/15726193040616078049">Gregory Brown</a> said...</h4>
+<p style="margin-left: 30px">I like HTMLDOC too but it runs into serious limitations when things get too complex.<BR/><BR/>Also, licensing is less than ideal, you have the choice between GPL or a commercial license, whereas License of Ruby (which is dual-licensed with GPL) or the MIT/BSD licenses are far more appealing.</p>
+<em class="swlightgray" style="margin-left: 30px">November 08, 2008 01:09 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Hey Greg,<BR/><BR/>Thanks for the comment. Yeah, RGhost is pretty cool, BUT I ended up using HTMLDOC. Tables are a pain with RGhost because you'll have to manually calculate the right column widths. HTMLDOC just takes an html stream/file and works like a charm. I'll blog about it later. Speed improvement of a pdf with a 8 column table, 9 pages: PDF::Writer: 17 seconds (!), HTMLDOC: 0.5 seconds. Nice!</p>
+<em class="swlightgray" style="margin-left: 30px">November 07, 2008 02:10 PM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/15726193040616078049">Gregory Brown</a> said...</h4>
+<p style="margin-left: 30px">Wow, I've never seen RGhost.<BR/><BR/>That's very cool stuff.  I'll have to contact the maintainer so we can collaborate a bit.<BR/><BR/>Obviously there is a difference between relying on Ghostscript and doing pure Ruby PDF generation, but the library looks very mature and cool!</p>
+<em class="swlightgray" style="margin-left: 30px">November 07, 2008 01:50 PM</em></div>

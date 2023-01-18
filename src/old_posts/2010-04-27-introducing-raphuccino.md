@@ -1,0 +1,13 @@
+--- 
+name: introducing-raphuccino
+layout: ../layouts/OldPostLayout.astro
+title: "Introducing Raphuccino: Cappuccino meets RaphaelJS"
+time: 2010-04-27 14:25:00 Z
+categories: 
+- Programming
+- Cappuccino
+- Cocoa
+---
+<p>I will make this post very short: <a href="http://raphaeljs.com">RaphaelJS</a> is amazing. It is a Javascript library that lets you easily create and manipulate vector graphics. I thought it would be great to have a beautiful Objective-J API to use it in <a href="http://cappuccino.org">Cappuccino</a> projects. What I came up with is <a href="http://www.github.com/jfahrenkrug/Raphuccino">Raphuccino</a>. You can <a href="http://www.github.com/jfahrenkrug/Raphuccino">find the code on github</a>.</p>
+<p>This video shows you what it's all about:<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/vJsI_FB3iKg&hl=en_US&fs=1&rel=0&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/vJsI_FB3iKg&hl=en_US&fs=1&rel=0&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object></p>
+<p>Enjoy!</p>

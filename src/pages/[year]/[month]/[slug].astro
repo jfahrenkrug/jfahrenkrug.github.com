@@ -1,0 +1,25 @@
+---
+import OldPostLayout from '../../../layouts/OldPostLayout.astro';
+
+export async function getStaticPaths() {
+    const allPosts = await Astro.glob('../../../old_posts/*.md');
+    // const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+    return allPosts.map((post) => {
+        const slug = post.frontmatter.name
+        const postDate = post.frontmatter.time
+        const year = postDate.substr(0, 4)
+        const month = postDate.substr(5, 2)
+
+        return {
+            params: { month, year, slug },
+            props: { post, title: post.frontmatter.title }
+        }
+    });
+}
+
+const { year, month, slug } = Astro.params;
+const { post, title } = Astro.props;
+---
+<OldPostLayout frontmatter={post.frontmatter}>
+    <div set:html={post.compiledContent()}/>
+</OldPostLayout>

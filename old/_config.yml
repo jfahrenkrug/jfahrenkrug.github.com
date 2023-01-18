@@ -1,3 +1,0 @@
-permalink: /:year/:month/:title.html
-exculde:
-    - config.rb
