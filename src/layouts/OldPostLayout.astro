@@ -1,9 +1,25 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
+import BaseHead from "@/components/BaseHead";
+import ThemeProvider from "@/components/ThemeProvider";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import SkipLink from "@/components/SkipLink";
+import { siteConfig } from "@/site-config";
 
 const { frontmatter } = Astro.props;
 ---
-<BaseLayout pageTitle={frontmatter.title}>
-    <p>{frontmatter.time.slice(0,10)}</p>
-    <slot />
-</BaseLayout>
+
+<html lang={siteConfig.lang}>
+	<head>
+		<BaseHead title={frontmatter.title} description={frontmatter.title} articleDate={frontmatter.time} />
+	</head>
+	<body>
+		<ThemeProvider />
+		<SkipLink />
+		<Header />
+		<main id="main" class="flex-1">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

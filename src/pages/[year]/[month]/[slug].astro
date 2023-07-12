@@ -1,25 +1,34 @@
 ---
 import OldPostLayout from '../../../layouts/OldPostLayout.astro';
+import { getCollection } from "astro:content";
+// import PageLayout from "@/layouts/Base";
+// import { sortMDByDate } from "../utils/archived_post";
+
+// const meta = {
+// 	title: "Archived Posts",
+// 	description: "Archived Posts",
+// };
 
 export async function getStaticPaths() {
-    const allPosts = await Astro.glob('../../../old_posts/*.md');
-    // const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+    const allPosts = await getCollection("archived_post");
+
     return allPosts.map((post) => {
-        const slug = post.frontmatter.name
-        const postDate = post.frontmatter.time
-        const year = postDate.substr(0, 4)
-        const month = postDate.substr(5, 2)
+        const slug = post.data.name
+        const postDate = post.data.time
+        const year = String(postDate.getFullYear())
+        const month = String(postDate.getMonth() + 1).padStart(2, '0');
 
         return {
             params: { month, year, slug },
-            props: { post, title: post.frontmatter.title }
+            props: { post, title: post.data.title }
         }
     });
 }
 
 const { year, month, slug } = Astro.params;
 const { post, title } = Astro.props;
+const { Content } = await post.render();
 ---
-<OldPostLayout frontmatter={post.frontmatter}>
-    <div set:html={post.compiledContent()}/>
+<OldPostLayout frontmatter={post.data}>
+    <Content/>
 </OldPostLayout>

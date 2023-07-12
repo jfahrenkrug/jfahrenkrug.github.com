@@ -1,0 +1,27 @@
+---
+name: fun-with-au-lab
+
+title: Fun with AU Lab
+time: 2009-09-28 14:20:00 Z
+categories:
+  - Cocoa
+---
+
+The speech synthesizer and the AU Lab application might be hidden gems on your Mac! Why not have some fun with them?<br />
+
+<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/SsDGCBjTH3I/AAAAAAAAA4M/6g4SRbznWmM/s1600-h/Screen+shot+2009-09-28+at+16.16.33.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://2.bp.blogspot.com/_-dK4R3d1lbc/SsDGCBjTH3I/AAAAAAAAA4M/6g4SRbznWmM/s320/Screen+shot+2009-09-28+at+16.16.33.png" width="198" /></a><br />
+</div><br />
+Here we go:<br />
+<ol><li>Download a long text file, for example <a href="http://www.gutenberg.org/files/28500/28500-8.txt">this one</a>.</li>
+<li>Open Terminal.app and run<br />
+<pre><code>say -n : -f 28500-8.txt</code></pre>The "-n" option will redirect the speech output through AUNetSend.<br />
+</li>
+<li>Open /Developer/Applications/Audio/AU Lab </li>
+<li>Click Next, Next, Done.</li>
+<li>Select "Edit" &gt; "Add AudioUnit Generator..."</li>
+<li>Select "AUNetReceive" from the Generator drop down and click OK.</li>
+<li>Click Connect. You should hear the book being read.</li>
+<li>Now play with the different effects in the "Effects" drop down in the "Output 1" section. AUBandpass, AUDistortion and AUMatrixReverb are fun.</li>
+</ol>Have fun!<br />
+<ol></ol><div><br />
+</div>

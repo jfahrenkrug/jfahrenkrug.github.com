@@ -1,0 +1,18 @@
+---
+name: about-apples-cloudos
+
+title: About Apple's CloudOS
+time: 2011-08-02 05:52:00 Z
+categories:
+  - Programming
+  - SproutCore
+---
+
+<p style="font-weight: bold">When I first posted this I wasn't aware that iCloud.com was an under-NDA developer preview. So I've removed the screenshot and some other stuff. If you're not a developer, <a href="https://twitter.com/#!/devongovett/status/98420359837130752">try this</a>.</p>
+<p>I have been poking around in Apple's beautiful new <a href="http://www.icloud.com">iCloud.com</a> page a bit. Judging by the <a href="https://www.icloud.com/system/cloudos/en-us/952/javascript-packed.js">source code</a> that is freely accessible to anyone, it recreates <a href="http://en.wikipedia.org/wiki/SpringBoard">SpringBoard</a> in SproutCore, making the icons behave and move almost the same way they do on iOS. It uses SproutCore version 1.6.0.rc.1, <a href="http://blog.sproutcore.com/statecharts-in-sproutcore/">statecharts</a> and <a href="http://groups.google.com/group/sproutcore/browse_thread/thread/70ccfb52f352a9c2?pli=1">modules</a>.</p>
+<p>The interesting thing is that the application is called &quot;CloudOS&quot;. That might possibly hint to more, or it might just be an ambitious name for the project. You can find the <a href="https://www.icloud.com/system/cloudos/en-us/952/javascript-packed.js">source code of CloudOS here</a>. You might want to put it through something like <a href="http://jsbeautifier.org/">JSBeautifier</a> to make it readable.</p>
+<p>I thought it would be fun to add more items CloudOS's SpringBoardView. After some experimenting I came up with this piece of code that you can just copy and paste into your browser's JavaScript console to add a github icon to your iCloud SpringBoard:<br/>
+  <script src="https://gist.github.com/1119870.js"> </script>
+</p>
+<p>Note, however, that you'll get an error when you click on the github icon. Enjoy poking around, and if you find out how to fix it, fork <a href="https://gist.github.com/1119870">my gist</a> or leave a comment!
+  </p>

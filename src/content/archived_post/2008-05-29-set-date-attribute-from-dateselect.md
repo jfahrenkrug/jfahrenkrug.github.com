@@ -1,0 +1,59 @@
+---
+name: set-date-attribute-from-dateselect
+
+title: Set a Date Attribute from date_select Without Mass Assignment in Ruby On Rails
+time: 2008-05-29 11:38:00.005000 Z
+categories:
+  - Programming
+  - Ruby
+  - rails
+---
+
+This has been talked about a million times, but I just ran into this problem again and want to share the solution:
+You have a date_select helper in your Rails view and you want to assign the selected date to your model. With mass assignment that's not a problem, but when you try this:
+
+<pre class="prettyprint">
+@something.my_date = params[:something][:my_date]
+</pre>
+
+You will be disappointed and there will be wailing and gnashing of teeth. Why? Because date_select creates 3 form components and 3 corresponding values in the form and in the params[:something] hash, namely
+
+<pre class="prettyprint">
+params[:something][:my_date(1i)]
+params[:something][:my_date(2i)]
+params[:something][:my_date(3i)]
+</pre>
+
+These represent the year, the month and the day (Duh!).
+When you use @something.attributes= to mass assign this, ActiveRecord takes care of creating a date object from these three values (see <a href="http://api.rubyonrails.com/classes/ActiveRecord/Base.html#M001447">attributes=</a>, <a href="http://www.noobkit.com/show/ruby/rails/rails-stable/activerecord/activerecord/base/assign_multiparameter_attributes.html">assign_multiparameter_attributes</a>, <a href="http://www.noobkit.com/show/ruby/rails/rails-stable/activerecord/activerecord/base/extract_callstack_for_multiparameter_attributes.html">extract_callstack_for_multiparameter_attributes</a>, and <a href="http://railsmanual.com/class/ActiveRecord::Base?method=execute_callstack_for_multiparameter_attributes">execute_callstack_for_multiparameter_attributes</a>). Sometimes you might not want to mass assign, though (<a href="http://railscasts.com/episodes/26">security</a> comes to mind).
+So what are you to do? Maybe putting this code (inspired by <a href="http://www.red91.com/articles/2008/03/19/date_select-conversion">this code</a>) in your application.rb might help:
+
+<pre class="prettyprint">
+  private
+
+  def convert_date(hash, date_symbol_or_string)
+    attribute = date_symbol_or_string.to_s
+    return Date.new(hash[attribute + '(1i)'].to_i, hash[attribute + '(2i)'].to_i, hash[attribute + '(3i)'].to_i)
+  end
+</pre>
+
+Now you can assign dates from date_select like this:
+
+<pre class="prettyprint">
+@something.my_date = convert_date(params[:something], :my_date)
+</pre>
+
+Please comment if you have a better or more elegant solution!
+
+If this was useful for you, please take a minute and recommend me:<br/><a href="http://workingwithrails.com/recommendation/new/person/11816-johannes-fahrenkrug"><img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small-button.jpg" /></a><br/>Thank you!
+<br/><hr/><h3>Comments</h3>
+
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Thanks for the comment, bbnnt, I'm glad it was helpful. Another Rails ebook I really like is the Rails 2.1 PDF by Peepcode, you should check it out.<BR/>Btw, I checked out your blog and I really like the video by Dr. Nic on iPhone testing with Ruby, thanks for that.</p>
+<em class="swlightgray" style="margin-left: 30px">August 27, 2008 11:40 AM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/03647441240945886450">bbnnt</a> said...</h4>
+<p style="margin-left: 30px">A great thank ! I don't know why this was that hard to find out a solution.<BR/><BR/>Anyway, there's this very good ebook wrote by carlos brando, ruby on rails 2.1, what's new; well, on page 67, it talks about the date_select helper, doesn't even work as it is shown !<BR/><BR/>I might not be aware about every rails evolutions, but it'd be great that a nice date solution could be integrated instead of having to rely n some plugins.</p>
+<em class="swlightgray" style="margin-left: 30px">August 27, 2008 11:29 AM</em></div>
+<div class="swcomment"><h4><a href="">Anonymous</a> said...</h4>
+<p style="margin-left: 30px">Thanks a lot for this useful trick!<BR/>S.</p>
+<em class="swlightgray" style="margin-left: 30px">August 17, 2008 06:47 PM</em></div>

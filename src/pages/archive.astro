@@ -1,20 +1,28 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-const allPosts = await Astro.glob('../old_posts/*.md');
+import { getCollection } from "astro:content";
+import PageLayout from "@/layouts/Base";
+import { sortMDByDate } from "../utils/archived_post";
 
-const pageTitle = "Archive";
+const meta = {
+	title: "Archived Posts",
+	description: "Archived Posts",
+};
+
+const allPosts = await getCollection("archived_post");
+const allPostsByDate = sortMDByDate(allPosts);
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<PageLayout meta={meta}>
+	<h1 class="title mb-6">{meta.title}</h1>
     <ul>
-        {allPosts.map((post) => {
-            const slug = post.frontmatter.name
-            const postDate = post.frontmatter.time
-            const year = postDate.substr(0, 4)
-            const month = postDate.substr(5, 2)
+        {allPostsByDate.map((post) => {
+            const slug = post.data.name
+            const postDate = post.data.time
+            const year = String(postDate.getFullYear())
+            const month = String(postDate.getMonth() + 1).padStart(2, '0');
 
-            return (<li><a href={`/${year}/${month}/${slug}.html`}>{post.frontmatter.title}</a></li>)
+            return (<li><a href={`/${year}/${month}/${slug}.html`}>{post.data.title}</a></li>)
         })}
     </ul>
-</BaseLayout>
+</PageLayout>
 

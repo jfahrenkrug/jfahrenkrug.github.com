@@ -1,0 +1,67 @@
+---
+name: double-click-and-nscollectionview
+
+title: Double Click and NSCollectionView
+time: 2009-12-24 11:25:00 Z
+categories:
+  - Programming
+  - Tutorials
+  - Cocoa
+---
+
+I needed to capture double clicks on NSCollectionViewItems in an app I'm working on. This is unfortunately not something that's supported out-of-the-box. I found <a href="http://www.cocoadev.com/index.pl?NSCollectionView">this post on CocoaDev</a> helpful. However, since quite a few people will run into this issue, I want to explain step by step how to get this working with as little code as possible. We basically just need one custom NSView subclass and a NSCollectionViewItem subclass and a few connections in IB.<br />
+As a basis, we'll use Apple's demo app <a href="http://developer.apple.com/mac/library/samplecode/IconCollection/index.html">IconCollection</a>. Download it and open it in XCode.<br />
+<br />
+
+<ol><li>Open MyViewController.h and add a delegate outlet to the IconViewBox. This will be necessary so we can pass the double click event on to NSCollectionViewItem and from there to the controller. It should look like this:<br />
+<script src="http://gist.github.com/263135.js?file=gistfile1.m">
+</script><br />
+</li>
+<li>Open MyViewController.m and alter the hitTest method to allow clicks and add a method to capture the double click to IconViewBox's implementation: <br />
+<script src="http://gist.github.com/263141.js?file=gistfile1.m">
+</script><br />
+</li>
+<li>Build and run. When you double click on items, you should see a log message in the console. </li>
+<li>Open IconViewPrototype.xib in IB and connect the View's delegate outlet with "File's Owner":<br />
+<br />
+<br />
+<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/SzNH2g8C91I/AAAAAAAAA5Y/YnwePdF7vP4/s1600-h/Screen+shot+2009-12-24+at+11.50.34.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/_-dK4R3d1lbc/SzNH2g8C91I/AAAAAAAAA5Y/YnwePdF7vP4/s640/Screen+shot+2009-12-24+at+11.50.34.png" /></a><br />
+</div><br />
+<br />
+<br />
+<br />
+</li>
+<li>Save IconViewPrototype.xib. </li>
+<li>Add a new file called IconCollectionItem (both the .h and the .m).</li>
+<li>IconCollectionItem.h:<br />
+<script src="http://gist.github.com/263145.js?file=IconCollectionItem.h">
+</script><br />
+</li>
+<li>IconCollectionItem.m:<br />
+<script src="http://gist.github.com/263146.js?file=IconCollectionItem.m">
+</script><br />
+</li>
+<li>Open IconViewPrototype.xib again and change the File Owner's class to "IconCollectionItem". Save. </li>
+<li>Open Collection.xib and also change the Collection View Item's class to "IconCollectionItem". Save.</li>
+<li>Build and run. When you double click now, you should see two log messages in the console.</li>
+<li>Finally, we want to be notified of the double click in our controller. So open up MyViewController.h and add a doubleClick method to the @interface:<br />
+<script src="http://gist.github.com/263149.js?file=gistfile1.m">
+</script><br />
+</li>
+<li>Open MyViewController.m and add the method implementation: <br />
+<script src="http://gist.github.com/263150.js?file=gistfile1.m">
+</script><br />
+</li>
+<li>Build and run: When you double click, the event gets passed on all the way to the controller and you'll see a log message on the console telling you which icon you have double clicked on. That's pretty nifty. </li>
+<li>Fin.</li>
+</ol><div>So to recap: Build an NSView subclass to capture the double click on an item (already existed in the IconCollection app in the form of the IconViewBox class), that NSView subclass needs a delegate outlet that we connect to the custom NSCollectionViewItem subclass (File's Owner in most cases) and finally the NSCollectionView's delegate outlet has to be connected to your view controller (already existed in the IconCollection app as well).&nbsp;</div><div><br />
+</div><div>If you've come up with a simpler or more elegant way to solve this, please let me know!&nbsp;</div>
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Beautiful! Thank you so much!<br /><br />- Johannes</p>
+<em class="swlightgray" style="margin-left: 30px">March 15, 2010 07:28 AM</em></div>
+<div class="swcomment"><h4><a href="">Anonymous</a> said...</h4>
+<p style="margin-left: 30px">Much easier if you just override the mouseDown method of your custom item view and use the sendAction method of NSApplication with nil as target.<br /><br />NSApplication will find your doubleClick method in your controller automatically since the controller is in the responder chain<br /><br />-(void)mouseDown:(NSEvent *)theEvent<br />{<br /> [super mouseDown:theEvent];<br /> if([theEvent clickCount] &gt; 1)<br />  [NSApp sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:[self object]];<br />}</p>
+<em class="swlightgray" style="margin-left: 30px">March 14, 2010 05:14 PM</em></div>

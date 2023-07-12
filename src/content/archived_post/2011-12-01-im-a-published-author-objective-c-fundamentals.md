@@ -1,0 +1,12 @@
+---
+name: im-a-published-author-objective-c-fundamentals
+
+title: "I'm a Published Author: Objective-C Fundamentals"
+time: 2011-12-01 05:52:00 Z
+categories:
+  - iPhone
+  - Work
+---
+
+<img src="/images/posts/objective-c-fundamentals.png"/>
+<p>Over a year ago the publisher Manning asked me to come aboard a book project: <a href="http://www.manning.com/fairbairn/">Objective-C Fundamentals</a>. I ended up writing 3 chapters (about Core Data, GCD &amp; blocks and Error &amp; Exception Handling). It was an interesting experience and a lot of work. You can <a href="http://www.manning.com/fairbairn/OCF_sample_ch13.pdf">download the chapter about GCD &amp; blocks for free here (PDF)</a>. And you can find the <a href="https://github.com/ChrisTec/iPhone-Book-CodeSamples">source code for all of the book's projects on Github</a>.</p>

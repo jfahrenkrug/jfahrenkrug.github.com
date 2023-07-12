@@ -1,0 +1,29 @@
+---
+name: invalidate-single-urls-in
+
+title: Invalidate Single URLs in Rack::Cache/Radiant::Cache
+time: 2010-01-12 14:40:00.001000 Z
+categories:
+  - Programming
+  - Ruby
+  - rails
+---
+
+I've recently encountered a problem with Rack::Cache: I have a Radiant app with some custom extensions and some of those extensions build pages that are expensive to build. So far I could only purge the cache completely by removing the tmp/cache directory. That's not a nice solution if all I want to invalidate is one page. So after some digging I came up with this tiny script:<br />
+<br />
+
+<script src="http://gist.github.com/275240.js?file=clear_diskcache.rb">
+</script><br />
+<br />
+It allows me to explicitly purge certain URLs from my Rack::Cache based Radiant::Cache. Please note that this only works if you use the Radiant::Cache standard options. Otherwise you'll have to tweak the metastore that should be used.<br />
+Some further reading: <a href="http://github.com/svenfuchs/rack-cache-purge">http://github.com/svenfuchs/rack-cache-purge</a>.
+<br/><hr/><h3>Comments</h3>
+<div class="swcomment"><h4><a href="http://www.saturnflyer.com">Jim Gay</a> said...</h4>
+<p style="margin-left: 30px">Sorry, you&#39;re right. I quickly scanned this thread and thought it was pulled in<br />http://groups.google.com/group/rack-cache/browse_thread/thread/14ad1fd0c370b235/6ce1a2eb090f8527?lnk=raot<br /><br />Thanks for making the issue.</p>
+<em class="swlightgray" style="margin-left: 30px">January 12, 2010 04:41 PM</em></div>
+<div class="swcomment"><h4><a href="http://www.blogger.com/profile/06650223978538123548">Johannes Fahrenkrug</a> said...</h4>
+<p style="margin-left: 30px">Hey Jim,<br /><br />are you sure about that? I studied the Rack::Cache code today and Sven Fuchs&#39; purge stuff has not been merged yet. I even talked to Ryan Tomayko on Twitter today and he said that he hasn&#39;t gotten around to merging that stuff yet.<br /><br />Also, Sven Fuchs&#39; approach uses the HTTP PURGE verb, so you purge entries by making HTTP requests. I would personally prefer an API I can use programatically.<br /><br />I will open a ticket, though!<br /><br />- Johannes</p>
+<em class="swlightgray" style="margin-left: 30px">January 12, 2010 03:51 PM</em></div>
+<div class="swcomment"><h4><a href="http://www.saturnflyer.com">Jim Gay</a> said...</h4>
+<p style="margin-left: 30px">The latest version of rack-cache has this feature built in. Create an issue for this on github and we can get per-key purging built-in</p>
+<em class="swlightgray" style="margin-left: 30px">January 12, 2010 03:13 PM</em></div>

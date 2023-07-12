@@ -1,0 +1,12 @@
+---
+name: wwdc08-i-coming
+
+title: WWDC08, I'm coming!
+time: 2008-03-17 09:12:00.001000 Z
+categories:
+  - WWDC
+  - Conferences
+  - Apple
+---
+
+<img src="http://developer.apple.com/wwdc/images/localnav_wwdc08.gif" style="margin: 10px 10px 0pt 0pt; float: left;" title="wwdc08" alt="" />So Apple finally announced the dates for <a href="http://developer.apple.com/wwdc/">this year's WWDC</a> last week: June 9-13 2008. <a href="http://blog.springenwerk.com/2007_06_01_archive.html">Last year's WWDC</a> was great, the conference with the highest quality in content, organization and experience I've ever been to. With the release of the iPhone SDK and a whole track devoted to iPhone development this year's WWDC will be even more exciting, I'm sure. I've booked my ticket this weekend, so I'm pretty excited and I'll keep you and the other guy who's reading this updated.
