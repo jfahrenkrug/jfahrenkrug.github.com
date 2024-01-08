@@ -1,23 +1,8 @@
 ---
-import PageLayout from "@/layouts/Base";
-import { Image } from "astro:assets";
-import aboutImg from "~/assets/about-astro.png";
-
-const meta = {
-	title: "Oops! You found a missing page!",
-	description: "Oops! It looks like this page is lost in space!",
-};
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<PageLayout meta={meta}>
-	<h1 class="title mb-6">404 | Oops something went wrong</h1>
-	<p class="mb-8">Please use the navigation to find your way back</p>
-	<div class="my-4 grid justify-center">
-		<Image
-			class="rotate-180"
-			src={aboutImg}
-			alt="A cartoon cactus looking at the 'Astro.build' logo"
-			loading="eager"
-		/>
-	</div>
-</PageLayout>
+<BaseLayout title="Not Found" description="404 Error — this page was not found">
+	<Hero title="Page Not Found" tagline="Not found" />
+</BaseLayout>
