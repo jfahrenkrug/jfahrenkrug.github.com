@@ -1,0 +1,64 @@
+---
+import type { RecommendationData } from './recommendations';
+
+interface Props {
+	recommendation: RecommendationData;
+}
+
+const { recommendation } = Astro.props;
+---
+
+<li class="recommendation-card">
+  <div>
+    <quote>{recommendation.quote}</quote>
+    <p class="client-info">
+    &mdash;<a href={recommendation.url} target="_blank">{recommendation.name}</a>
+    </p>
+  </div>
+</li>
+
+<style>
+	.recommendation-card {
+		display: flex;
+    flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: left;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		color: var(--gray-300);
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+    padding: 2rem;
+    position: relative;
+	}
+
+  .recommendation-card quote::before {
+    content: "“";
+    font-size: 6em;
+    color: var(--accent-regular);
+    display: inline-block;
+    margin-right: 0.5rem;
+    vertical-align: bottom;
+    line-height: 0;
+  }
+
+  .client-info {
+    margin-top: 1rem;
+    text-align: right;
+    width: 100%;
+  }
+
+  .recommendation-card quote {
+      margin-top: 1rem;
+      font-size: 1.5em;
+      line-height: 1.6;
+      display: inline-block;
+  }
+
+	@media (min-width: 50em) {
+		.recommendation-card {
+			border-radius: 1.5rem;
+		}
+	}
+</style>
