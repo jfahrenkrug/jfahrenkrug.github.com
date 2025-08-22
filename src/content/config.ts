@@ -12,4 +12,13 @@ export const collections = {
 			img_alt: z.string().optional(),
 		}),
 	}),
+	archived_post: defineCollection({
+		type: 'content',
+		schema: z.object({
+			name: z.string(),
+			title: z.string().max(120),
+			time: z.date(),
+			categories: z.array(z.string()).optional(),
+		}),
+	}),
 };
