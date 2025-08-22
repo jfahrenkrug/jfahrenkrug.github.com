@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout
+	title="Services | Johannes Fahrenkrug"
+	description="Learn about the services Johannes Fahrenkrug offers"
+>
+  <div class="stack gap-20">
+    <main class="wrapper about">
+			<Hero
+				title="Services"
+				tagline="Let's Build Something Great Together"
+				align="start"
+			/>
+
+      <p>Idea: List "pills" with technologies under each section.</p>
+
+      <section>
+				<h2 class="section-title">On-Site Training</h2>
+				<div class="content">
+					<p>
+						There's something special about working together in person, and I really enjoy providing on-site training. It's a great way for teams to quickly level up their skills in a specific area, and I'd love to do more of it. If you think your team could benefit from a hands-on learning session, let's chat.
+					</p>
+				</div>
+			</section>
+      <section>
+				<h2 class="section-title">iOS Development</h2>
+				<div class="content">
+					<p>
+						I've been developing for iOS since the first SDK came out in 2008 and even had the chance to dive into the world of Objective-C a bit before that. My experience includes both Objective-C and Swift, and I've had the privilege of co-authoring "Objective-C Fundamentals." Whether you need a new app built from scratch, some extra hands on your project, or a bit of training for your developers, I'm here to help.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">AI Development</h2>
+				<div class="content">
+					<p>AI is a fascinating field that's constantly evolving, and I've been keeping up with the latest, including OpenAI's API, RAG, LangChain, and more. If you're looking into custom AI solutions or need someone to help your team get up to speed with these technologies, I'd be glad to lend my expertise.</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Backend Development</h2>
+				<div class="content">
+					<p>I also work on the server side of things, mainly with Node.js, Ruby on Rails, and Python. I have a solid grasp of SQL, know my way around caching strategies, and always keep security top of mind. If your project is running into performance issues or you just need some robust backend work done, I'm here for you.</p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

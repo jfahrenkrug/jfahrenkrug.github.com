@@ -16,7 +16,6 @@ import { iconPaths } from '../components/IconPaths';
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
-import type { Icon } from 'astro/runtime/client/dev-overlay/ui-library/icons.js';
 import { recommendations } from '../components/recommendations';
 import Recommendation from '../components/Recommendation.astro';
 
@@ -87,7 +86,7 @@ const projects = (await getCollection('work'))
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Recommendations</h3>
 					<p>
-						Through the years I have been fortunate enough to receive praise from several kind professionals I had the pleasure of working with.
+						Through the years I have received praise from several kind professionals I had the pleasure of working with.
 					</p>
 				</header>
 
@@ -102,7 +101,7 @@ const projects = (await getCollection('work'))
 				</div>
 			</section>
 
-			<section class="section with-background bg-variant">
+			<!-- <section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Mentions</h3>
 					<p>
@@ -122,7 +121,7 @@ const projects = (await getCollection('work'))
 						}
 					</Grid>
 				</div>
-			</section>
+			</section> -->
 		</main>
 
 		<ContactCTA />
