@@ -6,57 +6,67 @@ import Icon from './Icon.astro';
 	<div class="stack gap-2 lg:gap-4">
 		<Icon icon="strategy" color="var(--accent-regular)" size="2.5rem" gradient />
 		<h2>Problem Solver</h2>
-		<p>Specializing in challenging tasks and bugs, I enjoy findinging creative, out-of-the-box solutions, both for legacy iOS codebases and performance-critical backend systems.</p>
+		<p>I untangle tricky bugs and performance bottlenecks across iOS, frontend, and backend systems.</p>
 	</div>
 	<div class="stack gap-2 lg:gap-4">
 		<Icon icon="trophy" color="var(--accent-regular)" size="2.5rem" gradient />
 		<h2>Skill Builder</h2>
-		<p>I love teaching, helping development teams get up to speed with valuable skills like iOS development or AI in a matter of days. Hands-on from the get-go, instead of 'death by PowerPoint.'</p>
+		<p>I help teams get up to speed with iOS and practical AI. Always hands-on, never 'death by PowerPoint.'</p>
 	</div>
 	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="microphone-stage" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Knowledge Sharer</h2>
-		<p>There's a unique joy in sharing knowledge and connecting with fellow developers. I'm often a speaker at international conferences — feel free to come say 'Hi' next time you see me!</p>
+		<Icon icon="hammer" color="var(--accent-regular)" size="2.5rem" gradient />
+		<h2>Craftsman</h2>
+		<p>I care deeply about clean, maintainable code and the small details that make software a pleasure to work with.</p>
 	</div>
 </section>
 
 <style>
-	.box {
-		border: 1px solid var(--gray-800);
-		border-radius: 0.75rem;
-		padding: 1.5rem;
-		background-color: var(--gray-999_40);
-		box-shadow: var(--shadow-sm);
-	}
+.box {
+  border: 1px solid var(--gray-800);
+  border-radius: 0.75rem;
+  padding: 1.75rem;               /* + */
+  background-color: var(--gray-999_40);
+  box-shadow: var(--shadow-sm);
+}
 
-	.skills {
-		display: flex;
-		flex-direction: column;
-		gap: 3rem;
-	}
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;                    /* a bit tighter on mobile */
+}
 
-	.skills h2 {
-		font-size: var(--text-lg);
-	}
+.skills h2 {
+  font-size: var(--text-xl);       /* up from lg */
+  line-height: 1.25;
+}
 
-	.skills p {
-		color: var(--gray-400);
-	}
+.skills p {
+  color: var(--gray-300);          /* slightly higher contrast */
+  font-size: var(--text-base);     /* up from default */
+  line-height: 1.6;                /* improve readability */
+  max-width: 60ch;                 /* avoid long lines */
+  margin: 0;                       /* rely on stack gaps */
+}
 
-	@media (min-width: 50em) {
-		.box {
-			border-radius: 1.5rem;
-			padding: 2.5rem;
-		}
+@media (min-width: 50em) {
+  .box {
+    border-radius: 1.25rem;
+    padding: 2.25rem;
+  }
 
-		.skills {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 5rem;
-		}
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3rem;                     /* a bit tighter than 5rem */
+  }
 
-		.skills h2 {
-			font-size: var(--text-2xl);
-		}
-	}
+  .skills h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .skills p {
+    font-size: var(--text-lg);     /* comfortably large on desktop */
+    line-height: 1.7;
+  }
+}
 </style>
