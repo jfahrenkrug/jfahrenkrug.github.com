@@ -1,0 +1,36 @@
+---
+name: using-rails-gemsbuild-rake-task-with
+
+title: Using Rails gems:build Rake Task with Capistrano
+time: 2008-06-19 15:42:00.003000 Z
+categories:
+  - Programming
+  - Ruby
+  - rails
+---
+
+I use acts_as_ferret in my Rails app which depends on the ferret gem. With Rails 2.1 you can define <a href="http://ryandaigle.com/articles/2008/4/1/what-s-new-in-edge-rails-gem-dependencies">gem dependencies</a> right in your environment.rb file. That's pretty neat. What if your gem needs native extensions to be built? Also easy, just run
+
+<pre class="prettyprint">rake gems:build</pre>
+
+Of course you'd also like these extensions to be built on your production machine when you deploy with Capistrano. I'm sure there are more elegant ways to do this, but this works for me. Just add this to your deploy.rb file:
+
+<pre class="prettyprint">
+task :after_update_code, :roles => :app do
+  if ENV['build_gems'] and ENV['build_gems'] == '1'
+    run "rake -f #{release_path}/Rakefile gems:build"
+  end
+end
+</pre>
+
+This way you can pass an environment variable to tell Capistrano if you want native gem extensions to be built or not. If you do, call this:
+
+<pre class="prettyprint">build_gems=1 cap deploy</pre>
+
+...and if you don't just call
+
+<pre class="prettyprint">cap deploy</pre>.
+
+I always love to learn about more elegant solutions, so please comment if you know one.
+
+If this was useful for you, please take a minute and recommend me:<br><a href="http://workingwithrails.com/recommendation/new/person/11816-johannes-fahrenkrug"><img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small-button.jpg"></a><br>Thank you!

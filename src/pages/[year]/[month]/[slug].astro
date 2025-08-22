@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+    const allPosts = await getCollection("archived_post");
+
+    return allPosts.map((post) => {
+        const slug = post.data.name
+        const postDate = post.data.time
+        const year = String(postDate.getFullYear())
+        const month = String(postDate.getMonth() + 1).padStart(2, '0');
+
+        return {
+            params: { month, year, slug },
+            props: { post }
+        }
+    });
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout 
+    title={`${post.data.title} | Johannes Fahrenkrug`}
+    description={post.data.title}
+>
+    <div class="stack gap-20">
+        <main class="wrapper archived-post">
+            <header class="hero">
+                <div class="stack gap-2">
+                    <div class="stack gap-2 lg:gap-4">
+                        <h1 class="title">{post.data.title}</h1>
+                        <p class="date">
+                            Originally published on {post.data.time.toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })}
+                        </p>
+                    </div>
+                </div>
+            </header>
+
+            <article class="content">
+                <Content />
+            </article>
+
+            <footer class="archive-notice">
+                <p><em>This is an archived post from my old blog. Some links and images may no longer work correctly.</em></p>
+            </footer>
+        </main>
+    </div>
+</BaseLayout>
+
+<style>
+    .archived-post {
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+    }
+
+    .hero {
+        padding: 2rem 0;
+        text-align: center;
+    }
+
+    .title {
+        font-size: var(--text-2xl);
+        color: var(--gray-0);
+        line-height: 1.2;
+    }
+
+    .date {
+        color: var(--gray-400);
+        font-size: var(--text-sm);
+    }
+
+    .content {
+        max-width: none;
+        line-height: 1.7;
+    }
+
+    .content :global(img) {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        box-shadow: var(--shadow-sm);
+        margin: 1.5rem 0;
+    }
+
+    .content :global(a) {
+        color: var(--accent-regular);
+        text-decoration: underline;
+        text-underline-offset: 0.25em;
+    }
+
+    .content :global(a:hover) {
+        color: var(--accent-light);
+    }
+
+    .content :global(p) {
+        margin-bottom: 1.5rem;
+    }
+
+    .content :global(h1),
+    .content :global(h2),
+    .content :global(h3),
+    .content :global(h4) {
+        color: var(--gray-0);
+        font-weight: 600;
+        line-height: 1.3;
+        margin: 2rem 0 1rem 0;
+    }
+
+    .content :global(h1) { font-size: var(--text-xl); }
+    .content :global(h2) { font-size: var(--text-lg); }
+    .content :global(h3) { font-size: var(--text-md); }
+
+    .content :global(ul),
+    .content :global(ol) {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+    }
+
+    .content :global(li) {
+        margin-bottom: 0.5rem;
+    }
+
+    .content :global(blockquote) {
+        border-left: 4px solid var(--accent-regular);
+        padding-left: 1.5rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: var(--gray-300);
+    }
+
+    .content :global(code) {
+        background: var(--gray-800);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 0.9em;
+    }
+
+    .content :global(pre) {
+        background: var(--gray-800);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+    }
+
+    .content :global(pre code) {
+        background: none;
+        padding: 0;
+    }
+
+    .archive-notice {
+        margin-top: 3rem;
+        padding: 1.5rem;
+        background: var(--gray-900);
+        border-radius: 0.5rem;
+        text-align: center;
+    }
+
+    .archive-notice p {
+        color: var(--gray-400);
+        font-size: var(--text-sm);
+        margin: 0;
+    }
+
+    @media (min-width: 50em) {
+        .archived-post {
+            display: grid;
+            grid-template-columns: 1fr 60% 1fr;
+        }
+
+        .archived-post > :global(*) {
+            grid-column: 2;
+        }
+
+        .title {
+            font-size: var(--text-3xl);
+        }
+    }
+</style>

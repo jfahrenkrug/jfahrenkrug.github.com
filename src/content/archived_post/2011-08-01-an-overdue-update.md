@@ -1,0 +1,34 @@
+---
+name: an-overdue-update
+
+title: An Overdue Update
+time: 2011-08-01 05:52:00 Z
+categories:
+  - Programming
+  - Mac
+  - iPhone
+  - Cocoa
+  - Conferences
+  - WWDC
+  - SproutCore
+---
+
+<p>This is really an overdue update. I haven't posted anything here for over 6 months. I've been busy with quite a few things, so let me give you a short update:
+
+<ul>
+  <li>I've spent the winter in the beautiful Bay Area in California. I was able to attend some local developer meetups, meet some friends at Apple and visit the <a href="http://strobecorp.com">Strobe</a> offices in San Francisco. Most of all I enjoyed the time with friends and great weather, though. We will definitely spend next winter there again!</li>
+  <li>In March I gave a <a href="http://it-republik.de/konferenzen/ext_scripts/v2/php/sessions-popup.php?module=mobiletechcon2011spring&id=17381">1-day iOS workshop at the MobileTech conference</a> in Munich. It covered everything from Objective-C, Xcode 4, Cocoa, Provisining Profiles and the App Store. The audience was very nice, it was a lot of fun. I hope I can give such workshops more often in the future. Here's a short video interview with me that was taken right after the workshop (in German):<br/><iframe width="560" height="349" src="http://www.youtube.com/embed/b7vhn1EivRg" frameborder="0" allowfullscreen></iframe></li>
+  <li>I also went to Luxembourg in March and coached two talented iOS developers on-site for two days.</li>
+  <li>In April I was approached by Charles Jolley of <a href="http://sproutcore.com">SproutCore</a> and Strobe fame to do some contract work for <a href="http://strobecorp.com">Strobe</a>. I've been working on and off on different exciting things for them since then. It's an exceptionally nice and talented team!</li>
+  <li>In April the German Mac Developer magazine also published two articles by me: one <a href="https://twitter.com/#!/jfahrenkrug/status/55664775304183808">about SproutCore</a> and one <a href="https://twitter.com/#!/MacRuby/statuses/55686821165805568">about MacRuby</a>.</li>
+  <li>In May I went to Verona, Italy to give a talk about <a href="http://sproutcore.com">SproutCore</a> and <a href="http://www.cappuccino.org">Cappuccino</a> at <a href="http://www.jsday.it/2011/archive/speaker/johannes-fahrenkrug">JSDay.it</a>. It was a great little conference and Verona is beautiful! You can <a href="http://www.slideshare.net/jfahrenkrug/jsconfit-2011-a-wondrous-experience-of-sound-light-and-code">see the slides here</a>.</li>
+  <li>In June I went back to California for <a href="http://developer.apple.com/wwdc">WWDC 2011</a>, my fifth WWDC in a row. It was the best one yet.<br/>
+    <img src="/assets/archived_posts/johannes-fahrenkrug-wwdc11.jpg"/></li>
+  <li>Right after WWDC I also attended the world's first Cappuccino conference, <a href="http://www.cappcon.org">CappCon</a>. It was amazing to have the who-is-who of the Cappuccino community in one spot. The talks were great and some very exciting announcements were made.</li>
+  <li>During WWDC, I also got a copy of the May issue of MacTech magazine, which featured a cover article by me about Cappuccino:<br/><img src="/assets/archived_posts/mactech-cappuccino.jpg"/></li>
+  <li>On July 1st my fifth year as a freelancer began. I can't believe it's been over 4 years already!</li>
+</ul>
+
+So those are the main things that have happened in my professional life.
+
+</p>

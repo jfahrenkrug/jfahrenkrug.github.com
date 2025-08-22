@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /imprint
+
+Sitemap: https://www.springenwerk.com/sitemap-index.xml

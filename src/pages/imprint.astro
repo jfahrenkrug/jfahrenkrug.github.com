@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Legal Notice (Impressum)" description="Legal Notice">
+  <div class="stack gap-20">
+		<main class="wrapper imprint">
+
+      <!-- English Section -->
+      <section>
+        <h2 class="section-title">Legal Notice</h2>
+        <div class="content stack gap-8">
+          <div>
+            <p><strong>Responsible for the content:</strong></p>
+            <div class="stack gap-1">
+              <p>Johannes Fahrenkrug</p>
+              <p>Parkstraße 20</p>
+              <p>13585 Berlin</p>
+            </div>
+          </div>
+
+          <div>
+            <p><strong>Contact:</strong></p>
+            <div class="stack gap-4">
+              <p>Email: johannes@springenwerk.com</p>
+            </div>
+          </div>
+
+
+          <div>
+            <p><strong>VAT Identification Number:</strong></p>
+            <div class="stack gap-4">
+              <p>VAT ID: DE355297606</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- German Section -->
+      <section>
+        <h2 class="section-title">Impressum</h2>
+        <div class="content stack gap-8">
+          <div>
+            <p><strong>Verantwortlich für den Inhalt:</strong></p>
+            <div class="stack gap-1">
+              <p>Johannes Fahrenkrug</p>
+              <p>Parkstraße 20</p>
+              <p>13585 Berlin</p>
+            </div>
+          </div>
+
+          <div>
+            <p><strong>Kontakt:</strong></p>
+            <div class="stack gap-4">
+              <p>E-Mail: johannes@springenwerk.com</p>
+            </div>
+          </div>
+
+
+          <div>
+            <p><strong>Umsatzsteuer-Identifikationsnummer:</strong></p>
+            <div class="stack gap-4">
+              <p>USt-IdNr: DE355297606</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+	.imprint {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+  svg {
+    margin-right:auto;
+  }
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.imprint {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+      grid-column: 2 / 4;
+		}
+	}
+</style>

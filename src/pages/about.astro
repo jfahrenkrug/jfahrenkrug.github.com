@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout title="About | Johannes Fahrenkrug" description="About Johannes Fahrenkrug">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="About"
+				tagline="This page contains no AI slop. I worte it myeslf."
+			>
+				<img
+					width="1547"
+					height="879"
+					src="/assets/at-wwdc-2007.jpg"
+					alt="Johannes Fahrenkrug attending WWDC 2007"
+				/>
+			</Hero>
+
+			<section>
+				<h2 class="section-title">Who?</h2>
+				<div class="content">
+					<p>
+						Hello, my name is Johannes Fahrenkrug. I'm a freelance iOS and full-stack developer based in Berlin.
+            That old photo shows me attending my first WWDC in San Francisco back in 2007, the year I started freelancing.
+            Since I love learning, teaching, and meeting people, you might run into me at conferences around the world. If you do, please stop and say hello!
+            Over the years I've lived and worked in northern Germany, New York City, and Phoenix, Arizona.
+            After years abroad, my wife and I are happy to call 'the sixth borough' our home.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">What?</h2>
+				<div class="content">
+					<ul class="highlight-list">
+						<li><strong>15+ years</strong> of iOS: from retain/release through ARC to Swift.</li>
+						<li><strong>Co-authored</strong> the book <a href="https://www.manning.com/books/objective-c-fundamentals" target="_blank">Objective-C Fundamentals</a>.</li>
+						<li><strong>Taught</strong> multi-day iOS development courses at companies and conferences.</li>
+						<li><strong>Spoke</strong> at international conferences in the U.S., Sweden, Italy, Spain, Poland, and Germany.</li>
+						<li><strong>Suffered</strong> through more frontend and backend frameworks than I'd like to admit.</li>
+					</ul>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	.highlight-list {
+		list-style: disc;
+		padding-left: 1.5rem;
+		margin: 0;
+	}
+
+	.highlight-list li {
+		margin-bottom: 0.75rem;
+		line-height: 1.6;
+	}
+
+	.highlight-list li strong {
+		font-weight: 600;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

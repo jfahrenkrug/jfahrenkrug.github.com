@@ -1,0 +1,235 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import Pill from '../components/Pill.astro';
+---
+
+<BaseLayout
+	title="Services | Johannes Fahrenkrug"
+	description="Learn about the services Johannes Fahrenkrug offers"
+>
+  <div class="stack gap-20">
+    <main class="wrapper about">
+			<Hero
+				title="Services"
+				tagline="Let's Build Something Great Together"
+				align="start"
+			/>
+
+      <section>
+				<h2 class="section-title">On-Site Training</h2>
+				<div class="content">
+					<p class="service-intro">Accelerate your team's skills with focused, hands-on learning sessions.</p>
+					
+					<ul class="service-benefits">
+						<li>Custom curriculum tailored to your team's needs</li>
+						<li>Interactive workshops with real-world examples</li>
+						<li>Immediate Q&A and problem-solving</li>
+						<li>Knowledge transfer that sticks</li>
+					</ul>
+
+					<div class="tech-pills">
+						<Pill>iOS Development</Pill>
+						<Pill>Swift</Pill>
+						<Pill>AI/ML</Pill>
+						<Pill>Backend</Pill>
+						<Pill>Team Leadership</Pill>
+					</div>
+				</div>
+			</section>
+      <section>
+				<h2 class="section-title">iOS Development</h2>
+				<div class="content">
+					<p class="service-intro">15+ years of iOS expertise, from the first SDK to the latest features.</p>
+					
+					<ul class="service-benefits">
+						<li>Full app development from concept to App Store</li>
+						<li>Legacy Objective-C modernization to Swift</li>
+						<li>Performance optimization and debugging</li>
+						<li>Code reviews and architecture consulting</li>
+						<li>Co-authored "Objective-C Fundamentals"</li>
+					</ul>
+
+					<div class="tech-pills">
+						<Pill>Swift</Pill>
+						<Pill>Objective-C</Pill>
+						<Pill>UIKit</Pill>
+						<Pill>SwiftUI</Pill>
+						<Pill>Core Data</Pill>
+						<Pill>Xcode</Pill>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">AI Development</h2>
+				<div class="content">
+					<p class="service-intro">Custom AI solutions using cutting-edge technologies and best practices.</p>
+					
+					<ul class="service-benefits">
+						<li>Custom ChatGPT-style applications</li>
+						<li>RAG (Retrieval-Augmented Generation) systems</li>
+						<li>API integrations with OpenAI, Anthropic, and others</li>
+						<li>AI workflow automation and optimization</li>
+						<li>Team training on AI implementation</li>
+					</ul>
+
+					<div class="tech-pills">
+						<Pill>OpenAI API</Pill>
+						<Pill>LangChain</Pill>
+						<Pill>RAG</Pill>
+						<Pill>Vector DBs</Pill>
+						<Pill>Computer Vision</Pill>
+						<Pill>Prompt Engineering</Pill>
+						<Pill>Python</Pill>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Frontend Development</h2>
+				<div class="content">
+					<p class="service-intro">Beautiful, responsive user interfaces built with attention to detail and modern best practices.</p>
+					
+					<ul class="service-benefits">
+						<li>Responsive design that works on all devices</li>
+						<li>Component-based architecture for maintainability</li>
+						<li>Performance optimization and accessibility</li>
+						<li>Modern tooling and development workflows</li>
+						<li>Pixel-perfect implementations from designs</li>
+					</ul>
+
+					<div class="tech-pills">
+						<Pill>React</Pill>
+						<Pill>Angular</Pill>
+						<Pill>Vue.js</Pill>
+						<Pill>TypeScript</Pill>
+						<Pill>Tailwind CSS</Pill>
+						<Pill>Astro</Pill>
+						<Pill>Sass</Pill>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Backend Development</h2>
+				<div class="content">
+					<p class="service-intro">Scalable, secure server-side solutions built with modern best practices.</p>
+					
+					<ul class="service-benefits">
+						<li>RESTful APIs and GraphQL endpoints</li>
+						<li>Database design and optimization</li>
+						<li>Performance tuning and caching strategies</li>
+						<li>Security audits and implementation</li>
+						<li>Legacy system modernization</li>
+					</ul>
+
+					<div class="tech-pills">
+						<Pill>Node.js</Pill>
+						<Pill>Ruby on Rails</Pill>
+						<Pill>Python</Pill>
+						<Pill>PostgreSQL</Pill>
+						<Pill>Redis</Pill>
+						<Pill>Docker</Pill>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.service-intro {
+		font-size: var(--text-lg);
+		font-weight: 500;
+		color: var(--gray-100);
+		margin-bottom: 1.5rem;
+		line-height: 1.4;
+	}
+
+	.service-benefits {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem 0;
+	}
+
+	.service-benefits li {
+		position: relative;
+		padding-left: 1.5rem;
+		margin-bottom: 0.75rem;
+		line-height: 1.5;
+	}
+
+	.service-benefits li::before {
+		content: "✓";
+		position: absolute;
+		left: 0;
+		color: var(--accent-regular);
+		font-weight: bold;
+		font-size: 1.1em;
+	}
+
+	.tech-pills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 1rem;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>
