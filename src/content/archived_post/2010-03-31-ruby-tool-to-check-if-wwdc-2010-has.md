@@ -14,7 +14,7 @@ Every Mac and iPhone developer is waiting for Apple to finally announce the date
 The really cool thing is that it works with both MRI and <a href="http://www.macruby.org/">MacRuby</a>. But when you run it with MacRuby it uses HotCocoa and hence is much cooler:<br />
 <br />
 
-<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_-dK4R3d1lbc/S7MtUkvHINI/AAAAAAAAA6g/vl9E7yuHFAo/s1600/Screen+shot+2010-03-31+at+13.05.08.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/_-dK4R3d1lbc/S7MtUkvHINI/AAAAAAAAA6g/vl9E7yuHFAo/s320/Screen+shot+2010-03-31+at+13.05.08.png" /></a></div>It will check every 10 seconds and use NSSpeechSynthesizer to actually tell you when WWDC 2010 has been announced. So here's the code:<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_-dK4R3d1lbc/S7MtUkvHINI/AAAAAAAAA6g/vl9E7yuHFAo/s1600/Screen+shot+2010-03-31+at+13.05.08.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="/assets/archived_posts/Screen+shot+2010-03-31+at+13.05.08_fb7225a3.png" /></a></div>It will check every 10 seconds and use NSSpeechSynthesizer to actually tell you when WWDC 2010 has been announced. So here's the code:<br />
 <br />
 <script src="http://gist.github.com/350198.js">
 </script><br />

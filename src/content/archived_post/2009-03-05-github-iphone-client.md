@@ -8,7 +8,7 @@ categories:
   - iPhone
 ---
 
-<a href="http://itunes.com/apps/gittop"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 400px; height: 170px;" src="http://2.bp.blogspot.com/_-dK4R3d1lbc/Sa98_ps-JBI/AAAAAAAAA04/sUpKuxXCfbQ/s400/Picture+9.png" border="0" /></a>
+<a href="http://itunes.com/apps/gittop"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 400px; height: 170px;" src="/assets/archived_posts/Picture+9_04daf51d.png" border="0" /></a>
 
 Wow, that was quick! It took only 6 days (or 4 work days) for <a href="http://itunes.com/apps/gittop">my iPhone app</a> to be reviewed and approved by Apple. It's my 3rd iPhone app, but my first own, not-for-a-customer app. Very exciting :)
 It's called "<a href="http://itunes.com/apps/gittop">gittop</a>" and it's the first (to the best of my knowledge) <a href="http://github.com/">github</a> client for the iPhone. It was developed with the kind support of github's own <a href="http://github.com/defunkt">Chris Wanstrath</a> who patiently answered my github API questions and tested the beta version. Thanks, Chris!

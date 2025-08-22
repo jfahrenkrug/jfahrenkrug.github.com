@@ -11,7 +11,7 @@ categories:
 
 NSPopUpButton can be challenging to use. It would be quite desirable to have a very easy way to add an NSPopUpButton for fixed values, like "male" and "female". Unfortunately, that doesn't exist (at least not to my knowledge). That's why I'll show you really quick how to implement this with IB, bindings and some code.<br />
 
-<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_-dK4R3d1lbc/SsHeX4dILTI/AAAAAAAAA40/frj5hNOZcSM/s1600-h/Screen+shot+2009-09-29+at+12.04.19.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/_-dK4R3d1lbc/SsHeX4dILTI/AAAAAAAAA40/frj5hNOZcSM/s320/Screen+shot+2009-09-29+at+12.04.19.png" /></a><br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_-dK4R3d1lbc/SsHeX4dILTI/AAAAAAAAA40/frj5hNOZcSM/s1600-h/Screen+shot+2009-09-29+at+12.04.19.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="/assets/archived_posts/Screen+shot+2009-09-29+at+12.04.19_4cc6ae49.png" /></a><br />
 </div><ol><li>Create a plain old new Cocoa application in XCode and call it NSPopUpDemo.</li>
 <li>Open NSPopUpDemoAppDelegate.h, and add these two ivars:<br />
 <br />
@@ -53,12 +53,12 @@ NSPopUpButton can be challenging to use. It would be quite desirable to have a v
 <br />
 <br />
 <br />
-<div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_-dK4R3d1lbc/SsHbAdOTROI/AAAAAAAAA4U/-mKTEVOulOs/s1600-h/Screen+shot+2009-09-29+at+11.37.46.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/_-dK4R3d1lbc/SsHbAdOTROI/AAAAAAAAA4U/-mKTEVOulOs/s320/Screen+shot+2009-09-29+at+11.37.46.png" /></a><br />
-</div><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_-dK4R3d1lbc/SsHbZRXK0VI/AAAAAAAAA4c/c-rx4VjlcuI/s1600-h/Screen+shot+2009-09-29+at+11.38.24.png" imageanchor="1" style="margin-bottom: 1em; margin-left: 1em;"><img border="0" src="http://3.bp.blogspot.com/_-dK4R3d1lbc/SsHbZRXK0VI/AAAAAAAAA4c/c-rx4VjlcuI/s320/Screen+shot+2009-09-29+at+11.38.24.png" /></a><br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_-dK4R3d1lbc/SsHbAdOTROI/AAAAAAAAA4U/-mKTEVOulOs/s1600-h/Screen+shot+2009-09-29+at+11.37.46.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="/assets/archived_posts/Screen+shot+2009-09-29+at+11.37.46_396e9842.png" /></a><br />
+</div><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_-dK4R3d1lbc/SsHbZRXK0VI/AAAAAAAAA4c/c-rx4VjlcuI/s1600-h/Screen+shot+2009-09-29+at+11.38.24.png" imageanchor="1" style="margin-bottom: 1em; margin-left: 1em;"><img border="0" src="/assets/archived_posts/Screen+shot+2009-09-29+at+11.38.24_08656cdd.png" /></a><br />
 </div><br />
 <br />
 <br />
-<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/SsHb6ed96CI/AAAAAAAAA4k/eD6yvozPPDI/s1600-h/Screen+shot+2009-09-29+at+12.04.36.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/_-dK4R3d1lbc/SsHb6ed96CI/AAAAAAAAA4k/eD6yvozPPDI/s320/Screen+shot+2009-09-29+at+12.04.36.png" /></a><br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/SsHb6ed96CI/AAAAAAAAA4k/eD6yvozPPDI/s1600-h/Screen+shot+2009-09-29+at+12.04.36.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="/assets/archived_posts/Screen+shot+2009-09-29+at+12.04.36_eab5d750.png" /></a><br />
 </div><br />
 <br />
 <br />
@@ -67,7 +67,7 @@ NSPopUpButton can be challenging to use. It would be quite desirable to have a v
 <li>Open MainMenu.xib again and drag an NSTextField to the window. Bind it's value to the App Delegate's selectedGender:<br />
 <br />
 <br />
-<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_-dK4R3d1lbc/SsHc3oZlWOI/AAAAAAAAA4s/7uaZwBlsMkw/s1600-h/Screen+shot+2009-09-29+at+11.58.35.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/_-dK4R3d1lbc/SsHc3oZlWOI/AAAAAAAAA4s/7uaZwBlsMkw/s320/Screen+shot+2009-09-29+at+11.58.35.png" /></a><br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_-dK4R3d1lbc/SsHc3oZlWOI/AAAAAAAAA4s/7uaZwBlsMkw/s1600-h/Screen+shot+2009-09-29+at+11.58.35.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="/assets/archived_posts/Screen+shot+2009-09-29+at+11.58.35_0b0721e6.png" /></a><br />
 </div><br />
 <br />
 </li>

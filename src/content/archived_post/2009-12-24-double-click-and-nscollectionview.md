@@ -27,7 +27,7 @@ As a basis, we'll use Apple's demo app <a href="http://developer.apple.com/mac/l
 <br />
 <br />
 <br />
-<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/SzNH2g8C91I/AAAAAAAAA5Y/YnwePdF7vP4/s1600-h/Screen+shot+2009-12-24+at+11.50.34.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/_-dK4R3d1lbc/SzNH2g8C91I/AAAAAAAAA5Y/YnwePdF7vP4/s640/Screen+shot+2009-12-24+at+11.50.34.png" /></a><br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/SzNH2g8C91I/AAAAAAAAA5Y/YnwePdF7vP4/s1600-h/Screen+shot+2009-12-24+at+11.50.34.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="/assets/archived_posts/Screen+shot+2009-12-24+at+11.50.34_2a364636.png" /></a><br />
 </div><br />
 <br />
 <br />

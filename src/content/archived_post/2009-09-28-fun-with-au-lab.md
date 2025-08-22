@@ -9,7 +9,7 @@ categories:
 
 The speech synthesizer and the AU Lab application might be hidden gems on your Mac! Why not have some fun with them?<br />
 
-<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/SsDGCBjTH3I/AAAAAAAAA4M/6g4SRbznWmM/s1600-h/Screen+shot+2009-09-28+at+16.16.33.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://2.bp.blogspot.com/_-dK4R3d1lbc/SsDGCBjTH3I/AAAAAAAAA4M/6g4SRbznWmM/s320/Screen+shot+2009-09-28+at+16.16.33.png" width="198" /></a><br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_-dK4R3d1lbc/SsDGCBjTH3I/AAAAAAAAA4M/6g4SRbznWmM/s1600-h/Screen+shot+2009-09-28+at+16.16.33.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="/assets/archived_posts/Screen+shot+2009-09-28+at+16.16.33_4f2a462b.png" width="198" /></a><br />
 </div><br />
 Here we go:<br />
 <ol><li>Download a long text file, for example <a href="http://www.gutenberg.org/files/28500/28500-8.txt">this one</a>.</li>

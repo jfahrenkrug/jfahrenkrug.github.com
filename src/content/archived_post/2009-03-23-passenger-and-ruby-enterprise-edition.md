@@ -10,7 +10,7 @@ categories:
   - Solaris
 ---
 
-<img style="float:left; margin:0 10px 10px 0;cursor:pointer; cursor:hand;width: 240px; height: 240px;" src="http://1.bp.blogspot.com/_-dK4R3d1lbc/Scex57XYHQI/AAAAAAAAA2c/oW63jOz0Qps/s320/solaris_logo.jpg" border="0" />
+<img style="float:left; margin:0 10px 10px 0;cursor:pointer; cursor:hand;width: 240px; height: 240px;" src="/assets/archived_posts/solaris_logo_1146edb3.jpg" border="0" />
 I recently had the pleasure of setting up REE and Passenger on Solaris 10. I set the server up using the ibm_db gem for the IBM DB/2 database. I'm not covering this part in this tutorial and I also haven't replaced it with instructions for MySQL. I'm sure you'll figure out how to set up MySQL on Solaris.<div>Before you start, some important notes: You can replace "myapp" with - well - your app. Also note that this is a little rough. Please leave suggestions or improvements in the comments. Also one very important tip (this took us quite a while to find): First start your app in development mode my setting the Passenger RailsEnv development directive. In production mode, Rails buffers the logger. If will only write stuff to the log file once it has 1000 bytes. Sometimes something fails right away and those 1000 bytes are never reached and hence nothing is ever written to the log file. So do yourself a favor and run in development mode first. So here we go:</div><div>
 
 <ol>
