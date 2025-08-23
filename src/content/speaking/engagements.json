@@ -1,37 +1,53 @@
 [
+  {
+		"title": "Living dangerously: The why and how of safely using private APIs on iOS",
+		"date": "2023-05-30",
+		"city": "Warsaw, Poland",
+		"eventName": "plSwift Conference"
+	},
+  {
+		"title": "Living dangerously: The why and how of safely using private APIs on iOS",
+    "titleUrl": "https://2022.nsspain.com/index.html",
+    "videoUrl": "https://vimeo.com/showcase/9831667/video/751288471",
+		"date": "2022-09-15",
+		"city": "Logroño, Spain",
+		"eventName": "NSSpain Conference"
+	},
 	{
-		"title": "Building Production-Ready iOS Apps with Core ML",
-		"date": "2024-06-10",
-		"titleUrl": "https://developer.apple.com/wwdc24/sessions/10159/",
-		"videoUrl": "https://developer.apple.com/videos/play/wwdc2024/10159/",
+		"title": "Virtualization.framework for Fun and Profit",
+		"date": "2022-06-28",
+		"titleUrl": "https://www.meetup.com/iosoho/events/286617939/",
+		"videoUrl": "https://www.youtube.com/watch?v=D_3Z05H0xa8",
+		"city": "New York City (Online)",
+		"eventName": "iOSoho"
+	},
+	{
+		"title": "Grandpa Gets a Makeover: A Swiftier Core Data",
+		"date": "2021-06-22",
+    "titleUrl": "https://www.meetup.com/iosoho/events/278780139/",
+    "videoUrl": "https://youtu.be/u6xfTTZ8SOk?feature=shared&t=1868",
+		"city": "Online",
+		"eventName": "iOSoho"
+	},
+	{
+		"title": "Mobile UI Design - Web or Native",
+		"date": "2011-11-09",
+		"videoUrl": "https://vimeo.com/32256530",
+		"city": "Stockholm, Sweden",
+		"eventName": "Scandinavian Web Developers Conference"
+	},
+  {
+		"title": "A Wondrous Experience of Sound, Light and Code (Lightning Talk)",
+		"date": "2011-06-11",
+		"titleUrl": "https://web.archive.org/web/20120229170730/http://cappcon.org/",
 		"city": "San Francisco, CA",
-		"eventName": "Apple WWDC"
+		"eventName": "CappCon"
 	},
 	{
-		"title": "AI Integration Patterns for Mobile Apps",
-		"date": "2024-03-15",
-		"city": "Austin, TX",
-		"eventName": "SXSW Interactive"
-	},
-	{
-		"title": "From Objective-C to Swift: A Migration Story",
-		"date": "2023-09-12",
-		"titleUrl": "https://cocoaheads.org/berlin-2023",
-		"videoUrl": "https://www.youtube.com/watch?v=example",
-		"city": "Berlin, Germany",
-		"eventName": "CocoaHeads Berlin"
-	},
-	{
-		"title": "Modern iOS Architecture Patterns",
-		"date": "2023-05-20",
-		"city": "Munich, Germany",
-		"eventName": "Corporate Workshop"
-	},
-	{
-		"title": "The Future of Mobile Development",
-		"date": "2025-04-15",
-		"titleUrl": "https://mobileconf.eu/2025",
-		"city": "Amsterdam, Netherlands",
-		"eventName": "Mobile Conference Europe"
+		"title": "A Wondrous Experience of Sound, Light and Code",
+		"date": "2011-05-12",
+		"titleUrl": "https://web.archive.org/web/20120113221304/http://www.jsday.it/2011/archive/talk/a-wondrous-experience-of-sound-light-and-code",
+		"city": "Verona, Italy",
+		"eventName": "jsDay"
 	}
 ]

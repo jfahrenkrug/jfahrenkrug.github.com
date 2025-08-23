@@ -20,34 +20,26 @@ const sortedEngagements = engagements.sort((a, b) => {
 		<main class="wrapper speaking">
 			<Hero
 				title="Speaking"
-				tagline="Sharing knowledge at conferences and workshops worldwide"
+				tagline="Talks and workshops, past and future."
 				align="start"
 			>
 				<img
-					width="1547"
-					height="879"
-					src="/assets/at-wwdc-2007.jpg"
-					alt="Johannes Fahrenkrug at WWDC 2007"
+					width="1494"
+					height="878"
+					src="/assets/johannes_fahrenkrug_nsspain_2022.jpg"
+					alt="Johannes Fahrenkrug at NSSpain 2022"
 				/>
 			</Hero>
 
 			<section class="speaking-intro">
-				<h2 class="section-title">Let's Connect</h2>
 				<div class="content">
 					<p>
-						I love sharing knowledge and connecting with fellow developers at conferences and workshops around the world.
-						From iOS development and AI integration to team leadership and technical architecture, I bring real-world experience and practical insights to every presentation.
+						Here are my talks and workshops from conferences and corporate events around the world.
 					</p>
-					<div class="contact-speaking">
-						<a href="mailto:johannes@springenwerk.com?subject=Speaking Opportunity" class="contact-button">
-							Interested in having me speak? Let's talk!
-						</a>
-					</div>
 				</div>
 			</section>
 
 			<section class="engagements-section">
-				<h2 class="section-title">Speaking Engagements</h2>
 				<div class="engagements-grid">
 					{sortedEngagements.map((engagement) => (
 						<SpeakingEngagement engagement={engagement} />
@@ -141,10 +133,11 @@ const sortedEngagements = engagements.sort((a, b) => {
 		}
 
 		.engagements-section {
-			grid-column: 1 / -1;
-			max-width: 1200px;
-			margin: 0 auto;
-			padding: 0 2rem;
+			display: contents;
+		}
+
+		.engagements-grid {
+			grid-column: 2 / 3;
 		}
 
 		.engagements-grid {
