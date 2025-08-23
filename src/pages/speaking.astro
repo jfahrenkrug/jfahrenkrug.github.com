@@ -1,0 +1,147 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import SpeakingEngagement from '../components/SpeakingEngagement.astro';
+
+const speakingData = await getEntry('speaking', 'engagements');
+const engagements = speakingData?.data || [];
+const sortedEngagements = engagements.sort((a, b) => {
+	return new Date(b.date).getTime() - new Date(a.date).getTime();
+});
+---
+
+<BaseLayout
+	title="Speaking | Johannes Fahrenkrug"
+	description="Johannes Fahrenkrug's speaking engagements and conference talks"
+>
+	<div class="stack gap-20">
+		<main class="wrapper speaking">
+			<Hero
+				title="Speaking"
+				tagline="Talks and workshops, past and future."
+				align="start"
+			>
+				<img
+					width="1494"
+					height="878"
+					src="/assets/johannes_fahrenkrug_nsspain_2022.jpg"
+					alt="Johannes Fahrenkrug at NSSpain 2022"
+				/>
+			</Hero>
+
+			<section class="speaking-intro">
+				<div class="content">
+					<p>
+						Here are my talks and workshops from conferences and corporate events around the world.
+					</p>
+				</div>
+			</section>
+
+			<section class="engagements-section">
+				<div class="engagements-grid">
+					{sortedEngagements.map((engagement) => (
+						<SpeakingEngagement engagement={engagement} />
+					))}
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.speaking {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	.speaking-intro {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+		font-size: var(--text-lg);
+	}
+
+	.contact-speaking {
+		margin-top: 2rem;
+	}
+
+	.contact-button {
+		display: inline-flex;
+		align-items: center;
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
+		padding: 0.75rem 1.5rem;
+		border-radius: 0.5rem;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: var(--text-base);
+		transition: background-color var(--theme-transition);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.contact-button:hover {
+		background: var(--accent-dark);
+		box-shadow: var(--shadow-md);
+	}
+
+	.engagements-section {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.engagements-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	@media (min-width: 50em) {
+		.speaking {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.speaking > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		.speaking-intro {
+			display: contents;
+		}
+
+		.engagements-section {
+			display: contents;
+		}
+
+		.engagements-grid {
+			grid-column: 2 / 3;
+		}
+
+		.engagements-grid {
+			gap: 2rem;
+		}
+	}
+</style>

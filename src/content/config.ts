@@ -21,4 +21,15 @@ export const collections = {
 			categories: z.array(z.string()).optional(),
 		}),
 	}),
+	speaking: defineCollection({
+		type: 'data',
+		schema: z.array(z.object({
+			title: z.string(),
+			date: z.coerce.date(),
+			titleUrl: z.string().url().optional(),
+			videoUrl: z.string().url().optional(),
+			city: z.string(),
+			eventName: z.string(),
+		})),
+	}),
 };

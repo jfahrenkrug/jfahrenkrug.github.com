@@ -1,0 +1,53 @@
+[
+  {
+		"title": "Living dangerously: The why and how of safely using private APIs on iOS",
+		"date": "2023-05-30",
+		"city": "Warsaw, Poland",
+		"eventName": "plSwift Conference"
+	},
+  {
+		"title": "Living dangerously: The why and how of safely using private APIs on iOS",
+    "titleUrl": "https://2022.nsspain.com/index.html",
+    "videoUrl": "https://vimeo.com/showcase/9831667/video/751288471",
+		"date": "2022-09-15",
+		"city": "Logroño, Spain",
+		"eventName": "NSSpain Conference"
+	},
+	{
+		"title": "Virtualization.framework for Fun and Profit",
+		"date": "2022-06-28",
+		"titleUrl": "https://www.meetup.com/iosoho/events/286617939/",
+		"videoUrl": "https://www.youtube.com/watch?v=D_3Z05H0xa8",
+		"city": "New York City (Online)",
+		"eventName": "iOSoho"
+	},
+	{
+		"title": "Grandpa Gets a Makeover: A Swiftier Core Data",
+		"date": "2021-06-22",
+    "titleUrl": "https://www.meetup.com/iosoho/events/278780139/",
+    "videoUrl": "https://youtu.be/u6xfTTZ8SOk?feature=shared&t=1868",
+		"city": "Online",
+		"eventName": "iOSoho"
+	},
+	{
+		"title": "Mobile UI Design - Web or Native",
+		"date": "2011-11-09",
+		"videoUrl": "https://vimeo.com/32256530",
+		"city": "Stockholm, Sweden",
+		"eventName": "Scandinavian Web Developers Conference"
+	},
+  {
+		"title": "A Wondrous Experience of Sound, Light and Code (Lightning Talk)",
+		"date": "2011-06-11",
+		"titleUrl": "https://web.archive.org/web/20120229170730/http://cappcon.org/",
+		"city": "San Francisco, CA",
+		"eventName": "CappCon"
+	},
+	{
+		"title": "A Wondrous Experience of Sound, Light and Code",
+		"date": "2011-05-12",
+		"titleUrl": "https://web.archive.org/web/20120113221304/http://www.jsday.it/2011/archive/talk/a-wondrous-experience-of-sound-light-and-code",
+		"city": "Verona, Italy",
+		"eventName": "jsDay"
+	}
+]
