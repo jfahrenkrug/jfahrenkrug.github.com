@@ -1,0 +1,37 @@
+[
+	{
+		"title": "Building Production-Ready iOS Apps with Core ML",
+		"date": "2024-06-10",
+		"titleUrl": "https://developer.apple.com/wwdc24/sessions/10159/",
+		"videoUrl": "https://developer.apple.com/videos/play/wwdc2024/10159/",
+		"city": "San Francisco, CA",
+		"eventName": "Apple WWDC"
+	},
+	{
+		"title": "AI Integration Patterns for Mobile Apps",
+		"date": "2024-03-15",
+		"city": "Austin, TX",
+		"eventName": "SXSW Interactive"
+	},
+	{
+		"title": "From Objective-C to Swift: A Migration Story",
+		"date": "2023-09-12",
+		"titleUrl": "https://cocoaheads.org/berlin-2023",
+		"videoUrl": "https://www.youtube.com/watch?v=example",
+		"city": "Berlin, Germany",
+		"eventName": "CocoaHeads Berlin"
+	},
+	{
+		"title": "Modern iOS Architecture Patterns",
+		"date": "2023-05-20",
+		"city": "Munich, Germany",
+		"eventName": "Corporate Workshop"
+	},
+	{
+		"title": "The Future of Mobile Development",
+		"date": "2025-04-15",
+		"titleUrl": "https://mobileconf.eu/2025",
+		"city": "Amsterdam, Netherlands",
+		"eventName": "Mobile Conference Europe"
+	}
+]
