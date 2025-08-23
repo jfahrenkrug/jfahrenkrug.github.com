@@ -1,5 +1,20 @@
 [
   {
+		"title": "5 Red Flags: Exposing Hidden Issues in Your Dev Team",
+    "titleUrl": "https://thesmythgroup.com/insights/5-red-flags-exposing-hidden-issues-in-your-dev-team-free-webinar/",
+    "videoUrl": "https://www.youtube.com/watch?v=krz7J9D2l-I",
+		"date": "2024-06-12",
+		"city": "Online",
+		"eventName": "TSG"
+	},
+  {
+		"title": "Leveraging Private AI Tools for Your Business",
+    "titleUrl": "https://thesmythgroup.com/insights/leveraging-private-ai-tools-for-business-webinar/",
+		"date": "2023-11-08",
+		"city": "Online",
+		"eventName": "TSG"
+	},
+  {
 		"title": "Living dangerously: The why and how of safely using private APIs on iOS",
 		"date": "2023-05-30",
 		"city": "Warsaw, Poland",
@@ -29,12 +44,81 @@
 		"city": "Online",
 		"eventName": "iOSoho"
 	},
+  {
+		"title": "Workshop (4 days): Intro to iOS Development",
+		"date": "2019-09-23",
+		"city": "Portland, OR",
+		"eventName": "On-site training"
+	},
+  {
+		"title": "Neues von der WWDC 2012",
+		"date": "2012-10-23",
+    "titleUrl": "https://web.archive.org/web/20140825102238/http://www.iphone-developer-conference.de/index.php/History/IPDC-2012/Programm",
+		"city": "Stuttgart, Germany",
+		"eventName": "iPhone Developer Conference"
+	},
+  {
+		"title": "Workshop (2 days): Fortgeschrittene iOS-Entwicklung",
+		"date": "2012-10-01",
+    "titleUrl": "https://web.archive.org/web/20120825003448/http://www.dpunkt.de/veranstaltungen/3042/",
+		"city": "Heidelberg, Germany",
+		"eventName": "dpunkt iX Workshop"
+	},
+  {
+		"title": "Workshop (2 days): Einstieg in die iOS-Entwicklung",
+		"date": "2012-09-27",
+    "titleUrl": "https://web.archive.org/web/20120615090218/http://www.dpunkt.de/veranstaltungen/3041",
+		"city": "Heidelberg, Germany",
+		"eventName": "dpunkt iX Workshop"
+	},
+  {
+		"title": "Workshop (1 day): iOS Kickstart Teil 1 & 2",
+		"date": "2012-06-29",
+    "titleUrl": "https://web.archive.org/web/20121201015639/http://www.ios-devcon.de/2012/workshops",
+		"city": "Berlin, Germany",
+		"eventName": "iOS DevCon"
+	},
+  {
+		"title": "Mobile UI Design: Native Vs. Web",
+		"date": "2012-06-28",
+    "titleUrl": "https://web.archive.org/web/20120626144540/http://www.ios-devcon.de/2012/sessions",
+		"city": "Berlin, Germany",
+		"eventName": "iOS DevCon"
+	},
+  {
+		"title": "Mobile UX Konzepte: Wie man vermeidet, vom User gehasst zu werden",
+		"date": "2012-05-26",
+    "titleUrl": "https://web.archive.org/web/20121116101020/https://mmt30.multimediatreff.de/Konferenz2",
+    "videoUrl": "https://www.youtube.com/watch?v=gmpzQmgNT-w",
+		"city": "Cologne, Germany",
+		"eventName": "MMT"
+	},
+  {
+		"title": "iOS Error/Exception-Handling",
+		"date": "2011-11-30",
+    "titleUrl": "https://web.archive.org/web/20140823022213/http://www.iphone-developer-conference.de/index.php/History/IPDC-2011/Programm",
+		"city": "Cologne, Germany",
+		"eventName": "iPhone Developer Conference"
+	},
 	{
 		"title": "Mobile UI Design - Web or Native",
 		"date": "2011-11-09",
 		"videoUrl": "https://vimeo.com/32256530",
 		"city": "Stockholm, Sweden",
 		"eventName": "Scandinavian Web Developers Conference"
+	},
+  {
+		"title": "Workshop (2 days): Einstieg in die iOS-Entwicklung",
+		"date": "2011-09-29",
+		"city": "Heidelberg, Germany",
+		"eventName": "dpunkt iX Workshop"
+	},
+  {
+		"title": "A Quick Deep Dive Into Cappuccino and SproutCore",
+		"date": "2011-09-09",
+		"titleUrl": "https://web.archive.org/web/20111105235328/http://www.frontendconf.ch/speakers#id32",
+		"city": "Zurich, Switzerland",
+		"eventName": "Frontend Conference"
 	},
   {
 		"title": "A Wondrous Experience of Sound, Light and Code (Lightning Talk)",
@@ -49,5 +133,17 @@
 		"titleUrl": "https://web.archive.org/web/20120113221304/http://www.jsday.it/2011/archive/talk/a-wondrous-experience-of-sound-light-and-code",
 		"city": "Verona, Italy",
 		"eventName": "jsDay"
+	},
+  {
+		"title": "Workshop (3 days): iOS Performance",
+		"date": "2011-03-20",
+		"city": "Luxemburg",
+		"eventName": "On-site training"
+	},
+  {
+		"title": "Workshop (3 days): Intro to Ruby on Rails",
+		"date": "2008-04-07",
+		"city": "Freyung, Germany",
+		"eventName": "On-site training"
 	}
 ]
