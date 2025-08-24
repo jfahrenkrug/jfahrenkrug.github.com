@@ -40,34 +40,36 @@ function formatDate(date: Date): string {
 <BaseLayout title={`${entry.data.title} | Johannes Fahrenkrug`} description={entry.data.description}>
 	<div class="stack gap-20">
 		<div class="stack gap-15">
-			<header>
-				<div class="wrapper stack gap-2">
-					<a class="back-link" href="/writing/"><Icon icon="arrow-left" /> Writing</a>
-					<Hero title={entry.data.title} align="start">
-						<div class="details">
-							<div class="article-meta">
-								<time class="article-date" datetime={entry.data.date.toISOString()}>
-									Published {formatDate(entry.data.date)}
-								</time>
-								{entry.data.updated && (
-									<time class="article-updated" datetime={entry.data.updated.toISOString()}>
-										Updated {formatDate(entry.data.updated)}
+			<header class="wrapper">
+				<div class="stack gap-10 content">
+					<div class="header-content">
+						<a class="back-link" href="/writing/"><Icon icon="arrow-left" /> Writing</a>
+						<Hero title={entry.data.title} align="start">
+							<div class="details">
+								<div class="article-meta">
+									<time class="article-date" datetime={entry.data.date.toISOString()}>
+										Published {formatDate(entry.data.date)}
 									</time>
-								)}
-								{entry.data.draft && (
-									<span class="draft-badge">Draft</span>
-								)}
-							</div>
-							{entry.data.tags && entry.data.tags.length > 0 && (
-								<div class="tags">
-									{entry.data.tags.map((tag) => (
-										<span class="tag">{tag}</span>
-									))}
+									{entry.data.updated && (
+										<time class="article-updated" datetime={entry.data.updated.toISOString()}>
+											Updated {formatDate(entry.data.updated)}
+										</time>
+									)}
+									{entry.data.draft && (
+										<span class="draft-badge">Draft</span>
+									)}
 								</div>
-							)}
-							<p class="description">{entry.data.description}</p>
-						</div>
-					</Hero>
+								{entry.data.tags && entry.data.tags.length > 0 && (
+									<div class="tags">
+										{entry.data.tags.map((tag) => (
+											<span class="tag">{tag}</span>
+										))}
+									</div>
+								)}
+								<p class="description">{entry.data.description}</p>
+							</div>
+						</Hero>
+					</div>
 				</div>
 			</header>
 			<main class="wrapper">
@@ -169,6 +171,27 @@ function formatDate(date: Date): string {
 	.content {
 		max-width: 65ch;
 		margin-inline: auto;
+	}
+
+	.header-content {
+		text-align: left;
+	}
+
+	.header-content :global(.hero) {
+		text-align: left;
+		padding-left: 0;
+		margin-left: 0;
+	}
+
+	.header-content :global(.hero h1) {
+		text-align: left;
+		padding-left: 0;
+		margin-left: 0;
+	}
+
+	.details {
+		padding-left: 0;
+		margin-left: 0;
 	}
 
 	.article-content > :global(* + *) {
