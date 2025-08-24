@@ -179,7 +179,11 @@ function formatDate(date: Date): string {
 	}
 
 	.article-title a:hover {
-		color: var(--accent-text-over);
+		color: var(--accent-dark);
+	}
+
+	:root:not(.theme-dark) .article-title a:hover {
+		color: var(--accent-regular);
 	}
 
 	.article-description {
