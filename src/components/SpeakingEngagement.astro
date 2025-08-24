@@ -133,7 +133,11 @@ const year = data.date.getFullYear();
 	}
 
 	.engagement-title a:hover {
-		color: var(--accent-text-over);
+		color: var(--accent-dark);
+	}
+
+	:root:not(.theme-dark) .engagement-title a:hover {
+		color: var(--accent-regular);
 	}
 
 	.event-name {
@@ -161,6 +165,10 @@ const year = data.date.getFullYear();
 	.video-link a:hover {
 		background: var(--accent-dark);
 		box-shadow: var(--shadow-md);
+	}
+
+	:root:not(.theme-dark) .video-link a:hover {
+		background: var(--accent-regular);
 	}
 
 	@media (min-width: 50em) {
