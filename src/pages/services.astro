@@ -11,16 +11,16 @@ import Pill from '../components/Pill.astro';
 	description="Learn about the services Johannes Fahrenkrug offers"
 >
   <div class="stack gap-20">
-    <main class="wrapper about">
+    <main class="wrapper services">
 			<Hero
 				title="Services"
 				tagline="Let's Build Something Great Together"
 				align="start"
 			/>
 
-      <section>
+      <section class="service-section">
 				<h2 class="section-title">On-Site Training</h2>
-				<div class="content">
+				<div class="section-content">
 					<p class="service-intro">Accelerate your team's skills with focused, hands-on learning sessions.</p>
 					
 					<ul class="service-benefits">
@@ -39,9 +39,9 @@ import Pill from '../components/Pill.astro';
 					</div>
 				</div>
 			</section>
-      <section>
+      <section class="service-section">
 				<h2 class="section-title">iOS Development</h2>
-				<div class="content">
+				<div class="section-content">
 					<p class="service-intro">15+ years of iOS expertise, from the first SDK to the latest features.</p>
 					
 					<ul class="service-benefits">
@@ -62,9 +62,9 @@ import Pill from '../components/Pill.astro';
 					</div>
 				</div>
 			</section>
-			<section>
+			<section class="service-section">
 				<h2 class="section-title">AI Development</h2>
-				<div class="content">
+				<div class="section-content">
 					<p class="service-intro">Custom AI solutions using cutting-edge technologies and best practices.</p>
 					
 					<ul class="service-benefits">
@@ -86,9 +86,9 @@ import Pill from '../components/Pill.astro';
 					</div>
 				</div>
 			</section>
-			<section>
+			<section class="service-section">
 				<h2 class="section-title">Frontend Development</h2>
-				<div class="content">
+				<div class="section-content">
 					<p class="service-intro">Beautiful, responsive user interfaces built with attention to detail and modern best practices.</p>
 					
 					<ul class="service-benefits">
@@ -110,9 +110,9 @@ import Pill from '../components/Pill.astro';
 					</div>
 				</div>
 			</section>
-			<section>
+			<section class="service-section">
 				<h2 class="section-title">Backend Development</h2>
-				<div class="content">
+				<div class="section-content">
 					<p class="service-intro">Scalable, secure server-side solutions built with modern best practices.</p>
 					
 					<ul class="service-benefits">
@@ -140,33 +140,28 @@ import Pill from '../components/Pill.astro';
 </BaseLayout>
 
 <style>
-	.about {
+	.services {
 		display: flex;
 		flex-direction: column;
-		gap: 3.5rem;
+		gap: 3rem;
 	}
 
-	img {
-		margin-top: 1.5rem;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
-
-	section {
+	.service-section {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
-		color: var(--gray-200);
+		gap: 1.5rem;
 	}
 
 	.section-title {
-		grid-column-start: 1;
 		font-size: var(--text-xl);
-		color: var(--gray-0);
+		color: var(--gray-200);
+		font-weight: 600;
+		line-height: 1.3;
+		margin: 0;
 	}
 
-	.content {
-		grid-column: 2 / 4;
+	.section-content {
+		color: var(--gray-200);
 	}
 
 	.service-intro {
@@ -181,13 +176,14 @@ import Pill from '../components/Pill.astro';
 		list-style: none;
 		padding: 0;
 		margin: 0 0 1.5rem 0;
+		font-size: var(--text-lg);
 	}
 
 	.service-benefits li {
 		position: relative;
 		padding-left: 1.5rem;
 		margin-bottom: 0.75rem;
-		line-height: 1.5;
+		line-height: 1.7;
 	}
 
 	.service-benefits li::before {
@@ -206,30 +202,51 @@ import Pill from '../components/Pill.astro';
 		margin-top: 1rem;
 	}
 
-	.content :global(a) {
+	.section-content :global(a) {
+		color: var(--accent-dark);
 		text-decoration: 1px solid underline transparent;
 		text-underline-offset: 0.25em;
 		transition: text-decoration-color var(--theme-transition);
 	}
 
-	.content :global(a:hover),
-	.content :global(a:focus) {
+	.section-content :global(a:hover),
+	.section-content :global(a:focus) {
+		color: var(--accent-regular);
 		text-decoration-color: currentColor;
 	}
 
+	:root:not(.theme-dark) .section-title {
+		color: var(--gray-100);
+	}
+
+	:root:not(.theme-dark) .section-content {
+		color: var(--gray-100);
+	}
+
+	:root:not(.theme-dark) .section-content :global(a) {
+		color: var(--accent-regular);
+	}
+
+	:root:not(.theme-dark) .section-content :global(a:hover) {
+		color: var(--accent-light);
+	}
+
 	@media (min-width: 50em) {
-		.about {
+		.services {
 			display: grid;
 			grid-template-columns: 1fr 60% 1fr;
 		}
 
-		.about > :global(:first-child) {
+		.services > :global(:first-child) {
 			grid-column-start: 2;
 		}
 
-		section {
-			display: contents;
-			font-size: var(--text-lg);
+		.service-section {
+			grid-column: 2 / 3;
+		}
+
+		.section-title {
+			font-size: var(--text-2xl);
 		}
 	}
 </style>

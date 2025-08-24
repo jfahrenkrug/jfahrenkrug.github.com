@@ -32,64 +32,65 @@ function getArchiveUrl(post: CollectionEntry<'archived_post'>): string {
 
 <BaseLayout title="Archived Posts | Johannes Fahrenkrug" description="Historical posts from Johannes Fahrenkrug's previous blog, preserved for posterity.">
 	<div class="stack gap-20">
-		<div class="stack gap-15">
-			<header class="wrapper">
-				<div class="stack gap-10 content">
-					<div class="header-content">
-						<a class="back-link" href="/writing/"><Icon icon="arrow-left" /> Writing</a>
-						<Hero title="Archived Posts" align="start">
-							<div class="details">
-								<p class="description">Historical posts from my previous blog, preserved for posterity.</p>
-							</div>
-						</Hero>
+		<main class="wrapper archived">
+			<div class="header-section">
+				<a class="back-link" href="/writing/"><Icon icon="arrow-left" /> Writing</a>
+				<Hero title="Archived Posts" align="start">
+					<div class="details">
+						<p class="description">Historical posts from my previous blog, preserved for posterity.</p>
 					</div>
-				</div>
-			</header>
-			<main class="wrapper">
-				<div class="stack gap-10 content">
-					<ArchivedNotice type="index" />
+				</Hero>
+			</div>
 
-					<section class="archived-posts">
-						<div class="posts-grid">
-							{sortedPosts.map((post) => (
-								<article class="archived-article">
-									<div class="article-header">
-										<h3 class="article-title">
-											<a href={getArchiveUrl(post)}>{post.data.title}</a>
-										</h3>
-										<div class="article-meta">
-											<time class="article-date" datetime={post.data.time.toISOString()}>
-												{formatDate(post.data.time)}
-											</time>
-											{post.data.categories && post.data.categories.length > 0 && (
-												<div class="article-tags">
-													{post.data.categories.map((category) => (
-														<span class="tag">{category}</span>
-													))}
-												</div>
-											)}
+			<div class="content-section">
+				<ArchivedNotice type="index" />
+			</div>
+
+			<section class="posts-section">
+				<div class="posts-grid">
+					{sortedPosts.map((post) => (
+						<article class="archived-article">
+							<div class="article-header">
+								<h3 class="article-title">
+									<a href={getArchiveUrl(post)}>{post.data.title}</a>
+								</h3>
+								<div class="article-meta">
+									<time class="article-date" datetime={post.data.time.toISOString()}>
+										{formatDate(post.data.time)}
+									</time>
+									{post.data.categories && post.data.categories.length > 0 && (
+										<div class="article-tags">
+											{post.data.categories.map((category) => (
+												<span class="tag">{category}</span>
+											))}
 										</div>
-									</div>
-								</article>
-							))}
-						</div>
-					</section>
+									)}
+								</div>
+							</div>
+						</article>
+					))}
 				</div>
-			</main>
-		</div>
+			</section>
+		</main>
 
 		<ContactCTA />
 	</div>
 </BaseLayout>
 
 <style>
-	header {
-		padding-bottom: 2.5rem;
-		border-bottom: 1px solid var(--gray-800);
+	.archived {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	.header-section {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 	}
 
 	.back-link {
-		display: none;
 		color: var(--gray-300);
 		text-decoration: none;
 		font-size: var(--text-sm);
@@ -98,6 +99,7 @@ function getArchiveUrl(post: CollectionEntry<'archived_post'>): string {
 		align-items: center;
 		gap: 0.5rem;
 		transition: color var(--theme-transition);
+		align-self: flex-start;
 	}
 
 	.back-link:hover {
@@ -107,49 +109,25 @@ function getArchiveUrl(post: CollectionEntry<'archived_post'>): string {
 	.details {
 		display: flex;
 		flex-direction: column;
-		padding: 0.5rem;
 		gap: 1.5rem;
 		align-items: flex-start;
 	}
 
 	.description {
 		font-size: var(--text-lg);
-		max-width: 54ch;
 		color: var(--gray-200);
 		line-height: 1.5;
 		margin: 0;
 	}
 
-	.content {
-		max-width: 65ch;
-		margin-inline: auto;
-	}
-
-	.header-content {
-		text-align: left;
-	}
-
-	.header-content :global(.hero) {
-		text-align: left;
-		padding-left: 0;
-		margin-left: 0;
-	}
-
-	.header-content :global(.hero h1) {
-		text-align: left;
-		padding-left: 0;
-		margin-left: 0;
-	}
-
-	.details {
-		padding-left: 0;
-		margin-left: 0;
-	}
-
-	.archived-posts {
+	.content-section {
 		display: flex;
 		flex-direction: column;
-		gap: 3.5rem;
+	}
+
+	.posts-section {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.posts-grid {
@@ -256,9 +234,13 @@ function getArchiveUrl(post: CollectionEntry<'archived_post'>): string {
 	}
 
 	@media (min-width: 50em) {
-		.back-link {
-			display: inline-flex;
-			align-self: flex-start;
+		.archived {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.archived > :global(*) {
+			grid-column: 2 / 3;
 		}
 
 		.details {

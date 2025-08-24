@@ -54,8 +54,6 @@ import Hero from '../components/Hero.astro';
 
 <style>
 	.about {
-		max-width: 65ch;
-		margin-inline: auto;
 		display: flex;
 		flex-direction: column;
 		gap: 3rem;
@@ -147,5 +145,20 @@ import Hero from '../components/Hero.astro';
 
 	:root:not(.theme-dark) .highlight-list li::marker {
 		color: var(--accent-regular);
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		.about-section {
+			grid-column: 2 / 3;
+		}
 	}
 </style>
