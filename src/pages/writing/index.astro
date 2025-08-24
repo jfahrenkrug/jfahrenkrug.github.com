@@ -1,0 +1,240 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import Hero from '../../components/Hero.astro';
+
+// Get all writing posts and filter out drafts in production
+const allWriting = await getCollection('writing', ({ data }) => {
+	// In production, filter out drafts
+	if (import.meta.env.PROD) {
+		return !data.draft;
+	}
+	// In development, show all posts including drafts
+	return true;
+});
+
+// Sort by date, newest first
+const sortedWriting = allWriting.sort((a, b) => {
+	return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+
+function formatDate(date: Date): string {
+	return date.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric'
+	});
+}
+---
+
+<BaseLayout
+	title="Writing | Johannes Fahrenkrug"
+	description="Articles and thoughts by Johannes Fahrenkrug"
+>
+	<div class="stack gap-20">
+		<main class="wrapper writing">
+			<Hero
+				title="Writing"
+				tagline="Articles and thoughts on development, technology, and more."
+				align="start"
+			/>
+
+			<section class="writing-intro">
+				<div class="content">
+					<p>
+						Here are my articles covering iOS development, AI integration, technical leadership, and other topics I find interesting.
+					</p>
+				</div>
+			</section>
+
+			<section class="articles-section">
+				<div class="articles-list">
+					{sortedWriting.map((article) => (
+						<article class="article-card">
+							<div class="article-meta">
+								<time class="article-date" datetime={article.data.date.toISOString()}>
+									{formatDate(article.data.date)}
+								</time>
+								{article.data.updated && (
+									<time class="article-updated" datetime={article.data.updated.toISOString()}>
+										Updated {formatDate(article.data.updated)}
+									</time>
+								)}
+								{article.data.draft && (
+									<span class="draft-badge">Draft</span>
+								)}
+							</div>
+
+							<h3 class="article-title">
+								<a href={`/writing/${article.slug}`}>
+									{article.data.title}
+								</a>
+							</h3>
+
+							<p class="article-description">
+								{article.data.description}
+							</p>
+
+							{article.data.tags && article.data.tags.length > 0 && (
+								<div class="article-tags">
+									{article.data.tags.map((tag) => (
+										<span class="tag">{tag}</span>
+									))}
+								</div>
+							)}
+						</article>
+					))}
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.writing {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	.writing-intro {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.content {
+		font-size: var(--text-lg);
+	}
+
+	.articles-section {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.articles-list {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.article-card {
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 0.75rem;
+		padding: 1.5rem;
+		transition: box-shadow var(--theme-transition);
+	}
+
+	.article-card:hover {
+		box-shadow: var(--shadow-md);
+	}
+
+	.article-meta {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.article-date {
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+		font-family: var(--font-brand);
+	}
+
+	.article-updated {
+		font-size: var(--text-sm);
+		color: var(--accent-regular);
+		font-family: var(--font-brand);
+		font-weight: 500;
+	}
+
+	.draft-badge {
+		background: var(--gray-700);
+		color: var(--gray-200);
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.375rem;
+		font-size: var(--text-xs);
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.article-title {
+		margin: 0 0 0.75rem 0;
+		font-family: var(--font-brand);
+		font-size: var(--text-xl);
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+	.article-title a {
+		color: var(--gray-0);
+		text-decoration: none;
+		transition: color var(--theme-transition);
+	}
+
+	.article-title a:hover {
+		color: var(--accent-text-over);
+	}
+
+	.article-description {
+		margin: 0 0 1rem 0;
+		color: var(--gray-300);
+		line-height: 1.5;
+	}
+
+	.article-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.tag {
+		background: var(--gray-800);
+		color: var(--gray-300);
+		padding: 0.25rem 0.75rem;
+		border-radius: 0.375rem;
+		font-size: var(--text-xs);
+		font-weight: 500;
+	}
+
+	@media (min-width: 50em) {
+		.writing {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.writing > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		.writing-intro {
+			display: contents;
+		}
+
+		.articles-section {
+			display: contents;
+		}
+
+		.articles-list {
+			grid-column: 2 / 3;
+		}
+
+		.article-card {
+			border-radius: 1rem;
+			padding: 2rem;
+		}
+
+		.article-title {
+			font-size: var(--text-2xl);
+		}
+	}
+</style>

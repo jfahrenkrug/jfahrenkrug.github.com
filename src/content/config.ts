@@ -1,17 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 
 export const collections = {
-	work: defineCollection({
-		type: 'content',
-		schema: z.object({
-			title: z.string(),
-			description: z.string(),
-			publishDate: z.coerce.date(),
-			tags: z.array(z.string()),
-			img: z.string(),
-			img_alt: z.string().optional(),
-		}),
-	}),
 	archived_post: defineCollection({
 		type: 'content',
 		schema: z.object({
@@ -31,5 +20,16 @@ export const collections = {
 			city: z.string(),
 			eventName: z.string(),
 		})),
+	}),
+	writing: defineCollection({
+		type: 'content',
+		schema: z.object({
+			title: z.string(),
+			description: z.string(),
+			date: z.coerce.date(),
+			updated: z.coerce.date().optional(),
+			tags: z.array(z.string()).optional(),
+			draft: z.boolean().optional().default(false),
+		}),
 	}),
 };
