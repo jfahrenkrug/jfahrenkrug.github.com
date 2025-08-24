@@ -203,9 +203,113 @@ function formatDate(date: Date): string {
 		color: var(--gray-200);
 	}
 
-	.article-content :global(li) {
+	.article-content :global(ul) {
+		list-style: none;
+	}
+
+	.article-content :global(ul li) {
+		position: relative;
 		margin-bottom: 0.5rem;
 		line-height: 1.6;
+		padding-left: 1.5rem;
+	}
+
+	.article-content :global(ul li::before) {
+		content: '•';
+		position: absolute;
+		left: 0;
+		color: var(--accent-regular);
+		font-weight: bold;
+		font-size: 1.2em;
+		line-height: 1.3;
+	}
+
+	.article-content :global(ol) {
+		counter-reset: list-counter;
+		list-style: none;
+	}
+
+	.article-content :global(ol li) {
+		position: relative;
+		margin-bottom: 0.5rem;
+		line-height: 1.6;
+		padding-left: 2rem;
+		counter-increment: list-counter;
+	}
+
+	.article-content :global(ol li::before) {
+		content: counter(list-counter) '.';
+		position: absolute;
+		left: 0;
+		color: var(--accent-regular);
+		font-weight: 600;
+		font-family: var(--font-brand);
+	}
+
+	.article-content :global(table) {
+		width: 100%;
+		border-collapse: collapse;
+		margin: 2rem 0;
+		background: var(--gray-900);
+		border-radius: 0.5rem;
+		overflow: hidden;
+		border: 1px solid var(--gray-700);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.article-content :global(thead) {
+		background: var(--gray-800);
+	}
+
+	.article-content :global(th) {
+		padding: 1rem;
+		text-align: left;
+		font-weight: 600;
+		font-family: var(--font-brand);
+		color: var(--gray-0);
+		border-bottom: 2px solid var(--gray-700);
+		font-size: var(--text-sm);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.article-content :global(td) {
+		padding: 0.75rem 1rem;
+		color: var(--gray-200);
+		border-bottom: 1px solid var(--gray-800);
+		font-size: var(--text-sm);
+		line-height: 1.5;
+	}
+
+	.article-content :global(tbody tr:last-child td) {
+		border-bottom: none;
+	}
+
+	.article-content :global(tbody tr:hover) {
+		background: var(--gray-800);
+	}
+
+	:root:not(.theme-dark) .article-content :global(table) {
+		background: var(--gray-999);
+		border: 1px solid var(--gray-300);
+	}
+
+	:root:not(.theme-dark) .article-content :global(thead) {
+		background: var(--gray-700);
+	}
+
+	:root:not(.theme-dark) .article-content :global(th) {
+		color: var(--gray-0);
+		border-bottom: 2px solid var(--gray-300);
+	}
+
+	:root:not(.theme-dark) .article-content :global(td) {
+		color: var(--gray-0);
+		border-bottom: 1px solid var(--gray-300);
+	}
+
+	:root:not(.theme-dark) .article-content :global(tbody tr:hover) {
+		background: var(--gray-800);
 	}
 
 	.article-content :global(img) {
