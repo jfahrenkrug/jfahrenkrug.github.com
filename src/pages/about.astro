@@ -11,6 +11,7 @@ import Hero from '../components/Hero.astro';
 			<Hero
 				title="About"
 				tagline="This page contains no AI slop. I worte it myeslf."
+				align="start"
 			>
 				<img
 					width="1547"
@@ -20,21 +21,22 @@ import Hero from '../components/Hero.astro';
 				/>
 			</Hero>
 
-			<section>
+			<section class="about-section">
 				<h2 class="section-title">Who?</h2>
-				<div class="content">
+				<div class="section-content">
 					<p>
 						Hello, my name is Johannes Fahrenkrug. I'm a freelance iOS and full-stack developer based in Berlin.
-            That old photo shows me attending my first WWDC in San Francisco back in 2007, the year I started freelancing.
-            Since I love learning, teaching, and meeting people, you might run into me at conferences around the world. If you do, please stop and say hello!
-            Over the years I've lived and worked in northern Germany, New York City, and Phoenix, Arizona.
-            After years abroad, my wife and I are happy to call 'the sixth borough' our home.
+						That old photo shows me attending my first WWDC in San Francisco back in 2007, the year I started freelancing.
+						Since I love learning, teaching, and meeting people, you might run into me at conferences around the world. If you do, please stop and say hello!
+						Over the years I've lived and worked in northern Germany, New York City, and Phoenix, Arizona.
+						After years abroad, my wife and I are happy to call 'the sixth borough' our home.
 					</p>
 				</div>
 			</section>
-			<section>
+			
+			<section class="about-section">
 				<h2 class="section-title">What?</h2>
-				<div class="content">
+				<div class="section-content">
 					<ul class="highlight-list">
 						<li><strong>15+ years</strong> of iOS: from retain/release through ARC to Swift.</li>
 						<li><strong>Co-authored</strong> the book <a href="https://www.manning.com/books/objective-c-fundamentals" target="_blank">Objective-C Fundamentals</a>.</li>
@@ -52,9 +54,11 @@ import Hero from '../components/Hero.astro';
 
 <style>
 	.about {
+		max-width: 65ch;
+		margin-inline: auto;
 		display: flex;
 		flex-direction: column;
-		gap: 3.5rem;
+		gap: 3rem;
 	}
 
 	img {
@@ -63,62 +67,85 @@ import Hero from '../components/Hero.astro';
 		box-shadow: var(--shadow-md);
 	}
 
-	section {
+	.about-section {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
-		color: var(--gray-200);
+		gap: 1.5rem;
 	}
 
 	.section-title {
-		grid-column-start: 1;
-		font-size: var(--text-xl);
-		color: var(--gray-0);
+		font-size: var(--text-2xl);
+		color: var(--gray-200);
+		font-weight: 600;
+		line-height: 1.3;
+		margin: 0;
 	}
 
-	.content {
-		grid-column: 2 / 4;
+	.section-content {
+		color: var(--gray-200);
 	}
 
-	.content :global(a) {
+	.section-content p {
+		font-size: var(--text-lg);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.section-content :global(a) {
+		color: var(--accent-dark);
 		text-decoration: 1px solid underline transparent;
 		text-underline-offset: 0.25em;
 		transition: text-decoration-color var(--theme-transition);
 	}
 
-	.content :global(a:hover),
-	.content :global(a:focus) {
+	.section-content :global(a:hover),
+	.section-content :global(a:focus) {
+		color: var(--accent-regular);
 		text-decoration-color: currentColor;
+	}
+
+	:root:not(.theme-dark) .section-title {
+		color: var(--gray-100);
+	}
+
+	:root:not(.theme-dark) .section-content {
+		color: var(--gray-100);
+	}
+
+	:root:not(.theme-dark) .section-content :global(a) {
+		color: var(--accent-regular);
+	}
+
+	:root:not(.theme-dark) .section-content :global(a:hover) {
+		color: var(--accent-light);
 	}
 
 	.highlight-list {
 		list-style: disc;
 		padding-left: 1.5rem;
 		margin: 0;
+		font-size: var(--text-lg);
 	}
 
 	.highlight-list li {
 		margin-bottom: 0.75rem;
-		line-height: 1.6;
+		line-height: 1.7;
 	}
 
 	.highlight-list li strong {
 		font-weight: 600;
+		color: var(--accent-dark);
 	}
 
-	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 1fr 60% 1fr;
-		}
+	.highlight-list li::marker {
+		color: var(--accent-dark);
+	}
 
-		.about > :global(:first-child) {
-			grid-column-start: 2;
-		}
+	:root:not(.theme-dark) .highlight-list li strong {
+		color: var(--accent-regular);
+	}
 
-		section {
-			display: contents;
-			font-size: var(--text-lg);
-		}
+	:root:not(.theme-dark) .highlight-list li::marker {
+		color: var(--accent-regular);
 	}
 </style>
