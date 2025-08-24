@@ -1,0 +1,158 @@
+---
+title: "Astro Relaunch"
+description: "How I finally - after more than 15 years - relaunched my website using Astro and Claude Code ."
+date: 2025-08-24
+draft: false
+---
+
+import Callout from '../../components/Callout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+
+This is the obligatory "how I relaunched my website" article. When I started freelancing back in 2007, I started on [Blogger](https://www.blogger.com/). In 2010, I moved to [Jekyll](https://jekyllrb.com/) on [GitHub Pages](https://pages.github.com/) ([importing](https://github.com/jfahrenkrug/jfahrenkrug.github.com/commit/07bd8356c0fb5e0abcd1177e56a4823796371a3a#diff-33e908aa1b54cabb9d44a07309cc0890e24e45b9a36d72e4faa2c16eb2aefc38) all my content from Blogger). Jekyll and its dependencies got harder and harder to maintain and that led to [my last article](/2014/02/storyboardlint) being written more than 10 years ago, in 2014. I always loved writing, but I hated wrestling with dependencies and broken build processes just to write a new post.
+
+So the search for something new began. I wanted it to be easy and low-friction to write. But I also wanted it to be customizable and I wanted to own my content - something I loved about Jekyll and GitHub Pages. I looked at [Ghost](https://ghost.org/) – nice clean interface, but felt like it was hemming me in too much. I looked at [Gatsby](https://www.gatsbyjs.com/) – I actually started converting to Gatsby, but then came across the easier and more powerful Astro. I thought about [Medium](https://medium.com/) – great social features and editor, but the constant paywalls were a no-go. Everything had its pros and cons.
+
+Then a couple of years ago I came across [Astro](https://astro.build/) and it checked all the boxes: It had typing (something Ruby-based Jekyll was lacking), a great API, a simple approach to adding content, active community, great documentation, and full customizability when I wanted it.
+
+So in 2023 I started to rebuild my site on top of Astro. I got pretty far, but then was pulled into some new projects and put it back on the backburner.
+
+This weekend I finally decided to bring it across the finish line: With the help of [Claude Code](https://claude.ai/code). It was a pure delight. Claude helped me to update from Astro 4 to 5, it helped me to create a [Speaking](/speaking) and [Writing](/writing) section. It helped me design (but not write!) my [About page](/about). It created the [GitHub Actions workflow](https://github.com/jfahrenkrug/jfahrenkrug.github.com/blob/master/.github/workflows/deploy.yml) to build and deploy my site. It was a fantastic companion in getting the styling of tables, callouts, code samples, lists, and anything else I wanted just right.
+
+So take one last look at what my old website looked like:
+
+![Old website screenshot showing the Jekyll-based design](/assets/writing/astro-relaunch/old-website.jpeg)
+
+You can look at the complete source code of my website and Astro setup on my public [GitHub repo](https://github.com/jfahrenkrug/jfahrenkrug.github.com).
+
+## Writing Features Showcase
+
+One of the things I'm most excited about is how easy it now is to create articles that look exactly the way I want them to. Here's a showcase of the markdown features now available:
+
+### Syntax Highlighting
+
+Code blocks now have beautiful syntax highlighting with dual light/dark theme support:
+
+```swift
+class NetworkManager {
+    private let session = URLSession.shared
+
+    func fetchData<T: Codable>(from url: URL, type: T.Type) async throws -> T {
+        let (data, _) = try await session.data(from: url)
+        return try JSONDecoder().decode(type, from: data)
+    }
+}
+```
+
+### Callout Components
+
+I can now easily use different types of callouts to highlight important information:
+
+<Callout type="info" title="Information">
+This is an informational callout. Perfect for providing additional context or helpful information.
+</Callout>
+
+<Callout type="tip" title="Pro Tip">
+Here's a helpful tip that can save you time or improve your workflow. These are great for sharing best practices!
+</Callout>
+
+<Callout type="warning" title="Important Warning">
+Use warning callouts to highlight potential pitfalls or important considerations that readers should be aware of.
+</Callout>
+
+<Callout type="success" title="Success">
+Success callouts are perfect for highlighting positive outcomes, achievements, or when something works well.
+</Callout>
+
+### Enhanced Code Blocks
+
+For more complex code examples, I can use the CodeBlock component with titles, filenames, and language labels:
+
+<CodeBlock title="Custom Hook Implementation" language="typescript" filename="useLocalStorage.ts">
+
+```typescript
+import { useState, useEffect } from 'react';
+
+function useLocalStorage<T>(key: string, initialValue: T) {
+    const [storedValue, setStoredValue] = useState<T>(() => {
+        try {
+            const item = window.localStorage.getItem(key);
+            return item ? JSON.parse(item) : initialValue;
+        } catch (error) {
+            console.error(`Error reading localStorage key "${key}":`, error);
+            return initialValue;
+        }
+    });
+
+    const setValue = (value: T | ((val: T) => T)) => {
+        try {
+            const valueToStore = value instanceof Function ? value(storedValue) : value;
+            setStoredValue(valueToStore);
+            window.localStorage.setItem(key, JSON.stringify(valueToStore));
+        } catch (error) {
+            console.error(`Error setting localStorage key "${key}":`, error);
+        }
+    };
+
+    return [storedValue, setValue] as const;
+}
+
+export default useLocalStorage;
+```
+
+</CodeBlock>
+
+### Lists and Tables
+
+Lists now have proper styling with accent-colored markers:
+
+**Unordered Lists:**
+- Feature one
+- Feature two
+  - Nested item
+  - Another nested item
+- Feature three
+
+**Ordered Lists:**
+1. First step
+2. Second step
+3. Third step
+
+And tables have nice headers and styling:
+
+| Feature | Supported | Notes |
+|---------|-----------|-------|
+| Syntax Highlighting | ✅ | Via Shiki with dual themes |
+| Callouts | ✅ | Five different types |
+| Enhanced Code Blocks | ✅ | With titles and filenames |
+| Tables | ✅ | With proper styling |
+| Lists | ✅ | Accent-colored markers |
+
+### Combining Elements
+
+I can even combine callouts with code examples:
+
+<Callout type="tip" title="Code Organization Best Practice">
+
+When organizing your Swift code, consider using MARK comments:
+
+```swift
+// MARK: - Properties
+private let networkManager: NetworkManager
+private var isLoading = false
+
+// MARK: - Initialization
+init(networkManager: NetworkManager = .shared) {
+    self.networkManager = networkManager
+}
+
+// MARK: - Public Methods
+func loadData() async {
+    // Implementation
+}
+```
+
+This makes your code much more readable and maintainable!
+
+</Callout>
+
+I intend to write more and more often, now that it's frictionless and fun again!

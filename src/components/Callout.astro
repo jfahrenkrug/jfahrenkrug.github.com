@@ -1,0 +1,104 @@
+---
+interface Props {
+	type?: 'info' | 'warning' | 'danger' | 'success' | 'tip';
+	title?: string;
+}
+
+const { type = 'info', title } = Astro.props;
+
+const typeStyles = {
+	info: {
+		border: 'var(--accent-regular)',
+		background: 'rgba(var(--accent-regular-rgb), 0.1)',
+		icon: 'ℹ️'
+	},
+	warning: {
+		border: '#f59e0b',
+		background: 'rgba(245, 158, 11, 0.1)',
+		icon: '⚠️'
+	},
+	danger: {
+		border: '#ef4444',
+		background: 'rgba(239, 68, 68, 0.1)',
+		icon: '❌'
+	},
+	success: {
+		border: '#10b981',
+		background: 'rgba(16, 185, 129, 0.1)',
+		icon: '✅'
+	},
+	tip: {
+		border: '#8b5cf6',
+		background: 'rgba(139, 92, 246, 0.1)',
+		icon: '💡'
+	}
+};
+
+const style = typeStyles[type];
+---
+
+<div class="callout" style={`--callout-border: ${style.border}; --callout-bg: ${style.background};`}>
+	<div class="callout-header">
+		<span class="callout-icon">{style.icon}</span>
+		{title && <span class="callout-title">{title}</span>}
+	</div>
+	<div class="callout-content">
+		<slot />
+	</div>
+</div>
+
+<style>
+	.callout {
+		margin: 1.5rem 0;
+		border: 2px solid var(--callout-border);
+		border-radius: 0.75rem;
+		background: var(--callout-bg);
+		overflow: hidden;
+	}
+
+	.callout-header {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 1rem 1.5rem 0.75rem 1.5rem;
+		border-bottom: 1px solid var(--callout-border);
+		background: rgba(var(--gray-999-rgb), 0.3);
+	}
+
+	.callout-icon {
+		font-size: 1.1em;
+	}
+
+	.callout-title {
+		font-family: var(--font-brand);
+		font-weight: 600;
+		color: var(--gray-0);
+		font-size: var(--text-base);
+	}
+
+	.callout-content {
+		padding: 1rem 1.5rem;
+		color: var(--gray-200);
+	}
+
+	.callout-content :global(p:first-child) {
+		margin-top: 0;
+	}
+
+	.callout-content :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.callout-content :global(code) {
+		background: rgba(var(--gray-800-rgb), 0.7);
+		border-radius: 0.25rem;
+		font-family: 'Monaco', 'Courier New', monospace;
+		font-size: 0.9em;
+		color: var(--gray-100);
+	}
+
+	:root:not(.theme-dark) .callout-content :global(code) {
+		background: rgba(var(--gray-200-rgb), 0.8);
+		color: var(--gray-800);
+	}
+</style>

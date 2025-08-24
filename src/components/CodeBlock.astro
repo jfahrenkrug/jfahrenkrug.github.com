@@ -1,0 +1,97 @@
+---
+interface Props {
+	title?: string;
+	language?: string;
+	filename?: string;
+}
+
+const { title, language, filename } = Astro.props;
+---
+
+<div class="code-block">
+	{(title || filename) && (
+		<div class="code-header">
+			{filename && <span class="code-filename">{filename}</span>}
+			{title && <span class="code-title">{title}</span>}
+			{language && <span class="code-language">{language}</span>}
+		</div>
+	)}
+	<div class="code-content">
+		<slot />
+	</div>
+</div>
+
+<style>
+	.code-block {
+		margin: 1.5rem 0;
+		border-radius: 0.75rem;
+		background: var(--gray-900);
+		border: 1px solid var(--gray-700);
+		overflow: hidden;
+	}
+
+	.code-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0.75rem 1rem;
+		background: var(--gray-800);
+		border-bottom: 1px solid var(--gray-700);
+		font-size: var(--text-sm);
+	}
+
+	.code-filename {
+		font-family: 'Monaco', 'Courier New', monospace;
+		color: var(--gray-200);
+		font-weight: 500;
+	}
+
+	.code-title {
+		font-family: var(--font-brand);
+		color: var(--gray-100);
+		font-weight: 500;
+	}
+
+	.code-language {
+		background: var(--gray-700);
+		color: var(--gray-300);
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.25rem;
+		font-family: var(--font-brand);
+		font-size: var(--text-xs);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.code-content {
+		padding: 0;
+	}
+
+	.code-content :global(pre) {
+		margin: 0;
+		border: none;
+	}
+
+	:root:not(.theme-dark) .code-block {
+		background: var(--gray-900);
+		border: 1px solid var(--gray-300);
+	}
+
+	:root:not(.theme-dark) .code-header {
+		background: var(--gray-800);
+		border-bottom: 1px solid var(--gray-300);
+	}
+
+	:root:not(.theme-dark) .code-filename {
+		color: var(--gray-100);
+	}
+
+	:root:not(.theme-dark) .code-title {
+		color: var(--gray-0);
+	}
+
+	:root:not(.theme-dark) .code-language {
+		background: var(--gray-600);
+		color: var(--gray-999);
+	}
+</style>
