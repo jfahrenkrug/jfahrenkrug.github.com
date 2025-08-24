@@ -40,13 +40,6 @@ function formatDate(date: Date): string {
 				align="start"
 			/>
 
-			<section class="writing-intro">
-				<div class="content">
-					<p>
-						Here are my articles covering iOS development, AI integration, technical leadership, and other topics I find interesting.
-					</p>
-				</div>
-			</section>
 
 			<section class="articles-section">
 				<div class="articles-list">
@@ -85,6 +78,10 @@ function formatDate(date: Date): string {
 							)}
 						</article>
 					))}
+					
+					<div class="archived-link">
+						<a href="/writing/archived">Archived Posts</a>
+					</div>
 				</div>
 			</section>
 		</main>
@@ -204,6 +201,25 @@ function formatDate(date: Date): string {
 		border-radius: 0.375rem;
 		font-size: var(--text-xs);
 		font-weight: 500;
+	}
+
+	.archived-link {
+		margin-top: 2rem;
+		padding-top: 2rem;
+		border-top: 1px solid var(--gray-800);
+	}
+
+	.archived-link a {
+		color: var(--gray-400);
+		text-decoration: none;
+		font-size: var(--text-base);
+		font-weight: 400;
+		transition: color var(--theme-transition);
+	}
+
+	.archived-link a:hover {
+		color: var(--gray-200);
+		text-decoration: underline;
 	}
 
 	@media (min-width: 50em) {

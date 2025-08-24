@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from "astro:content";
+import Callout from '../../../components/Callout.astro';
 
 export async function getStaticPaths() {
     const allPosts = await getCollection("archived_post");
@@ -22,12 +23,18 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BaseLayout 
+<BaseLayout
     title={`${post.data.title} | Johannes Fahrenkrug`}
     description={post.data.title}
 >
     <div class="stack gap-20">
         <main class="wrapper archived-post">
+            <div class="archive-notice-top">
+                <Callout type="warning" title="Archived Post">
+                    This is an archived post from my previous blog (2007-2014). It may contain outdated information, broken links, or deprecated technical content. For current writing, please see the main <a href="/writing/">Writing</a> section.
+                </Callout>
+            </div>
+
             <header class="hero">
                 <div class="stack gap-2">
                     <div class="stack gap-2 lg:gap-4">
@@ -46,10 +53,6 @@ const { Content } = await post.render();
             <article class="content">
                 <Content />
             </article>
-
-            <footer class="archive-notice">
-                <p><em>This is an archived post from my old blog. Some links and images may no longer work correctly.</em></p>
-            </footer>
         </main>
     </div>
 </BaseLayout>
@@ -59,6 +62,11 @@ const { Content } = await post.render();
         display: flex;
         flex-direction: column;
         gap: 3.5rem;
+    }
+
+    .archive-notice-top {
+        max-width: 65ch;
+        margin-inline: auto;
     }
 
     .hero {
@@ -91,12 +99,21 @@ const { Content } = await post.render();
     }
 
     .content :global(a) {
-        color: var(--accent-regular);
+        color: var(--accent-dark);
         text-decoration: underline;
         text-underline-offset: 0.25em;
+        transition: color var(--theme-transition);
     }
 
     .content :global(a:hover) {
+        color: var(--accent-regular);
+    }
+
+    :root:not(.theme-dark) .content :global(a) {
+        color: var(--accent-regular);
+    }
+
+    :root:not(.theme-dark) .content :global(a:hover) {
         color: var(--accent-light);
     }
 
@@ -157,19 +174,6 @@ const { Content } = await post.render();
         padding: 0;
     }
 
-    .archive-notice {
-        margin-top: 3rem;
-        padding: 1.5rem;
-        background: var(--gray-900);
-        border-radius: 0.5rem;
-        text-align: center;
-    }
-
-    .archive-notice p {
-        color: var(--gray-400);
-        font-size: var(--text-sm);
-        margin: 0;
-    }
 
     @media (min-width: 50em) {
         .archived-post {
