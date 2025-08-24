@@ -135,6 +135,14 @@
 		"eventName": "jsDay"
 	},
   {
+		"title": "Workshop (1 day): iOS Boot Camp: Die Sprache, die Tools, Ihre erste App!",
+    "titleUrl": "https://web.archive.org/web/20110421015456/http://mobiletechcon.de/2011spring/workshop/",
+    "videoUrl": "https://www.youtube.com/watch?v=b7vhn1EivRg",
+		"date": "2011-03-28",
+		"city": "Munich, Germany",
+		"eventName": "MobileTechCon"
+	},
+  {
 		"title": "Workshop (3 days): iOS Performance",
 		"date": "2011-03-20",
 		"city": "Luxemburg",
