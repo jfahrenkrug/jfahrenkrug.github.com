@@ -1,0 +1,18 @@
+---
+import Callout from './Callout.astro';
+
+interface Props {
+	type?: 'index' | 'post';
+}
+
+const { type = 'post' } = Astro.props;
+
+const content = type === 'index' 
+	? 'These are archived posts from my previous Jekyll-based blog (2007-2014). They are preserved here for historical reference and may contain outdated information, broken links, or deprecated technical content. For current writing, please see the main <a href="/writing/">Writing</a> section.'
+	: 'This is an archived post from my previous blog (2007-2014). It may contain outdated information, broken links, or deprecated technical content. For current writing, please see the main <a href="/writing/">Writing</a> section.';
+
+const title = type === 'index' ? 'About These Posts' : 'Archived Post';
+const calloutType = type === 'index' ? 'info' : 'warning';
+---
+
+<Callout type={calloutType} title={title} set:html={content} />

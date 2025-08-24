@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from "astro:content";
-import Callout from '../../../components/Callout.astro';
+import ArchivedNotice from '../../../components/ArchivedNotice.astro';
 
 export async function getStaticPaths() {
     const allPosts = await getCollection("archived_post");
@@ -30,9 +30,7 @@ const { Content } = await post.render();
     <div class="stack gap-20">
         <main class="wrapper archived-post">
             <div class="archive-notice-top">
-                <Callout type="warning" title="Archived Post">
-                    This is an archived post from my previous blog (2007-2014). It may contain outdated information, broken links, or deprecated technical content. For current writing, please see the main <a href="/writing/">Writing</a> section.
-                </Callout>
+                <ArchivedNotice type="post" />
             </div>
 
             <header class="hero">

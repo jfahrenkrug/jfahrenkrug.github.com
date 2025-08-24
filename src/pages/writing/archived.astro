@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactCTA from '../../components/ContactCTA.astro';
 import Hero from '../../components/Hero.astro';
 import Icon from '../../components/Icon.astro';
-import Callout from '../../components/Callout.astro';
+import ArchivedNotice from '../../components/ArchivedNotice.astro';
 
 // Get all archived posts
 const archivedPosts = await getCollection('archived_post');
@@ -47,9 +47,7 @@ function getArchiveUrl(post: CollectionEntry<'archived_post'>): string {
 			</header>
 			<main class="wrapper">
 				<div class="stack gap-10 content">
-					<Callout type="info" title="About These Posts">
-						These are archived posts from my previous Jekyll-based blog (2007-2014). They are preserved here for historical reference and may contain outdated information, broken links, or deprecated technical content. For current writing, please see the main <a href="/writing/">Writing</a> section.
-					</Callout>
+					<ArchivedNotice type="index" />
 
 					<section class="archived-posts">
 						<div class="posts-grid">
