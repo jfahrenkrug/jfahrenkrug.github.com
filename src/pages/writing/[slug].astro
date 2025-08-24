@@ -204,24 +204,35 @@ function formatDate(date: Date): string {
 	}
 
 	.article-content :global(ul) {
-		list-style: none;
+		list-style: disc;
 	}
 
 	.article-content :global(ul li) {
-		position: relative;
 		margin-bottom: 0.5rem;
 		line-height: 1.6;
-		padding-left: 1.5rem;
 	}
 
-	.article-content :global(ul li::before) {
-		content: '•';
-		position: absolute;
-		left: 0;
+	.article-content :global(ul ul),
+	.article-content :global(ol ol),
+	.article-content :global(ul ol),
+	.article-content :global(ol ul) {
+		margin-top: 0.25rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.article-content :global(ul ul li),
+	.article-content :global(ol ol li),
+	.article-content :global(ul ol li),
+	.article-content :global(ol ul li) {
+		margin-bottom: 0.25rem;
+	}
+
+	.article-content :global(ul li::marker) {
+		color: var(--accent-dark);
+	}
+
+	:root:not(.theme-dark) .article-content :global(ul li::marker) {
 		color: var(--accent-regular);
-		font-weight: bold;
-		font-size: 1.2em;
-		line-height: 1.3;
 	}
 
 	.article-content :global(ol) {
@@ -233,7 +244,7 @@ function formatDate(date: Date): string {
 		position: relative;
 		margin-bottom: 0.5rem;
 		line-height: 1.6;
-		padding-left: 2rem;
+		padding-left: 1.5rem;
 		counter-increment: list-counter;
 	}
 
@@ -241,9 +252,13 @@ function formatDate(date: Date): string {
 		content: counter(list-counter) '.';
 		position: absolute;
 		left: 0;
-		color: var(--accent-regular);
+		color: var(--accent-dark);
 		font-weight: 600;
 		font-family: var(--font-brand);
+	}
+
+	:root:not(.theme-dark) .article-content :global(ol li::before) {
+		color: var(--accent-regular);
 	}
 
 	.article-content :global(table) {
