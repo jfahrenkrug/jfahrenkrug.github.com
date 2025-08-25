@@ -11,8 +11,10 @@ const { title, language, filename } = Astro.props;
 <div class="code-block">
 	{(title || filename) && (
 		<div class="code-header">
-			{filename && <span class="code-filename">{filename}</span>}
-			{title && <span class="code-title">{title}</span>}
+			<div class="header-top">
+				{filename && <span class="code-filename">{filename}</span>}
+				{title && <span class="code-title">{title}</span>}
+			</div>
 			{language && <span class="code-language">{language}</span>}
 		</div>
 	)}
@@ -32,12 +34,19 @@ const { title, language, filename } = Astro.props;
 
 	.code-header {
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		flex-direction: column;
+		gap: 0.5rem;
 		padding: 0.75rem 1rem;
 		background: var(--gray-800);
 		border-bottom: 1px solid var(--gray-700);
 		font-size: var(--text-sm);
+	}
+
+	.header-top {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		flex-wrap: wrap;
 	}
 
 	.code-filename {
@@ -93,5 +102,17 @@ const { title, language, filename } = Astro.props;
 	:root:not(.theme-dark) .code-language {
 		background: var(--gray-600);
 		color: var(--gray-999);
+	}
+
+	@media (min-width: 50em) {
+		.code-header {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.header-top {
+			flex-wrap: nowrap;
+		}
 	}
 </style>
