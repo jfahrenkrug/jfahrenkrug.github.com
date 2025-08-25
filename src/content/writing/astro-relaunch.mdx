@@ -2,6 +2,7 @@
 title: "Astro Relaunch"
 description: "How I finally - after more than 15 years - relaunched my website using Astro and Claude Code ."
 date: 2025-08-24
+updated: 2025-08-25
 draft: false
 ---
 
@@ -36,7 +37,10 @@ Code blocks now have beautiful syntax highlighting with dual light/dark theme su
 class NetworkManager {
     private let session = URLSession.shared
 
-    func fetchData<T: Codable>(from url: URL, type: T.Type) async throws -> T {
+    func fetch<T: Codable>(
+        from url: URL, 
+        type: T.Type
+    ) async throws -> T {
         let (data, _) = try await session.data(from: url)
         return try JSONDecoder().decode(type, from: data)
     }
@@ -67,36 +71,34 @@ Success callouts are perfect for highlighting positive outcomes, achievements, o
 
 For more complex code examples, I can use the CodeBlock component with titles, filenames, and language labels:
 
-<CodeBlock title="Custom Hook Implementation" language="typescript" filename="useLocalStorage.ts">
+<CodeBlock title="API Helper" language="typescript" filename="api.ts">
 
 ```typescript
-import { useState, useEffect } from 'react';
-
-function useLocalStorage<T>(key: string, initialValue: T) {
-    const [storedValue, setStoredValue] = useState<T>(() => {
-        try {
-            const item = window.localStorage.getItem(key);
-            return item ? JSON.parse(item) : initialValue;
-        } catch (error) {
-            console.error(`Error reading localStorage key "${key}":`, error);
-            return initialValue;
-        }
-    });
-
-    const setValue = (value: T | ((val: T) => T)) => {
-        try {
-            const valueToStore = value instanceof Function ? value(storedValue) : value;
-            setStoredValue(valueToStore);
-            window.localStorage.setItem(key, JSON.stringify(valueToStore));
-        } catch (error) {
-            console.error(`Error setting localStorage key "${key}":`, error);
-        }
-    };
-
-    return [storedValue, setValue] as const;
+interface User {
+    id: number;
+    name: string;
+    email: string;
 }
 
-export default useLocalStorage;
+export async function fetchUser(id: number): Promise<User> {
+    const response = await fetch(`/api/users/${id}`);
+    
+    if (!response.ok) {
+        throw new Error('Failed to fetch user');
+    }
+    
+    return response.json();
+}
+
+export async function createUser(userData: Omit<User, 'id'>) {
+    const response = await fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData),
+    });
+    
+    return response.json();
+}
 ```
 
 </CodeBlock>
@@ -133,21 +135,18 @@ I can even combine callouts with code examples:
 
 <Callout type="tip" title="Code Organization Best Practice">
 
-When organizing your Swift code, consider using MARK comments:
+Use MARK comments to organize Swift code:
 
 ```swift
 // MARK: - Properties
-private let networkManager: NetworkManager
+private let manager: NetworkManager
 private var isLoading = false
 
-// MARK: - Initialization
-init(networkManager: NetworkManager = .shared) {
-    self.networkManager = networkManager
-}
-
-// MARK: - Public Methods
+// MARK: - Methods
 func loadData() async {
-    // Implementation
+    isLoading = true
+    // Implementation here
+    isLoading = false
 }
 ```
 

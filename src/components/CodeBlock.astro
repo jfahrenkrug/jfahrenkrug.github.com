@@ -74,11 +74,18 @@ const { title, language, filename } = Astro.props;
 
 	.code-content {
 		padding: 0;
+		overflow-x: auto;
 	}
 
 	.code-content :global(pre) {
 		margin: 0;
 		border: none;
+		overflow-x: auto;
+		white-space: pre;
+	}
+
+	.code-content :global(code) {
+		white-space: pre;
 	}
 
 	:root:not(.theme-dark) .code-block {
