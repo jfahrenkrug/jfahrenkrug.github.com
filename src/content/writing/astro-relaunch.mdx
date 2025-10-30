@@ -1,6 +1,6 @@
 ---
 title: "Astro Relaunch"
-description: "How I finally - after more than 15 years - relaunched my website using Astro and Claude Code ."
+description: "How I finally - after more than 15 years - relaunched my website using Astro and Claude Code."
 date: 2025-08-24
 updated: 2025-08-25
 draft: false
@@ -38,7 +38,7 @@ class NetworkManager {
     private let session = URLSession.shared
 
     func fetch<T: Codable>(
-        from url: URL, 
+        from url: URL,
         type: T.Type
     ) async throws -> T {
         let (data, _) = try await session.data(from: url)
@@ -82,11 +82,11 @@ interface User {
 
 export async function fetchUser(id: number): Promise<User> {
     const response = await fetch(`/api/users/${id}`);
-    
+
     if (!response.ok) {
         throw new Error('Failed to fetch user');
     }
-    
+
     return response.json();
 }
 
@@ -96,7 +96,7 @@ export async function createUser(userData: Omit<User, 'id'>) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
     });
-    
+
     return response.json();
 }
 ```
