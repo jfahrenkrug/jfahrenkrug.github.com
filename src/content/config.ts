@@ -30,6 +30,7 @@ export const collections = {
 			updated: z.coerce.date().optional(),
 			tags: z.array(z.string()).optional(),
 			draft: z.boolean().optional().default(false),
+			image: z.string().optional(),
 		}),
 	}),
 };
