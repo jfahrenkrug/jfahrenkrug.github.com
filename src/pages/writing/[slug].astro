@@ -37,7 +37,7 @@ function formatDate(date: Date): string {
 }
 ---
 
-<BaseLayout title={`${entry.data.title} | Johannes Fahrenkrug`} description={entry.data.description}>
+<BaseLayout title={`${entry.data.title} | Johannes Fahrenkrug`} description={entry.data.description} image={entry.data.image}>
 	<div class="stack gap-20">
 		<div class="stack gap-15">
 			<header class="wrapper">
@@ -69,6 +69,9 @@ function formatDate(date: Date): string {
 								<p class="description">{entry.data.description}</p>
 							</div>
 						</Hero>
+						{entry.data.image && (
+							<img class="cover-image" src={entry.data.image} alt={`Cover image for ${entry.data.title}`} />
+						)}
 					</div>
 				</div>
 			</header>
@@ -175,6 +178,14 @@ function formatDate(date: Date): string {
 
 	.header-content {
 		text-align: left;
+	}
+
+	.cover-image {
+		width: 100%;
+		max-width: 65ch;
+		border-radius: 0.75rem;
+		margin-top: 1.5rem;
+		border: 1px solid var(--gray-800);
 	}
 
 	.header-content :global(.hero) {
