@@ -89,16 +89,12 @@ const style = typeStyles[type];
 		margin-bottom: 0;
 	}
 
-	.callout-content :global(code) {
-		background: rgba(var(--gray-800-rgb), 0.7);
+	.callout-content :global(:not(pre) > code) {
+		background: var(--gray-900);
+		border: 1px solid var(--gray-700);
 		border-radius: 0.25rem;
 		font-family: 'Monaco', 'Courier New', monospace;
 		font-size: 0.9em;
 		color: var(--gray-100);
-	}
-
-	:root:not(.theme-dark) .callout-content :global(code) {
-		background: rgba(var(--gray-200-rgb), 0.8);
-		color: var(--gray-800);
 	}
 </style>
