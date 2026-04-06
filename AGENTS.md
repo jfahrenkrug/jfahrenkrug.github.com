@@ -19,4 +19,4 @@ Follow the conventional commit patterns already in history (`feat`, `fix`, `chor
 Add new posts or talks in the relevant folder within `src/content/`; include frontmatter that matches the collection schema. Place media in `public/images/` and reference them with `/images/...` paths. Update highlights or navigation via the corresponding component in `src/components/` to keep the site in sync with new content.
 
 ## ExecPlans
-For complex features or significant refactors, create and maintain an ExecPlan per `.agent/PLANS.md`. Keep `Progress`, `Surprises & Discoveries`, `Decision Log`, and `Outcomes & Retrospective` up to date during implementation.
+For complex features or significant refactors, create and maintain an ExecPlan per `.agents/PLANS.md`. Keep `Progress`, `Surprises & Discoveries`, `Decision Log`, and `Outcomes & Retrospective` up to date during implementation.
