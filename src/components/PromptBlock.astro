@@ -1,0 +1,188 @@
+---
+interface Props {
+	title?: string;
+	label?: string;
+}
+
+const {
+	title = 'Prompt',
+	label = 'Copy Into Your Agent'
+} = Astro.props;
+---
+
+<section class="prompt-block">
+	<div class="prompt-header">
+		<div class="prompt-header-main">
+			<div class="prompt-label">{label}</div>
+			<h3 class="prompt-title">{title}</h3>
+		</div>
+		<button class="prompt-copy-button" type="button" data-copy-prompt>
+			Copy prompt
+		</button>
+	</div>
+	<div class="prompt-body">
+		<slot />
+	</div>
+</section>
+
+<script>
+	document.querySelectorAll('[data-copy-prompt]').forEach((button) => {
+		if (!(button instanceof HTMLButtonElement)) return;
+		if (button.dataset.copyPromptBound === 'true') return;
+
+		button.dataset.copyPromptBound = 'true';
+
+		button.addEventListener('click', async () => {
+			const promptBlock = button.closest('.prompt-block');
+			const code = promptBlock?.querySelector('pre code');
+			const text = code?.textContent?.trim();
+
+			if (!text) return;
+
+			try {
+				await navigator.clipboard.writeText(text);
+				const originalText = button.textContent;
+				button.textContent = 'Copied';
+				window.setTimeout(() => {
+					button.textContent = originalText;
+				}, 1600);
+			} catch {
+				button.textContent = 'Copy failed';
+				window.setTimeout(() => {
+					button.textContent = 'Copy prompt';
+				}, 1600);
+			}
+		});
+	});
+</script>
+
+<style>
+	.prompt-block {
+		margin: 2rem 0;
+		border: 1px solid color-mix(in srgb, var(--accent-regular) 30%, var(--gray-700));
+		border-radius: 1rem;
+		overflow: hidden;
+		background:
+			radial-gradient(circle at top right, rgba(var(--accent-regular-rgb, 118, 17, 166), 0.18), transparent 35%),
+			linear-gradient(180deg, var(--gray-999), var(--gray-900));
+		box-shadow: var(--shadow-md);
+	}
+
+	.prompt-header {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1rem 1.25rem 1.1rem;
+		border-bottom: 1px solid color-mix(in srgb, var(--accent-regular) 22%, var(--gray-700));
+		background:
+			linear-gradient(180deg, rgba(var(--gray-999-basis), 0.7), rgba(var(--gray-999-basis), 0.25));
+	}
+
+	.prompt-header-main {
+		min-width: 0;
+	}
+
+	.prompt-label {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.3rem 0.6rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--accent-regular) 16%, transparent);
+		border: 1px solid color-mix(in srgb, var(--accent-regular) 24%, transparent);
+		color: var(--accent-dark);
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+	}
+
+	.prompt-title {
+		margin-top: 0.75rem;
+		font-size: clamp(1.2rem, 2vw, 1.55rem);
+		color: var(--gray-0);
+	}
+
+	.prompt-copy-button {
+		flex-shrink: 0;
+		padding: 0.55rem 0.85rem;
+		border: 1px solid color-mix(in srgb, var(--accent-regular) 24%, var(--gray-700));
+		border-radius: 0.7rem;
+		background: color-mix(in srgb, var(--gray-999) 72%, transparent);
+		color: var(--gray-100);
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		line-height: 1;
+		cursor: pointer;
+		transition:
+			background-color var(--theme-transition),
+			border-color var(--theme-transition),
+			transform var(--theme-transition);
+	}
+
+	.prompt-copy-button:hover {
+		background: color-mix(in srgb, var(--accent-regular) 12%, var(--gray-999));
+		border-color: color-mix(in srgb, var(--accent-regular) 45%, var(--gray-700));
+		transform: translateY(-1px);
+	}
+
+	.prompt-copy-button:focus-visible {
+		outline: 2px solid var(--accent-regular);
+		outline-offset: 2px;
+	}
+
+	.prompt-body {
+		padding: 0;
+	}
+
+	.prompt-body :global(pre) {
+		margin: 0;
+		padding: 1.25rem;
+		border: 0;
+		border-radius: 0;
+		background: transparent !important;
+		box-shadow: none;
+		white-space: pre-wrap;
+		word-break: break-word;
+	}
+
+	.prompt-body :global(code) {
+		white-space: inherit;
+	}
+
+	:root.theme-dark .prompt-block {
+		background:
+			radial-gradient(circle at top right, rgba(197, 97, 246, 0.16), transparent 35%),
+			linear-gradient(180deg, var(--gray-900), color-mix(in srgb, var(--gray-900) 92%, var(--accent-dark)));
+	}
+
+	:root.theme-dark .prompt-header {
+		background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+	}
+
+	:root.theme-dark .prompt-label {
+		color: var(--accent-dark);
+	}
+
+	:root.theme-dark .prompt-copy-button {
+		background: color-mix(in srgb, var(--gray-900) 88%, transparent);
+		color: var(--gray-100);
+	}
+
+	:root.theme-dark .prompt-copy-button:hover {
+		background: color-mix(in srgb, var(--accent-regular) 16%, var(--gray-900));
+	}
+
+	@media (max-width: 40em) {
+		.prompt-header {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.prompt-copy-button {
+			align-self: flex-start;
+		}
+	}
+</style>

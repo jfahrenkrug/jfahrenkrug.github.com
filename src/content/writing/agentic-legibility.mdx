@@ -1,0 +1,48 @@
+---
+title: "Agentic Legibility"
+description: "How to improve working conditions for your coding agent with a single prompt."
+date: 2026-04-06
+updated: 2026-04-06
+draft: false
+image: "/assets/writing/agentic-legibility/agentic-legibility-cover.png"
+---
+
+import Callout from '../../components/Callout.astro';
+import PromptBlock from '../../components/PromptBlock.astro';
+
+Don't you hate it when you clone a repository and you have no idea where to find things, what standards to follow, how to build, test, or run the project?
+Turns out your coding agent hates it, too.
+
+This simple prompt will greatly improve working conditions for both humans and agents.
+
+<Callout type="warning" title="Before You Paste This Prompt">
+It assumes your agent can access the internet and write to `.agents/skills`. If your setup is different, feel free to adjust the prompt to your liking.
+</Callout>
+
+<PromptBlock
+  title="Prompt For Improving Agentic Legibility"
+>
+
+```
+Please carefully study this article: https://openai.com/index/harness-engineering/ about agentic legibility and this article about ExecPlans: https://developers.openai.com/cookbook/articles/codex_exec_plans.
+Then, based on what you've learned from the articles, create an ExecPlan to improve agentic legibility of this repo. Store the PLANS.md from the ExecPlans article in .agents/PLANS.md. Also create or update the root AGENTS.md and add a section about ExecPlans.
+For extra details and context about agentic legibility, study this repo subfolder and the files it and its subfolders contain: https://github.com/openai/build-hours/tree/main/24-api-codex. It's the companion code for the agentic legibility article. Vendor the agentic-legibility skill at https://github.com/openai/build-hours/tree/main/24-api-codex/skills into .agents/skills and list it as an available skill in the root AGENTS.md.
+As you work to improve legibility, use the agentic-legibility skill to verify that legibility is improving.
+```
+
+</PromptBlock>
+
+I've used variations of this prompt with great success in several repos. It improves legibility in the following ways:
+- Instead of one huge AGENTS.md file, it uses progressive disclosure to give the agent the right context when it's needed.
+- It creates a system of memory for performed work and discoveries/decisions so the agent can "remember" what was done and why, just like a human team member.
+- It makes it easy for both agents and humans to know how to run necessary commands, including setup and tests.
+- It introduces the concept of ExecPlans to better plan, manage, and record large tasks.
+
+That combination of structure, ease of use, memory, and guidance will make a huge difference. Without it, it's like your agent is a brand new hire on their first day: it sees your codebase for the very first time whenever you start a new session.
+First contributions to unfamiliar repos are rarely our best work. Our coding agents are no exception.
+
+If you want to go deeper, the articles, video, and companion repo below are worth studying. The prompt above is a good starting point, but it can't replace understanding the underlying concepts that are explained below:
+- [Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
+- [Companion OpenAI Build Hours episode](https://www.youtube.com/watch?v=rhsSqr0jdFw)
+- [Companion OpenAI Build Hours Github repo](https://github.com/openai/build-hours/tree/main/24-api-codex)
+- [Using PLANS.md for multi-hour problem solving](https://developers.openai.com/cookbook/articles/codex_exec_plans)
